@@ -169,6 +169,17 @@ public class ClientDController implements Initializable {
 
     @FXML
     private void avis(ActionEvent event) {
+        
+        try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		AvisController  e = loader.getController();
+                e.setIdclient(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
     }
     
-}
+

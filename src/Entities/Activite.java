@@ -3,14 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GetAway.entities;
+package Entities;
+
+import Services.ActiviteService;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author TheBoss'07
  */
 public class Activite {
-   private int RefAct;
+   
+   private Connection conn;
+    private Statement ste;
+    private PreparedStatement pste; 
+    
+   public int RefAct;
    private String Nom;
    private String Descrip;
    private String Duree;
@@ -123,8 +137,11 @@ public class Activite {
 
     @Override
     public String toString() {
+
         return "RefAct= " + RefAct + ", Nom= " + Nom + ", Descrip= " + Descrip + ", Duree= " + Duree + ", NbrPlace= " + NbrPlace + ", Date= " + Date + ", Type= " + Type + ", Location= " + Location + ", Prix= " + Prix + "}\n";
     }
+
+   
 
     
    

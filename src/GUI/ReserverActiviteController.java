@@ -7,7 +7,7 @@ package GUI;
 
 import Entities.Paiement;
 import Entities.Reservation;
-import GetAway.entities.Activite;
+import Entities.Activite;
 import Services.ActiviteService;
 import Services.PaiementService;
 import Services.ReservationService;

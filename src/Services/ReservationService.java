@@ -6,7 +6,7 @@
 package Services;
 import Entities.Reservation;
 import Entities.*;
-import GetAway.entities.Activite;
+import Entities.Activite;
 import Utilis.Datasource;
 import Entities.Hebergement;
 import java.sql.*;
