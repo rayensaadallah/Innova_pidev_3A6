@@ -6,13 +6,14 @@
 package Entities;
 import java.sql.*;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 /**
  *
- * @author Asus
+ * @author Malek
  */
 public class Vol {
-       private int id_vol ;
+     private int id_vol ;
      public Timestamp date_depart;	
      public Timestamp date_arrivee;	
      private String ville_depart;
@@ -23,6 +24,11 @@ public class Vol {
 
     public Vol() {
     }
+
+    public Vol(String ville_depart) {
+        this.ville_depart = ville_depart;
+    }
+    
 
     public Vol(int id_vol, Timestamp date_depart, Timestamp date_arrivee,String ville_depart, String ville_arrivee, int nbr_placedispo, int id_avion, float prix) {
         this.id_vol = id_vol;
@@ -43,6 +49,17 @@ public class Vol {
         this.nbr_placedispo = nbr_placedispo;
         this.id_avion = id_avion;
         this.prix = prix;
+    }
+
+    public Vol(Timestamp querydated, Timestamp querydatea, String queryvilled, String queryvillea, Integer queryplace, Float queryprix) {
+       
+        this.date_depart = querydated;
+        this.date_arrivee = querydatea;
+        this.ville_depart=queryvilled;
+        this.ville_arrivee = queryvillea;
+        this.nbr_placedispo = queryplace;
+        this.prix = queryprix;
+    
     }
     
    
@@ -127,7 +144,6 @@ public class Vol {
 
     
      
-    
-
+     
     
 }

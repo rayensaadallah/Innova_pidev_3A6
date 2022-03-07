@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package Services;
-
-import Entities.Vol;
+import static com.itextpdf.text.pdf.security.LtvTimestamp.timestamp;
+import Entities.Vol ;
 import Utilis.Datasource;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -15,10 +17,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 /**
  *
- * @author Asus
+ * @author Malek
  */
 public class VolService implements IService<Vol> {
     private Connection conn;
@@ -34,98 +38,39 @@ public class VolService implements IService<Vol> {
 //     List<Timestamp> listDateDepart = getListDateDepartByIdAvion( V.getId_avion(), V.getDate_depart());
 //     List<Timestamp> listDateArrive= getListDateArriveByIdAvion( V.getId_avion(), V.getDate_arrivee());
 //    boolean volIsPresent= checkVolIsBetweenDateDepartAndArriveIsPossible(listDateArrive, listDateDepart,V.getDate_arrivee(), V.getDate_depart()) ;
-//     if(volIsPresent==true ) throw new Exception("Vol Existe deja");
+//     if(volIsPresent==true ) {System.out.println("Vol Existe deja");}
+//     else{
 //        
-//     {String req = "INSERT INTO `vol` (`date_depart`,`date_arrivee`,`ville_depart`,`ville_arrivee`,`nbr_placedispo`,`id_avion`,`prix`) VALUE (?,?,?,?,?,?,?) ";
-//         
-//         try {
-//            pste = conn.prepareStatement(req);
-//            pste.setTimestamp(1, V.getDate_depart());
-//            pste.setTimestamp(2, V.getDate_arrivee());
-//            pste.setString(3, V.getVille_depart());
-//            pste.setString(4, V.getVille_arrivee());
-//            pste.setInt(5, V.getNbr_placedispo());
-//            pste.setInt(6, V.getId_avion());
-//            pste.setFloat(7, V.getPrix());
-//            
-//            
-//            pste.executeUpdate();
-//            System.out.println("vol créée");
-//         
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
-//            
-//            }}
+//     {
+         String req = "INSERT INTO `vol` (`date_depart`,`date_arrivee`,`ville_depart`,`ville_arrivee`,`nbr_placedispo`,`id_avion`,`prix`) VALUE (?,?,?,?,?,?,?) ";
+         
+         try {
+            pste = conn.prepareStatement(req);
+            pste.setTimestamp(1, V.getDate_depart());
+            pste.setTimestamp(2, V.getDate_arrivee());
+            pste.setString(3, V.getVille_depart());
+            pste.setString(4, V.getVille_arrivee());
+            pste.setInt(5, V.getNbr_placedispo());
+            pste.setInt(6, V.getId_avion());
+            pste.setFloat(7, V.getPrix());
+            
+            
+            pste.executeUpdate();
+            System.out.println("vol créée");
+         
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+            
+            }}
  
-        }
+      
     
    
-//    
-//    @Override
-//    public void modifier(Vol V) {
-//       String req = "UPDATE `vol` SET `date_depart`=?,`date_arrivee`=?,`ville_depart`=?,`ville_arrivee`=?,`nbr_placedispo`=?,`id_avion`=? ,`prix`=? WHERE  `vol`.`id_vol` = "+ V.getId_vol() + "";
-//    
-//        try {
-//            pste = conn.prepareStatement(req);
-//
-//            pste.setTimestamp(1, V.getDate_depart());
-//            pste.setTimestamp(2, V.getDate_arrivee());
-            //pste.setString(3, V.getVille_depart());
-//            pste.setString(4, V.getVille_arrivee());
-//            pste.setInt(5, V.getNbr_placedispo());
-//            pste.setInt(6, V.getId_avion());
-//            pste.setFloat(7, V.getPrix());
-//
-//            pste.executeUpdate();
-//            int rowsUpdated = pste.executeUpdate();
-//            if (rowsUpdated > 0) {
-//                System.out.println("La modification du vol a été éffectuée avec succès ");
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//      
-//      
-//    }
     
-//    @Override
-//    public void supprimer(Vol V) {
-//        try {
-//            String req = "DELETE FROM `vol` WHERE `vol`.`id_vol` =?";
-//            pste = conn.prepareStatement(req);
-//            pste.setInt(1,V.getId_vol());
-//            pste.executeUpdate();
-//            int rowsUpdated = pste.executeUpdate();
-//            if (rowsUpdated > 0) {
-//            System.out.println("Vol supprimé");
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
-    
-     
-     public boolean supprimer_v(Vol v) {
-         boolean ok=false;
-        try {
-            
-            PreparedStatement req = conn.prepareStatement("delete from vol where ville_depart = ? ");
-            req.setString(1, v.getVille_depart());
-            req.executeUpdate();
-ok=true;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return ok;
-    }
-
-    
-  
-    public void modifier1(Vol V,int id_vol) {
-      String req = "UPDATE `vol` SET `date_depart`=?,`date_arrivee`=?,`ville_depart`=?,`ville_arrivee`=?,`nbr_placedispo`=?,`id_avion`=? ,`prix`=? WHERE  `vol`.`id_vol` = "+ String.valueOf(id_vol) + "";
+     @Override
+    public void modifier(Vol V) {
+       String req = "UPDATE `vol` SET `date_depart`=?,`date_arrivee`=?,`ville_depart`=?,`ville_arrivee`=?,`nbr_placedispo`=?,`id_avion`=? ,`prix`=? WHERE  `id_vol` = "+ V.getId_vol() + "";
     
         try {
             pste = conn.prepareStatement(req);
@@ -141,15 +86,35 @@ ok=true;
             pste.executeUpdate();
             int rowsUpdated = pste.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("La modification du vol :" + String.valueOf(id_vol) + " a été éffectuée avec succès ");
+                System.out.println("La modification du vol a été éffectuée avec succès ");
             }
         } catch (SQLException ex) {
             Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
         }
       
       
-      
     }
+    
+    @Override
+    public void supprimer(Vol V) {
+        try {
+            String req = "DELETE FROM `vol` WHERE  `id_vol` =?";
+            pste = conn.prepareStatement(req);
+            pste.setInt(1,V.getId_vol());
+            pste.executeUpdate();
+            int rowsUpdated = pste.executeUpdate();
+            if (rowsUpdated > 0) {
+            System.out.println("Vol supprimé");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+     
+   
 
   public ResultSet getall() {
          
@@ -164,18 +129,6 @@ ok=true;
     }
   
    
-    public void supprimer(int id_vol) {
-        try {
-            String req = "DELETE FROM `vol` WHERE `vol`.`id_vol` = " + String.valueOf(id_vol) + "";
-            pste = conn.prepareStatement(req);
-            pste.executeUpdate();
-            System.out.println("Vol supprimé");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 
     @Override
     public List<Vol> afficher() {
@@ -206,10 +159,40 @@ ok=true;
         
         return Vols;
     }
-
-    public List<Vol> findVolParDest(String ville_arrivee) {
+    
+   
+    public List<Vol> afficher2(int id) {
          List<Vol> Vols = new ArrayList<>();
-        String req = "SELECT * FROM `vol` where `ville_arrivee`= ? ";
+        String req = "SELECT * FROM `vol` where id_avion in ( select id_avion from avion where id_agence='"+id+"' )";
+        
+        try {
+            
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                Vols.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Vols;
+    }
+
+    public List<Vol> findVolParDest(String ville_arrivee,int id) {
+         List<Vol> Vols = new ArrayList<>();
+        String req = "SELECT * FROM `vol` where `ville_arrivee`= ? and `id_avion` in ( select id_avion from avion where id_agence='"+id+"')";
         
         try {
             
@@ -237,9 +220,39 @@ ok=true;
         return Vols;
     }
     
-    public List<Vol> getALLVolsprix(float prix) throws SQLException {
+    public List<Vol> findVolPardepart(String ville_depart,int id) {
+         List<Vol> Vols = new ArrayList<>();
+        String req = "SELECT * FROM `vol` where `ville_depart`= ? and id_avion in ( select id_avion from avion where id_agence='"+id+"' )";
+        
+        try {
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setString(1, ville_depart);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                Vols.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Vols;
+    }
+    
+    public List<Vol> findVolsprix(float prix,int id) throws SQLException {
         List<Vol> vols = new ArrayList<>();
-        String req = "SELECT *   FROM vol  WHERE (prix=" + prix + ")";
+        String req = "SELECT *   FROM vol  WHERE (prix=" + prix + ") and id_avion in ( select id_avion from avion where id_agence='"+id+"')";
         Statement stm = conn.createStatement();
     //  PreparedStatement pre = connexion.prepareStatement(req);
 
@@ -247,7 +260,7 @@ ok=true;
 
         while (rst.next()) {
 
-            Vol p = new Vol(rst.getInt("id_vol"), rst.getTimestamp("date_depart"), rst.getTimestamp("date_arrive"),rst.getString("ville_depart"), rst.getString("ville_arrivee"), rst.getInt("nbr_placedispo"),rst.getInt("id_avion"), rst.getFloat("prix"));
+            Vol p = new Vol(rst.getInt("id_vol"), rst.getTimestamp("date_depart"), rst.getTimestamp("date_arrivee"),rst.getString("ville_depart"), rst.getString("ville_arrivee"), rst.getInt("nbr_placedispo"),rst.getInt("id_avion"), rst.getFloat("prix"));
             vols.add(p);
 
         }
@@ -257,56 +270,37 @@ ok=true;
     
     
     
+  
+   
     
-    public Vol findVolParId(int id_vol) {
-
-        String req = "SELECT * FROM `vol` WHERE `id_vol`= ? ";
-        Vol v = new Vol();
+    public List<Vol> tri_vol(int id) {
+       List<Vol> Vols = new ArrayList<>();
+        String req = "SELECT * FROM vol where id_avion in (select id_avion from avion where id_agence='"+id+"')  ORDER BY prix  ";
+        
         try {
             
-            PreparedStatement preparedStatement = conn.prepareStatement(req);
-            preparedStatement.setInt(1, id_vol);
-            ResultSet rs = preparedStatement.executeQuery();
+              ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
             
             while(rs.next()){
-                
-                v.setId_vol(rs.getInt(1));
-                v.setDate_depart(rs.getTimestamp(2));
-                v.setDate_arrivee(rs.getTimestamp(3));
-                v.setVille_depart(rs.getString(4));
-                v.setVille_arrivee(rs.getString(5));
-                v.setNbr_placedispo(rs.getInt(6));
-                v.setId_avion(rs.getInt(7));
-                v.setPrix(rs.getFloat(8));
+                Vol v = new Vol();
+                v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                Vols.add(v);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return v;
-
-    }
-    
-  
-   
-    
-    public ResultSet tri_vol() {
-         
-       try {
-            PreparedStatement req = conn.prepareStatement("SELECT * FROM vol ORDER BY prix");
-            ResultSet rs = req.executeQuery();
-            return rs;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return null;
-    
+        return Vols;
 }
-    
-   
-    
-    
     
    
      public int calculenbvol(int id_avion ) {
@@ -544,14 +538,127 @@ ok=true;
 
   return( endDateTime.equals(endDateTimeBD) || endDateTime.after(endDateTimeBD));
 }
-
-    @Override
-    public void modifier(Vol entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             
+    public ObservableList<Vol> rechercherVol(String input,int id) {//Rechercher le contenu du input
+        
+        ObservableList<Vol> OVol = FXCollections.observableArrayList();
+        
+        String req = "SELECT * FROM `vol` Where prix LIKE '%"+input+"%' and id_avion  in (select id_avion from avion where id_agence='"+id+"')";
+        try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                 v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                
+                OVol.add(v);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return OVol;
+}
+           
+    
+        public List<Vol> findVolParDest1(String ville_arrivee) {
+         List<Vol> Vols = new ArrayList<>();
+        String req = "SELECT * FROM `vol` where `ville_arrivee`= ? ";
+        
+        try {
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setString(1, ville_arrivee);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                Vols.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Vols;
     }
-
-    @Override
-    public void supprimer(Vol entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public List<Vol> findVolPardepart1(String ville_depart) {
+         List<Vol> Vols = new ArrayList<>();
+        String req = "SELECT * FROM `vol` where `ville_depart`= ? ";
+        
+        try {
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setString(1, ville_depart);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                Vols.add(v);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Vols;
     }
+    
+      public ObservableList<Vol> rechercherVol1(String input) {//Rechercher le contenu du input
+        
+        ObservableList<Vol> OVol = FXCollections.observableArrayList();
+        
+        String req = "SELECT * FROM `vol` Where prix LIKE '%"+input+"%'";
+        try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+            
+            while(rs.next()){
+                Vol v = new Vol();
+                 v.setId_vol(rs.getInt("id_vol"));
+                v.setDate_depart(rs.getTimestamp("date_depart"));
+                v.setDate_arrivee(rs.getTimestamp("date_arrivee"));
+                v.setVille_depart(rs.getString("ville_depart"));
+                v.setVille_arrivee(rs.getString("ville_arrivee"));
+                v.setNbr_placedispo(rs.getInt("nbr_placedispo"));
+                v.setId_avion(rs.getInt("id_avion"));
+                v.setPrix(rs.getFloat("prix"));
+                
+                OVol.add(v);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VolService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return OVol;
+}
+      
+     
 }

@@ -162,10 +162,25 @@ PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
 pste.setString(2,mdp);
  ResultSet rs = pste.executeQuery();
+ 
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "agent-aerien and password matched");
-                 txtnom.setText("");
-                     txtmdp.setText("");
+//                 txtnom.setText("");
+//                     txtmdp.setText("");
+
+ try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Agentaerien.fxml"));
+		Parent root = loader.load();
+		 AgentAerienController  ee = loader.getController();
+                AgentAerienService as = new AgentAerienService();
+                int i=as.selectidA(txtnom.getText(),txtmdp.getText());
+                ee.setIdagent(i);
+                
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
                
             }else{
                     JOptionPane.showMessageDialog(null, "agent-aerien and password donot matched");

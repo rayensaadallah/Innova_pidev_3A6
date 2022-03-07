@@ -124,6 +124,14 @@ public class ReserverVolController implements Initializable {
     private Button btnSettings1;
     @FXML
     private Button btnSignout;
+    @FXML
+    private TextField villeDepartV;
+    @FXML
+    private TextField villeArriveV;
+    @FXML
+    private TextField prix;
+    @FXML
+    private Button rechercherVol;
 
     public void setIdclient(int idclient) {
         this.idclient = idclient;
@@ -227,11 +235,12 @@ public class ReserverVolController implements Initializable {
          { rs.ajouterVol(r);
          Paiement p = new Paiement(modalite.getValue(),Float.valueOf(prixTotalV.getText()),rs.afficher().get(rs.afficher().size()-1).getId(),datR);
          ps.ajouter(p);
-          Notifications.create().title("Reservation Vol").text(" Reservation est Créé ").show();
+         
+             System.out.println(v.getId_vol());
              rs.modifiernbplacevol(v.getId_vol(),Integer.parseInt(nbplaceRvol.getText()));
         
            tb_v.refresh();
-         
+          Notifications.create().title("Reservation Vol").text(" Reservation est Créé ").show();
          }
           else
           {    
@@ -372,5 +381,24 @@ public class ReserverVolController implements Initializable {
 		}catch(Exception ex){
 			System.out.println(ex);
 		}
+    }
+
+    @FXML
+    private void rechercheVolA(ActionEvent event) {
+            VolService as = new VolService();
+         Vol a=new Vol ();
+        
+        ObservableList<Vol> Vol = as.rechercherVol1(prix.getText());
+        ObservableList<Vol> listvol = FXCollections.observableArrayList(as.findVolParDest1(villeArriveV.getText()));
+        ObservableList<Vol> listvol1 = FXCollections.observableArrayList(as.findVolPardepart1(villeDepartV.getText()));
+       
+        tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
+        tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
+        tb_villearrivee.setCellValueFactory(new PropertyValueFactory<>("ville_arrivee"));
+        tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
+        tb_v.getItems().clear();
+        tb_v.setItems(Vol);
     }
 }

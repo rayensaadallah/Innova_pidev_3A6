@@ -346,7 +346,7 @@ private Connection conn;
        //Vol 
     public void modifiernbplacevol(int id,int nb)
 {  
-    System.out.println("test");
+    System.out.println("malloc");
     
     
     String req = "update vol  set `nbr_placedispo`= `nbr_placedispo` - ? where id_vol= ?";

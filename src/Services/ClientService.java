@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import entities.Client;
+import Entities.Client;
 import javafx.event.ActionEvent;
 import Utilis.Datasource;
 /**
