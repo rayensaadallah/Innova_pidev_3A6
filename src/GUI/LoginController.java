@@ -67,6 +67,7 @@ public class LoginController implements Initializable {
 String nom = txtnom.getText();
 String mdp = txtmdp.getText();
 ClientService cs = new ClientService();
+OffreurService os = new OffreurService();
 if(nom.equals("") && mdp.equals("")||nom.equals("")||mdp.equals(""))
 {
     JOptionPane.showMessageDialog(null, "veuillez remplir tous les champs vides");
@@ -156,8 +157,20 @@ pste.setString(2,mdp);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "Offreur and password matched");
-                 txtnom.setText("");
-                     txtmdp.setText("");
+//                 txtnom.setText("");
+//                     txtmdp.setText("");
+     try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteOffreur.fxml"));
+		Parent root = loader.load();
+		ModifierCompteOffreurController  ee = loader.getController();
+                
+                int i=os.selectidO(txtnom.getText(),txtmdp.getText());
+                ee.setIdc(i);
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
                
             }else{
                     JOptionPane.showMessageDialog(null, "Offreur and password donot matched");
