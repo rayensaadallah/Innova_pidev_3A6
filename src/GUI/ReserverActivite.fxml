@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="845.0" prefWidth="1374.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReserverActiviteController">
+   <children>
+      <Label layoutX="566.0" layoutY="330.0" prefHeight="21.0" prefWidth="104.0" text="Nom" />
+      <Label layoutX="538.0" layoutY="378.0" prefHeight="21.0" prefWidth="57.0" text="Prix" />
+      <Label layoutX="843.0" layoutY="378.0" text="Nombre de place" />
+      <TextField fx:id="nomA" editable="false" layoutX="613.0" layoutY="325.0" />
+      <TextField fx:id="prixA" editable="false" layoutX="613.0" layoutY="373.0" />
+      <TextField fx:id="nbpA" layoutX="967.0" layoutY="373.0" onKeyTyped="#calculerPT" />
+      <TextField fx:id="DateA" editable="false" layoutX="959.0" layoutY="323.0" />
+      <Label layoutX="866.0" layoutY="328.0" prefHeight="21.0" prefWidth="68.0" text="Date" />
+      <Label layoutX="536.0" layoutY="428.0" prefHeight="21.0" prefWidth="82.0" text="prix total" />
+      <TextField fx:id="prixtotal" editable="false" layoutX="613.0" layoutY="423.0" />
+      <Button fx:id="ReserverA" layoutX="903.0" layoutY="491.0" mnemonicParsing="false" onAction="#addact" onMouseReleased="#vider" prefHeight="31.0" prefWidth="115.0" text="Reserver" />
+      <Label layoutX="536.0" layoutY="485.0" text="Nom Client" />
+      <TextField fx:id="idc" layoutX="624.0" layoutY="480.0" />
+      <TableView fx:id="tvactivite" layoutX="536.0" layoutY="84.0" onMouseClicked="#selecteAct" prefHeight="224.0" prefWidth="798.0">
+        <columns>
+           <TableColumn fx:id="colnom" prefWidth="140.0" text="Nom" />
+            <TableColumn fx:id="colduree" prefWidth="97.0" text="Durée" />
+            <TableColumn fx:id="colnbrp" prefWidth="153.0" text="Nombre de place" />
+            <TableColumn fx:id="coldate" prefWidth="108.0" text="Date" />
+            <TableColumn fx:id="coltype" prefWidth="92.0" text="Type" />
+            <TableColumn fx:id="colloc" prefWidth="117.0" text="Location" />
+            <TableColumn fx:id="colprix" prefWidth="81.0" text="Prix" />
+            <TableColumn fx:id="coldesc" prefWidth="316.0" text="Description" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="modalite" layoutX="997.0" layoutY="423.0" prefWidth="150.0" />
+      <Label layoutX="827.0" layoutY="428.0" text="Modalite de paiement" />
+      <JFXButton fx:id="E1" buttonType="RAISED" layoutX="574.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="1" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E2" buttonType="RAISED" layoutX="640.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="2" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E3" buttonType="RAISED" layoutX="710.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" ripplerFill="WHITE" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="3" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E4" buttonType="RAISED" layoutX="778.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="4" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E5" buttonType="RAISED" layoutX="855.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="5" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E6" buttonType="RAISED" layoutX="935.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="6" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E7" buttonType="RAISED" layoutX="1022.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="7" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E8" buttonType="RAISED" layoutX="1101.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="8" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E9" buttonType="RAISED" layoutX="1175.0" layoutY="642.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="9" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="E10" buttonType="RAISED" layoutX="1239.0" layoutY="641.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="10" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F1" buttonType="RAISED" layoutX="574.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="11" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F2" buttonType="RAISED" layoutX="640.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="12" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F3" buttonType="RAISED" layoutX="717.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" ripplerFill="WHITE" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="13" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F4" buttonType="RAISED" layoutX="785.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="14" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F5" buttonType="RAISED" layoutX="864.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="15" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F6" buttonType="RAISED" layoutX="948.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="16" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F7" buttonType="RAISED" layoutX="1035.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="17" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F8" buttonType="RAISED" layoutX="1110.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="18" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F9" buttonType="RAISED" layoutX="1175.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="19" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F10" buttonType="RAISED" layoutX="1245.0" layoutY="709.0" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #8EA6B4; -fx-background-radius: 7;" text="20" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F31" buttonType="RAISED" layoutX="779.0" layoutY="804.0" prefHeight="40.0" prefWidth="128.0" ripplerFill="WHITE" style="-fx-background-color: #4A772F; -fx-background-radius: 7;" text="disponible" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="F311" buttonType="RAISED" layoutX="1010.0" layoutY="804.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #C40018; -fx-background-radius: 7;" text="non disponible" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <VBox alignment="TOP_CENTER" prefHeight="932.0" prefWidth="298.0" style="-fx-background-color: #ffd800;">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="consulterCompte" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterCompteC" prefHeight="42.0" prefWidth="259.0" style="-fx-text-fill: black;" stylesheets="@style.css" text="Consulter Profil" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverVol" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reserver Vol">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#reserverH" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reserver Hebergment">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverVO" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reserver voyage organise">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ReserverA" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reserver Activite ">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterR" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Consulter  les reservations ">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings1" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reclamations" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Consulter  les reclamations">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings11" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Avis" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Avis">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#signout" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <JFXButton layoutX="773.0" layoutY="578.0" prefHeight="20.0" prefWidth="350.0" style="-fx-background-color: #027eb; -fx-background-radius: 5;" text="Nombre de place" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton> 
+      
+   </children>
+</AnchorPane>

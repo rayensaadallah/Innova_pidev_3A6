@@ -1,0 +1,55 @@
+.button
+{
+    -fx-background-color: #ffd800 ;
+}
+
+
+.AnchorPane
+{
+    -fx-background-color :  #C3C3C3
+}
+
+
+.StackPane{
+    -fx-background-color :  #C3C3C3
+    
+}
+
+.Agenda
+{
+-fx-background-color : #ffd800;
+-fx-text-fill : #027ebc;
+}
+.AnchorPane
+{
+    -fx-background-color :  #C3C3C3
+}
+
+.VBox
+{
+
+    -fx-background-color :  #ffd800
+}
+
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #027ebc; 
+}
+.table-view .column-header .label{
+   -fx-text-fill: white;
+   -fx-font-weight: bold; 
+   -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+   -fx-cell-size: 35;
+  -fx-alignment: center-left;
+  -fx-alignment: CENTER_LEFT;
+   
+}
+.table-row-cell:selected {
+   -fx-background-color: whitesmoke; 
+   -fx-text-background-color:  #027ebc;
+   
+       
+}
