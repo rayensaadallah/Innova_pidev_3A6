@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1348.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AvisController">
+   <children>
+      <TabPane layoutX="310.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1040.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gestion Avis">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane" stylesheets="@style.css">
+                     <children>
+                        <TableView fx:id="tvavisa" layoutX="14.0" layoutY="39.0" onMouseClicked="#selectNom" prefHeight="507.0" prefWidth="310.0">
+                          <columns>
+                            <TableColumn fx:id="colnomac" prefWidth="118.0" text="Nom Activite" />
+                            <TableColumn fx:id="coldescripac" minWidth="9.0" prefWidth="182.0" text="Description" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="txtnoma" editable="false" layoutX="460.0" layoutY="121.0" />
+                        <TableView fx:id="tvavis" layoutX="341.0" layoutY="446.0" onMouseClicked="#selectAllav" prefHeight="201.0" prefWidth="697.0">
+                          <columns>
+                            <TableColumn fx:id="colmessage" prefWidth="180.0" text="Message" />
+                            <TableColumn fx:id="coldateav" prefWidth="197.0" text="Date" />
+                              <TableColumn fx:id="colnomcl" prefWidth="178.0" text="Nom Client" />
+                              <TableColumn fx:id="colnomact" prefWidth="189.0" text="Nom Activite" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="366.0" layoutY="125.0" text="Nom Activite:" />
+                        <Label layoutX="694.0" layoutY="125.0" text="Votre Avis:" />
+                        <Button fx:id="btnmodifierav" layoutX="649.0" layoutY="195.0" mnemonicParsing="false" onAction="#modifierAv" prefHeight="32.0" prefWidth="83.0" text="Modifier" />
+                        <Button fx:id="btnsupprimerav" layoutX="744.0" layoutY="195.0" mnemonicParsing="false" onAction="#supprimerav" prefHeight="32.0" prefWidth="83.0" text="Supprimer" />
+                        <Button fx:id="btnviderav" layoutX="375.0" layoutY="195.0" mnemonicParsing="false" onAction="#viderAv" prefHeight="32.0" prefWidth="85.0" text="Vider" />
+                        <ComboBox fx:id="txtcomment" layoutX="774.0" layoutY="120.0" prefHeight="29.0" prefWidth="186.0" promptText="Selection de la liste:" />
+                        <Button fx:id="btnajouterav" layoutX="551.0" layoutY="195.0" mnemonicParsing="false" onAction="#ajouterav" prefHeight="32.0" prefWidth="83.0" text="Ajouter" />
+                        <Button fx:id="btnstat" layoutX="376.0" layoutY="241.0" mnemonicParsing="false" onAction="#stat" prefHeight="32.0" prefWidth="83.0" text="Stat" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <VBox alignment="TOP_CENTER" layoutY="-4.0" prefHeight="727.0" prefWidth="310.0" style="-fx-background-color: ffd800;" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterProfil" prefHeight="42.0" prefWidth="272.0" style="-fx-background-color: #ffd800;" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Consulter Profil">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverVol" prefHeight="42.0" prefWidth="268.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Reserver Vol">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverHebergement" prefHeight="42.0" prefWidth="267.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Reserver Hebergment">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverVoyageO" prefHeight="42.0" prefWidth="269.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Reserver voyage organise">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#reserverActivite" prefHeight="42.0" prefWidth="267.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Reserver Activite ">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterReservation" prefHeight="42.0" prefWidth="269.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Consuter les reservation">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="bReclamation" mnemonicParsing="false" onAction="#reclamation" prefHeight="43.0" prefWidth="273.0" text="Reclamation">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnOrders1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="193.0" mnemonicParsing="false" onAction="#avis" prefHeight="42.0" prefWidth="268.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Avis">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="269.0" stylesheets="@../../../../../Downloads/Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
