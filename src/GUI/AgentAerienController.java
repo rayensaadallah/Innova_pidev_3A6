@@ -162,8 +162,6 @@ public class AgentAerienController implements Initializable {
     private TextField id_arrivee;
     @FXML
     private TextField id_depart;
-    @FXML
-    private Button btnOrders1;
    
 
     
@@ -213,10 +211,7 @@ public class AgentAerienController implements Initializable {
 
     
     
-    private void consulterProfil(ActionEvent event) {
-
-        
-    }
+    
     
 
     public void getida(int id)
@@ -778,6 +773,37 @@ alert.showAndWait();
         else return false;
         return false;
         
+    }
+
+    @FXML
+    private void consulterprofil(ActionEvent event) {
+        
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteAgent.fxml"));
+		Parent root = loader.load();
+		ModifierCompteAgentController e = loader.getController();
+                e.setIdc(ida);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        
+        
+    
+                      try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
     
     

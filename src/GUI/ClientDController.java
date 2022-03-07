@@ -145,12 +145,32 @@ public class ClientDController implements Initializable {
     @FXML
     private void consulterProfil(ActionEvent event) {
         
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
+		Parent root = loader.load();
+		ModifierCompteClientController  e = loader.getController();
+                e.setIdc(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
           
         
     }
 
     @FXML
     private void reclamation(ActionEvent event) {
+        
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+		Parent root = loader.load();
+		ReclamationController  e = loader.getController();
+                e.setIdc(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+        
     }
 
     @FXML

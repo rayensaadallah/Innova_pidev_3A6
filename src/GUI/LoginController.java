@@ -85,11 +85,17 @@ pste.setString(2,mdp);
                 JOptionPane.showMessageDialog(null, "admin and password matched");
                  txtnom.setText("");
                      txtmdp.setText("");
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("registration.fxml"));
-        Scene scene =new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+                 try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Registration.fxml"));
+		Parent root = loader.load();
+		RegistrationController ee = loader.getController();
+               
+                
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
   
         
                 
@@ -98,6 +104,8 @@ pste.setString(2,mdp);
                     JOptionPane.showMessageDialog(null, "admin and password donot matched");
                     txtnom.setText("");
                      txtmdp.setText("");
+           
+                     
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Client"){
         

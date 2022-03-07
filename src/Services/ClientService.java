@@ -187,7 +187,9 @@ private Connection conn;
                 a.setPrenom(rs.getString(3));
                 a.setEmail(rs.getString(4));
                 a.setPwd(rs.getString(5));
-              
+               a.setSecurityQ(rs.getString(7));
+                a.setAnswer(rs.getString(8));
+           
                 System.out.println(a.toString());                
             }
         } 

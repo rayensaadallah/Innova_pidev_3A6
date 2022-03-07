@@ -161,6 +161,43 @@ private Connection conn;
         
         return i;
     }
+     
+     
+     public  AgentAerien  selectmodifier( int idc ) {
+       String sql= " Select * from `agent-aerien` WHERE id= '"+idc+"' " ;
+       AgentAerien a = new AgentAerien();
+             try 
+        {
+            ste = conn.createStatement();
+            ResultSet rs=ste.executeQuery(sql);          
+           
+            while(rs.next())
+            {
+                 
+                a.setId(idc);
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(4));
+                a.setNomAgence(rs.getString(5));
+                a.setPwd(rs.getString(6));
+               
+              
+                System.out.println(a.toString());                
+            }
+        } 
+        catch (SQLException ex) 
+            
+        {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+         
+
+       return a;
+      
+        
+    }
 
     
 }

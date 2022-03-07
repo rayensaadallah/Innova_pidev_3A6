@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegistrationController">
+   <children>
+      <TabPane layoutX="314.0" prefHeight="821.0" prefWidth="986.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gestion des administrateur">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="803.0" prefWidth="947.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="260.0" layoutY="24.0" text="Admin Form " textFill="#183287e5">
+                           <font>
+                              <Font name="Arial Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="29.0" layoutY="88.0" text="Nom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnom" layoutX="143.0" layoutY="86.0" />
+                        <Label layoutX="333.0" layoutY="88.0" text="Prenom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtprenom" layoutX="408.0" layoutY="86.0" />
+                        <Label layoutX="29.0" layoutY="131.0" text="Adresse : ">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="131.0" text="Email :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="169.0" text="Mot de passe :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtadr" layoutX="143.0" layoutY="129.0" />
+                        <TextField fx:id="txtemail" layoutX="408.0" layoutY="129.0" />
+                        <TableView fx:id="tvadmin" layoutX="28.0" layoutY="248.0" onMouseClicked="#selectAdmin" prefHeight="144.0" prefWidth="544.0">
+                          <columns>
+                            <TableColumn fx:id="colnom" prefWidth="108.0" text="Nom" />
+                              <TableColumn fx:id="colprenom" prefWidth="94.0" text="Prenom" />
+                              <TableColumn fx:id="coladr" prefWidth="119.0" text="Adresse" />
+                              <TableColumn fx:id="colemail" prefWidth="222.0" text="Email" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnajout" layoutX="629.0" layoutY="86.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="25.0" prefWidth="75.0" text="Ajouter" />
+                        <Button fx:id="btnmodif" layoutX="629.0" layoutY="139.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="75.0" text="Modifier" />
+                        <Button fx:id="btnsupp" layoutX="629.0" layoutY="192.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="75.0" text="Supprimer" />
+                        <Label layoutX="28.0" layoutY="217.0" text="Liste des administrateurs :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="txtmdp" layoutX="143.0" layoutY="167.0" />
+                        <Label layoutX="28.0" layoutY="465.0" text="Rechercher un administrateur : ">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtrech" layoutX="286.0" layoutY="463.0" prefHeight="25.0" prefWidth="140.0" promptText="Entrez un nom" />
+                        <Button fx:id="btnrech" layoutX="437.0" layoutY="463.0" mnemonicParsing="false" onAction="#rechercher" text="Rechercher" />
+                        <Label layoutX="28.0" layoutY="421.0" text="nombre total des administrateurs :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnbtot" layoutX="300.0" layoutY="419.0" prefHeight="25.0" prefWidth="125.0" />
+                        <Button fx:id="btnActualiser" layoutX="437.0" layoutY="419.0" mnemonicParsing="false" onAction="#Actualiser" prefHeight="25.0" prefWidth="76.0" text="Actualiser" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Gestion des clients">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="262.0" layoutY="30.0" text="Client Form" textFill="#183287">
+                           <font>
+                              <Font name="Arial Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="90.0" text="Nom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="136.0" text="Mot de passe :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnomC" layoutX="128.0" layoutY="88.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="338.0" layoutY="89.0" text="Prenom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="136.0" text="Email :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtprenomC" layoutX="414.0" layoutY="87.0" prefHeight="25.0" prefWidth="188.0" />
+                        <TextField fx:id="txtemailC" layoutX="126.0" layoutY="134.0" prefHeight="25.0" prefWidth="184.0" />
+                        <Label layoutX="41.0" layoutY="249.0" text="Liste des clients :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvClient" layoutX="41.0" layoutY="277.0" onMouseClicked="#selectClient" prefHeight="116.0" prefWidth="535.0">
+                          <columns>
+                            <TableColumn fx:id="colnomC" prefWidth="112.0" text="Nom" />
+                            <TableColumn fx:id="colprenomC" prefWidth="123.0" text="Prenom" />
+                              <TableColumn fx:id="colemailC" prefWidth="173.0" text="Email" />
+                              <TableColumn fx:id="coletatC" prefWidth="126.0" text="Etat" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="41.0" layoutY="415.0" text="Rechercher un client :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtrechClient" layoutX="220.0" layoutY="413.0" prefHeight="25.0" prefWidth="146.0" />
+                        <Button fx:id="btnrechClient" layoutX="388.0" layoutY="413.0" mnemonicParsing="false" onAction="#rechercherClient" prefHeight="25.0" prefWidth="91.0" text="Rechercher " />
+                        <Button fx:id="btnajouterC" layoutX="644.0" layoutY="100.0" mnemonicParsing="false" onAction="#ajouterC" prefHeight="25.0" prefWidth="84.0" text="Ajouter" />
+                        <Button fx:id="btnsuppC" layoutX="645.0" layoutY="147.0" mnemonicParsing="false" onAction="#supprimerC" prefHeight="25.0" prefWidth="83.0" text="Supprimer" />
+                        <PasswordField fx:id="txtmdpC" layoutX="446.0" layoutY="134.0" prefHeight="25.0" prefWidth="156.0" />
+                        <Button fx:id="btnBloquer" layoutX="646.0" layoutY="193.0" mnemonicParsing="false" onAction="#Bloquer" prefHeight="25.0" prefWidth="82.0" text="Bloquer" />
+                        <Button fx:id="btnActiver" layoutX="646.0" layoutY="237.0" mnemonicParsing="false" onAction="#Activer" prefHeight="25.0" prefWidth="81.0" text="Activer" />
+                        <Label layoutX="40.0" layoutY="182.0" prefHeight="20.0" prefWidth="172.0" text="Question de securite :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="217.0" text="Reponse :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="combosecurity" layoutX="220.0" layoutY="180.0" prefHeight="25.0" prefWidth="208.0" promptText="Veuillez choisir une question" />
+                        <TextField fx:id="txtrep" layoutX="139.0" layoutY="213.0" prefHeight="25.0" prefWidth="190.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Gestion des offreurs">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="262.0" layoutY="30.0" text="Offreur Form" textFill="#e1be33">
+                           <font>
+                              <Font name="Arial Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="90.0" text="Nom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="136.0" text="Mot de passe :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnomOF" layoutX="128.0" layoutY="88.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="338.0" layoutY="89.0" text="Prenom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="136.0" text="Email :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtprenomOF" layoutX="414.0" layoutY="87.0" prefHeight="25.0" prefWidth="188.0" />
+                        <TextField fx:id="txtemailOF" layoutX="126.0" layoutY="134.0" prefHeight="25.0" prefWidth="184.0" />
+                        <Label layoutX="41.0" layoutY="249.0" text="Liste des offreurs :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvOffreur" layoutX="41.0" layoutY="277.0" onMouseClicked="#selectOffreur" prefHeight="116.0" prefWidth="535.0">
+                           <columns>
+                              <TableColumn fx:id="colnomOF" prefWidth="112.0" text="Nom" />
+                              <TableColumn fx:id="colprenomOF" prefWidth="123.0" text="Prenom" />
+                              <TableColumn fx:id="colemailOF" prefWidth="173.0" text="Email" />
+                              <TableColumn fx:id="colTelOF" prefWidth="126.0" text="Telephone" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="41.0" layoutY="415.0" text="Rechercher un offreur :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtrechOF" layoutX="220.0" layoutY="413.0" prefHeight="25.0" prefWidth="146.0" />
+                        <Button fx:id="btnrechOF" layoutX="388.0" layoutY="413.0" mnemonicParsing="false" onAction="#rechercherO" prefHeight="25.0" prefWidth="91.0" text="Rechercher " />
+                        <Button fx:id="btnajouterOF" layoutX="644.0" layoutY="100.0" mnemonicParsing="false" onAction="#ajouterO" prefHeight="25.0" prefWidth="84.0" text="Ajouter" />
+                        <Button fx:id="btnmodifierOF" layoutX="645.0" layoutY="146.0" mnemonicParsing="false" onAction="#modifierO" prefHeight="25.0" prefWidth="84.0" text="Modifier" />
+                        <Button fx:id="btnsuppOF" layoutX="645.0" layoutY="192.0" mnemonicParsing="false" onAction="#supprimerO" prefHeight="25.0" prefWidth="83.0" text="Supprimer" />
+                        <PasswordField fx:id="txtmdpOF" layoutX="446.0" layoutY="134.0" prefHeight="25.0" prefWidth="156.0" />
+                        <Label layoutX="24.0" layoutY="183.0" text="Telephone :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtTelOF" layoutX="126.0" layoutY="180.0" prefHeight="25.0" prefWidth="184.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Gestion des agents aeriens">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="245.0" layoutY="29.0" text="Agent aerien Form" textFill="#e1be33">
+                           <font>
+                              <Font name="Arial Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="90.0" text="Nom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="136.0" text="Mot de passe :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnomAG" layoutX="128.0" layoutY="88.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="338.0" layoutY="89.0" text="Prenom :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="136.0" text="Email :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtprenomAG" layoutX="414.0" layoutY="87.0" prefHeight="25.0" prefWidth="188.0" />
+                        <TextField fx:id="txtemailAG" layoutX="126.0" layoutY="134.0" prefHeight="25.0" prefWidth="184.0" />
+                        <Label layoutX="41.0" layoutY="249.0" text="Liste des offreurs :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvAgent" layoutX="41.0" layoutY="277.0" onMouseClicked="#selectAgent" prefHeight="116.0" prefWidth="535.0">
+                           <columns>
+                              <TableColumn fx:id="colnomAG" prefWidth="112.0" text="Nom" />
+                              <TableColumn fx:id="colprenomAG" prefWidth="123.0" text="Prenom" />
+                              <TableColumn fx:id="colemailAG" prefWidth="173.0" text="Email" />
+                              <TableColumn fx:id="colNomAgence" prefWidth="126.0" text="Nom agence" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="41.0" layoutY="415.0" text="Rechercher un agent :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtrechAG" layoutX="220.0" layoutY="413.0" prefHeight="25.0" prefWidth="146.0" />
+                        <Button fx:id="btnrechAG" layoutX="388.0" layoutY="413.0" mnemonicParsing="false" onAction="#rechercherAG" prefHeight="25.0" prefWidth="91.0" text="Rechercher " />
+                        <Button fx:id="btnajouterAG" layoutX="644.0" layoutY="100.0" mnemonicParsing="false" onAction="#ajouterAG" prefHeight="25.0" prefWidth="84.0" text="Ajouter" />
+                        <Button fx:id="btnmodifierAG" layoutX="645.0" layoutY="146.0" mnemonicParsing="false" onAction="#modifierAG" prefHeight="25.0" prefWidth="84.0" text="Modifier" />
+                        <Button fx:id="btnsuppAG" layoutX="645.0" layoutY="192.0" mnemonicParsing="false" onAction="#supprimerAG" prefHeight="25.0" prefWidth="83.0" text="Supprimer" />
+                        <PasswordField fx:id="txtmdpAG" layoutX="446.0" layoutY="134.0" prefHeight="25.0" prefWidth="156.0" />
+                        <Label layoutX="24.0" layoutY="183.0" text="Nom agence :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtNomAgence" layoutX="126.0" layoutY="180.0" prefHeight="25.0" prefWidth="184.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Gestion des reclamations">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #027ebc;">
+                     <children>
+                        <Label layoutX="245.0" layoutY="29.0" text="Reclamations :" textFill="#183287">
+                           <font>
+                              <Font name="Arial Black" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="115.0" text="Liste des reclamations  :">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tvRC" layoutX="41.0" layoutY="147.0" prefHeight="160.0" prefWidth="491.0">
+                           <columns>
+                              <TableColumn fx:id="colObj" prefWidth="112.0" text="Objet" />
+                              <TableColumn fx:id="colDesc" prefWidth="281.0" text="Description" />
+                              <TableColumn fx:id="colEtat" prefWidth="97.0" text="Etat" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnTraiter" layoutX="606.0" layoutY="164.0" mnemonicParsing="false" onAction="#traiter" prefHeight="25.0" prefWidth="84.0" text="Traiter" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <VBox alignment="TOP_CENTER" prefHeight="821.0" prefWidth="313.0" style="-fx-background-color: ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="btngestU" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GestionU" prefHeight="42.0" prefWidth="337.0" style="-fx-background-color: #ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des utilisateurs">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btngestVo" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestVo" prefHeight="42.0" prefWidth="328.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des voyages organises">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btngestActv" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestAct" prefHeight="42.0" prefWidth="331.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des activites ">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnStat" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#statistique" prefHeight="42.0" prefWidth="320.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Statistiques">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnlogout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="330.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,1 +1,0 @@
-GetAway.entities.Activite
