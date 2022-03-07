@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StatController">
+   <children>
+      <BarChart fx:id="barChart" layoutX="63.0" layoutY="54.0" prefHeight="391.0" prefWidth="491.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" tickLabelGap="4.0" />
+        </yAxis>
+      </BarChart>
+      <Text fill="#4d72ff" layoutX="233.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistique sur nombre total de vol de chaque avion" textAlignment="CENTER" wrappingWidth="247.845703125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      
+       <Button fx:id="retourm" layoutX="492.0" layoutY="433.0" mnemonicParsing="false" onAction="#retour" text="retour menu" />
+      
+      </children>
+</AnchorPane>
