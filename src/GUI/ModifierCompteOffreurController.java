@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.crypto.spec.SecretKeySpec;
 import Services.OffreurService;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -66,10 +67,39 @@ public class ModifierCompteOffreurController implements Initializable {
     private PasswordField txtmdp;
 
     @FXML
-    void modifier(ActionEvent event) throws Exception {
-    OffreurService os =new OffreurService();
+    void modifier(ActionEvent event)  {
+      try{  
+ 
+ if(!(txtnom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+          else if(!(txtprenom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+            
+           else if(!(txtemail.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")))  {
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+              else if(!(txtnumtel.getText().matches("^[0-9]+$"))){
+
+            JOptionPane.showMessageDialog(null, "verifier votre numero");
+             }
+           else if  (txtmdp.getText().length()<4) {
+
+            JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }
+        
+        
+           else{
+        
+           OffreurService os =new OffreurService();
     Offreur o= os.selectmodifier(idc);
-     o.setEmail(txtemail.getText());
+    o.setEmail(txtemail.getText());
+     
         o.setNom( txtnom.getText());
         o.setPrenom(txtprenom.getText());
         
@@ -79,6 +109,13 @@ public class ModifierCompteOffreurController implements Initializable {
         
 //o.setNumtl(txtnumtel.getText());
 os.modifier(o);
+        JOptionPane.showMessageDialog(null, "modification avec succes");
+      }}
+ catch(Exception e)
+      {
+      e.printStackTrace();
+      }
+     
     }
     
       @FXML
