@@ -33,8 +33,13 @@ import Services.AgentAerienService;
  */
 public class ModifierCompteAgentController implements Initializable {
     
+          private int ida;
+    public void setIdagent(int ida)
+    {
+        System.out.println(ida);
+        this.ida=ida;
         
-private int ida;
+    }
      public void setIdc(int ida) {
               this.ida= ida;
               AgentAerienService as =new AgentAerienService();
@@ -94,7 +99,15 @@ as.modifier(a);
 
     @FXML
     void GestVol(ActionEvent event) {
-
+  try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Agentaerien.fxml"));
+		Parent root = loader.load();
+		AgentAerienController e = loader.getController();
+                e.setIdagent(ida);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML

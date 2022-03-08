@@ -24,7 +24,7 @@
          </font>
       </Text>
       
-       <Button fx:id="retourm" layoutX="492.0" layoutY="433.0" mnemonicParsing="false" onAction="#retour" text="retour menu" />
+       <Button fx:id="retourm" layoutX="492.0" layoutY="433.0" mnemonicParsing="false" onAction="#retour" stylesheets="@style.css" text="retour menu" />
       
       </children>
 </AnchorPane>

@@ -81,6 +81,12 @@ public class AgentAerienController implements Initializable {
 
     @FXML
     private Button btnOrders;
+    
+    @FXML
+    private Button actualiser1;
+    
+    @FXML
+    private Button actualiser;
 
 
     @FXML
@@ -95,6 +101,8 @@ public class AgentAerienController implements Initializable {
     private TextField nbr_place;
     @FXML
     private TextField nomagent;
+     @FXML
+    private TextField nbavion;
     @FXML
     private ComboBox<String> id_agence;
     @FXML
@@ -125,6 +133,8 @@ public class AgentAerienController implements Initializable {
     private TextField prix;
     @FXML
     private TextField nbr_placedispo;
+    @FXML
+    private TextField nbvol;
     @FXML
     private ComboBox<String> id_avion;
     @FXML
@@ -184,6 +194,8 @@ public class AgentAerienController implements Initializable {
         afficher1(ida);
         getida(ida);
         getidagence(ida);
+        nbtotalVol(ida);
+        nbtotalAvion(ida);
         
         
         
@@ -258,7 +270,7 @@ public class AgentAerienController implements Initializable {
     private void ajouter1(ActionEvent event) {
          AvionService as = new AvionService();
         Avion p =new Avion();
-        if(isEmpty1())
+       if(isEmpty1())
        {return;
         } else {
            if(!Pattern.matches("[a-zA-Z]+", nom_avion.getText()))
@@ -269,8 +281,17 @@ public class AgentAerienController implements Initializable {
             alert.setContentText("Le nom doit contenir des alphabets seulement!");
             alert.show();
         }
+            else if (Integer.parseInt(nbr_place.getText())<=0)
+         {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Le nombre de place doit etre positive!");
+            alert.show();
+         
+         }
        else{
-     
+      
         p.setNom_avion(nom_avion.getText());
         p.setId_agence(Integer.parseInt(id_agence.getValue()));
         p.setNbr_place(Integer.parseInt(nbr_place.getText()));
@@ -307,11 +328,66 @@ public class AgentAerienController implements Initializable {
         return false;
         
     }
+     
+      @FXML
+    private void actualiser(ActionEvent event) {
+     nbtotalVol(ida);
+    }
+    public void nbtotalVol(int id){
+        String req="select COUNT(id_vol) FROM vol where id_avion in (select id_avion from avion where id_agence='"+id+"')";
+     
+    try {
+         Connection conn = getConnection();
+             Statement ste;
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+      while(rs.next())
+      {
+      int calcul = rs.getInt("count(id_vol)");
+      nbvol.setText(String.valueOf(calcul));
+      }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
+    }}
+    
+     @FXML
+    private void actualiser1(ActionEvent event) {
+     nbtotalAvion(ida);
+    }
+    public void nbtotalAvion(int id){
+        String req="select COUNT(id_avion) FROM avion where id_agence='"+id+"' ";
+     
+   try {
+         Connection conn = getConnection();
+             Statement ste;
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+      while(rs.next())
+      {
+      int calcul = rs.getInt("count(id_avion)");
+      nbavion.setText(String.valueOf(calcul));
+      }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }
 
     @FXML
     private void modifier1(ActionEvent event) {
          Avion p=  tb_a.getSelectionModel().getSelectedItem();
       AvionService vs = new AvionService();
+       if(!Pattern.matches("[a-zA-Z]+", nom_avion.getText()))
+        {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Le nom doit contenir des alphabets seulement!");
+            alert.show();
+        }
+       else{
         p.setNom_avion(nom_avion.getText());
         p.setNbr_place(Integer.parseInt(nbr_place.getText()));
         p.toString();
@@ -326,6 +402,7 @@ alert.setTitle("intformation");
 alert.setHeaderText(null);
 alert.setContentText("modification avec succes!");
 alert.showAndWait();
+    }
     }
 
      public void afficher1(int id)
@@ -350,8 +427,13 @@ alert.showAndWait();
      
       as.supprimer(r);
       tb_a.getItems().clear();
-      tb_v.getItems().clear();
        afficher1(ida);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+alert.setTitle("intformation");
+alert.setHeaderText(null);
+alert.setContentText("suppression avec succes!");
+alert.showAndWait();
     }
 
     @FXML
@@ -461,10 +543,10 @@ alert.showAndWait();
 
     @FXML
     private void ajouter(ActionEvent event) throws Exception {
-         VolService ps= new VolService();
+          VolService ps= new VolService();
         Vol p =new Vol();
          Vol v = tb_v.getSelectionModel().getSelectedItem();
-          if(isEmpty())
+           if(isEmpty())
        {return;
         } else {
          if (Float.parseFloat(prix.getText())<=0)
@@ -473,6 +555,15 @@ alert.showAndWait();
             alert.setTitle("information Dialog");
             alert.setHeaderText(null);
             alert.setContentText("Le prix doit etre positive!");
+            alert.show();
+         
+         }
+         else if (Integer.parseInt(nbr_placedispo.getText())<=0)
+         {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Le nombre de place doit etre positive!");
             alert.show();
          
          }
@@ -497,8 +588,7 @@ alert.showAndWait();
          else if (verifierDate()==false)
          {System.out.println("error");}
          else{ 
-      
-       // p.setId(Integer.parseInt(id.getText()) );
+     
           p.setDate_depart(Timestamp.valueOf(date_depart.getText()));
         p.setDate_arrivee(Timestamp.valueOf(date_arrivee.getText()));
         p.setPrix(Float.parseFloat(prix.getText()));
@@ -517,7 +607,6 @@ alert.showAndWait();
         alert.setHeaderText(null);
         alert.setContentText("vol existe déjà!");
         alert.showAndWait();
-//             }
          System.out.println("vol existe déjà");
          }
          else {
@@ -526,11 +615,6 @@ alert.showAndWait();
        ps.ajouter(p);
        tb_v.getItems().clear();
        afficher(ida);
-       //System.out.println("ajout avec succés");
-       //Notifications.create().title("Vol").text(" Vol est Créé ").show();
-         
-       //tb_v.getItems().clear();
-       
        
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
@@ -541,6 +625,7 @@ alert.showAndWait();
     } }
        }
     }
+    
       @FXML
      private void supprimer(ActionEvent event) {
         
@@ -562,14 +647,45 @@ alert.showAndWait();
     }
     @FXML
     private void modifier(ActionEvent event) {
-         Vol p=  tb_v.getSelectionModel().getSelectedItem();
+        Vol p=  tb_v.getSelectionModel().getSelectedItem();
       VolService vs = new VolService();
+       if (Float.parseFloat(prix.getText())<=0)
+         {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Le prix doit etre positive!");
+            alert.show();
+         
+        }
+         else if(!Pattern.matches("[a-zA-Z]+", ville_depart.getText()))
+        
+        {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("La ville doit contenir des alphabets seulement!");
+            alert.show();
+        }
+          else if(!Pattern.matches("[a-zA-Z]+", ville_arrivee.getText()) )
+        {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("La ville doit contenir des alphabets seulement!");
+            alert.show();
+        }
+          
+         else
+         if (verifierDate()==false)
+         {System.out.println("error");}
+         else{ 
+      
        p.setDate_depart(Timestamp.valueOf(date_depart.getText()));
         p.setDate_arrivee(Timestamp.valueOf(date_arrivee.getText()));
         p.setPrix(Float.parseFloat(prix.getText()));
         p.setVille_depart(ville_depart.getText());
         p.setVille_arrivee(ville_arrivee.getText());
-        //p.setId_avion(Integer.parseInt(id_avion.getValue()));
         p.setNbr_placedispo(Integer.parseInt(nbr_placedispo.getText()));
         p.toString();
        
@@ -583,6 +699,7 @@ alert.setTitle("intformation");
 alert.setHeaderText(null);
 alert.setContentText("modification avec succes!");
 alert.showAndWait();
+    }
     }
  
     
@@ -645,67 +762,88 @@ alert.showAndWait();
        
     }
 
-    @FXML
-    private void telechargerVol(ActionEvent event) throws IOException,FileNotFoundException, SQLException{
-         try {
-            String file_name="C:\\Users\\Malek\\Desktop\\Gestion_Vol.pdf";
-            Document document = new Document();
-                
-           
-            PdfWriter.getInstance((com.itextpdf.text.Document) document, new FileOutputStream(file_name));
-           
-            document.open();
-            document.add(new Chunk(""));
-            Connection conn = getConnection();
-            
-            String query = "SELECT * from vol";
-            Statement st = conn.createStatement();
-            ResultSet rs=st.executeQuery(query);
-
-            PdfPTable t = new PdfPTable(6);
-            PdfPCell c1 = new PdfPCell(new Phrase("date_depart"));
-            t.addCell(c1);
-            PdfPCell c2 = new PdfPCell(new Phrase("date_arrivee"));
-            t.addCell(c2);
-            PdfPCell c3 = new PdfPCell(new Phrase("ville_depart"));
-            t.addCell(c3);
-            PdfPCell c4 = new PdfPCell(new Phrase("ville_arrivee"));
-            t.addCell(c4);
-              PdfPCell c5 = new PdfPCell(new Phrase("prix"));
-            t.addCell(c5);
-              PdfPCell c6 = new PdfPCell(new Phrase("nbr_placedispo"));
-            t.addCell(c6);
+     @FXML
+    private void telechargerVol(ActionEvent event) throws SQLException, DocumentException {
+         
+                String ad="C:\\Users\\Malek\\Desktop\\Gestion_Vol\\ListVol.pdf";
+                Document doc=new Document();
            
              
-            t.setHeaderRows(6);
-            while(rs.next()){
-                t.addCell(rs.getString(1));
-                t.addCell(rs.getString(2));
-                t.addCell(rs.getString(3));
-                t.addCell(rs.getString(4));
-                t.addCell(rs.getString(5));
-                t.addCell(rs.getString(6));
-                 
-                document.add(t);
-            }
-            document.close();
-            System.out.println("finished");
-        } catch (DocumentException ex) {
-            System.out.println(ex);
-        }
-        JOptionPane.showMessageDialog(null,"PDF téléchargé ");
+                Alert dialogC = new Alert(Alert.AlertType.INFORMATION);
+                dialogC.setTitle(" Confirmation ");
+                dialogC.setHeaderText(null);
+                dialogC.setContentText("Are you sure to export pdf ");
+                Optional<ButtonType> answer = dialogC.showAndWait();
+               try {
+                   PdfWriter.getInstance(doc, new FileOutputStream(ad));
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
+               } catch (DocumentException ex) {
+                   Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               
+               doc.open();
+               try {
+//                   
+                     PdfPTable table = new PdfPTable(6);
+            PdfPCell c1 = new PdfPCell(new Phrase("date_depart"));
+            table.addCell(c1);
+            PdfPCell c2 = new PdfPCell(new Phrase("date_arrivee"));
+            table.addCell(c2);
+            PdfPCell c3 = new PdfPCell(new Phrase("ville_depart"));
+            table.addCell(c3);
+            PdfPCell c4 = new PdfPCell(new Phrase("ville_arrivee"));
+            table.addCell(c4);
+              PdfPCell c5 = new PdfPCell(new Phrase("prix"));
+            table.addCell(c5);
+              PdfPCell c6 = new PdfPCell(new Phrase("nbr_placedispo"));
+            table.addCell(c6);
+                   
+                    // table.setHeaderRows(0);
+                    VolService s = new VolService();
+                    List<Vol> e = s.afficher();
+                    for(int i=0;i<e.size();i++)
+                    {
+                       
+                        
+                        Timestamp date_depart=e.get(i).getDate_depart();
+                        table.addCell(String.valueOf(date_depart));
+                             
+                        Timestamp date_arrivee=e.get(i).getDate_arrivee();
+                        table.addCell(String.valueOf(date_arrivee));
+                        
+                        String ville_depart=e.get(i).getVille_depart();
+                        table.addCell(ville_depart);
+                        
+                        String ville_arrivee=e.get(i).getVille_arrivee();
+                        table.addCell(ville_arrivee);
+                        
+                        float prix=e.get(i).getPrix();
+                        table.addCell(String.valueOf(prix));      
+                        
+                        int nbr_placedispo=e.get(i).getNbr_placedispo();
+                        table.addCell(String.valueOf(nbr_placedispo));     
+                    }
+                    doc.add(table);
+               }catch (DocumentException ex) {
+                   Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               doc.close();
     }
+    
 
     @FXML
     private void statistique(ActionEvent event) {
+          try{
          FXMLLoader loader=new FXMLLoader(getClass().getResource("Stat.fxml"));
-                       Parent root ;
-        try {
-            root=loader.load();
-             stat.getScene().setRoot(root);
-        } catch (IOException ex) {
-            Logger.getLogger(GUI.StatController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                      Parent root = loader.load();
+		StatController  e = loader.getController();
+                e.setIdagent(ida);
+                
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
      public Connection getConnection(){

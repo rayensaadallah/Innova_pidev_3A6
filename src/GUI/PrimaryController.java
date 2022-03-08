@@ -47,9 +47,9 @@ public class PrimaryController  {
         System.out.println(todaysWeather);
 
         weatherText.setText(
-            "            Min temperature: " + todaysWeather.get("min_temp") +
-            "\n           Current temperature: " + todaysWeather.get("the_temp") +
-            "\n           Max temperature: " + todaysWeather.get("max_temp")
+            "          Min temperature: " + todaysWeather.get("min_temp") +
+            "\n       Current temperature: " + todaysWeather.get("the_temp") +
+            "\n       Max temperature: " + todaysWeather.get("max_temp")
         );
     }
 
@@ -94,9 +94,6 @@ public class PrimaryController  {
     {
         System.out.println(ida);
         this.ida=ida;
-        
-        
-        
         
     }
 }

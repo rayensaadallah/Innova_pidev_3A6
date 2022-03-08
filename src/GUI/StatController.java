@@ -68,17 +68,30 @@ public class StatController implements Initializable {
         
 @FXML
     private void retour(ActionEvent event) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("Agentaerien.fxml"));
-                       Parent root ;
-        try {
-            root=loader.load();
-             retourm.getScene().setRoot(root);
-        } catch (IOException ex) {
-            Logger.getLogger(GUI.AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+          try{
+		 FXMLLoader loader=new FXMLLoader(getClass().getResource("Agentaerien.fxml"));
+		Parent root = loader.load();
+		AgentAerienController  e = loader.getController();
+                e.setIdagent(ida);
+                
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
        
     } 
-    
+     
+     private int ida;
+    public void setIdagent(int ida)
+    {
+        System.out.println(ida);
+        this.ida=ida;
+        
+        
+        
+        
+    }
     
   
 }

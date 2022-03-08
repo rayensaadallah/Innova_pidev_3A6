@@ -421,10 +421,29 @@ afficherAdmin();}
     void modifier(ActionEvent event) throws Exception {
 
        Admin a =  tvadmin.getSelectionModel().getSelectedItem();
-         if  (txtmdp.getText().length()<4||(txtmdp.getText().length()==0)) {
+            if(!(txtnom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+             else if(!(txtprenom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+             else if(!(txtadr.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre adresse");
+             }
+       else if  (txtmdp.getText().length()<4||(txtmdp.getText().length()==0)) {
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres ");
              }
+            else if(!(txtemail.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")))  {
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+        
+         
          else{
         a.setEmail(txtemail.getText());
         a.setNom( txtnom.getText());
@@ -688,9 +707,28 @@ afficherOffreur();
     @FXML
     void modifierO(ActionEvent event) throws Exception {
         Offreur o =  tvOffreur.getSelectionModel().getSelectedItem();
-         if  (txtmdpOF.getText().length()<4||(txtmdpOF.getText().length()==0)) {
+         if(!(txtnomOF.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+           else if(!(txtprenomOF.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+              
+             else if(!(txtemailOF.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")))  {
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+              
+            else if  (txtmdpOF.getText().length()<4) {
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }
+            else  if  (!(txtTelOF.getText().matches("^[0-9]+$"))||txtTelOF.getText().length()<8) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre numero de telephone");
              }
          else{
         o.setEmail(txtemailOF.getText());
@@ -770,9 +808,28 @@ afficherAgent();
     @FXML
     void modifierAG(ActionEvent event) throws Exception {
       AgentAerien ag =  tvAgent.getSelectionModel().getSelectedItem();
-         if  (txtmdpAG.getText().length()<4||(txtmdpAG.getText().length()==0)) {
+        if(!(txtnomAG.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+           else if(!(txtprenomAG.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+              
+            else if(!(txtemailAG.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")))  {
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+              
+            else if  (txtmdpAG.getText().length()<4) {
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }
+              else if(!(txtNomAgence.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom d'agence ");
              }
          else{
         ag.setEmail(txtemailAG.getText());
