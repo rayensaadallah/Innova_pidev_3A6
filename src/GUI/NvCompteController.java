@@ -5,11 +5,11 @@
  */
 package gui;
 
-import entities.Client;
-import entities.encryption;
-import static entities.encryption.ALGORITHM;
-import static entities.encryption.decrypt;
-import static entities.encryption.keyValue;
+import Entities.Client;
+import Entities.encryption;
+import static  Entities.encryption.ALGORITHM;
+import static  Entities.encryption.decrypt;
+import static  Entities.encryption.keyValue;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -23,7 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
-import services.ClientService;
+import Services.ClientService;
 
 /**
  * FXML Controller class

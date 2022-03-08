@@ -129,12 +129,23 @@ os.modifier(o);
 
     @FXML
     void GestHeb(ActionEvent event) {
+        
+         try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML.fxml"));
+		Parent root = loader.load();
+		FXMLController  e = loader.getController();
+               
+              e.setIdoffreur(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 
     @FXML
     void consulterProfil(ActionEvent event) {
-
+  
     }
 
     @FXML

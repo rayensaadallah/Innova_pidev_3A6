@@ -7,10 +7,9 @@ package Entities;
 
 /**
  *
- * @author Asus
+ * @author Amal Chibani
  */
 public class voyageOrganise {
-    
     private int idVoy;
     private String villeDepart;
     private String villeDest;
@@ -127,5 +126,9 @@ public class voyageOrganise {
         return "voyageOrganise{" + "idVoy=" + idVoy + ", villeDepart=" + villeDepart + ", villeDest=" + villeDest + ", dateDepart=" + dateDepart + ", dateArrive=" + dateArrive + ", nbrPlace=" + nbrPlace + ", idCat=" + idCat + ", prix=" + prix + ", description=" + description + '}';
     }
 
+   
+
+
+    
     
 }

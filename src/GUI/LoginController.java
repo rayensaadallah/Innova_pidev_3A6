@@ -157,6 +157,21 @@ pste.setString(2,mdp);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "Offreur and password matched");
+                
+                 try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML.fxml"));
+		Parent root = loader.load();
+		FXMLController  ee = loader.getController();
+                     int i=cs. selectidoff(txtnom.getText(),txtmdp.getText());
+                     System.out.println("id"+i);
+               ee.setIdoffreur(i);
+                          
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 //                 txtnom.setText("");
 //                     txtmdp.setText("");
      try{

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DisplacementMap?>
+<?import javafx.scene.effect.FloatMap?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="840.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+  <tabs>
+    <Tab text="tabVoyOrg">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtvilleDep" layoutX="105.0" layoutY="28.0">
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtvilleDest" layoutX="105.0" layoutY="86.0" />
+                  <TextField fx:id="txtdateDeb" layoutX="105.0" layoutY="155.0" />
+                  <TextField fx:id="txtdateFin" layoutX="105.0" layoutY="220.0" />
+                  <TextField fx:id="txtnbrPlace" layoutX="379.0" layoutY="29.0" />
+                  <TextField fx:id="txtCat" layoutX="387.0" layoutY="86.0" />
+                  <TextField fx:id="txtprix" layoutX="387.0" layoutY="155.0" />
+                  <TextArea fx:id="txtdesc" layoutX="383.0" layoutY="196.0" prefHeight="116.0" prefWidth="160.0" />
+                  <Label layoutX="6.0" layoutY="46.0" prefHeight="18.0" prefWidth="72.0" text="villeDep" />
+                  <Label layoutX="6.0" layoutY="103.0" prefHeight="18.0" prefWidth="62.0" text="villeDest" />
+                  <Label layoutX="6.0" layoutY="172.0" prefHeight="18.0" prefWidth="79.0" text="DateDebut" />
+                  <Label layoutX="298.0" layoutY="172.0" prefHeight="18.0" prefWidth="39.0" text="prix" />
+                  <Label layoutX="288.0" layoutY="103.0" text="Categorie" />
+                  <Label layoutX="288.0" layoutY="46.0" prefHeight="18.0" prefWidth="69.0" text="NbrPlace" />
+                  <Label layoutX="6.0" layoutY="237.0" prefHeight="18.0" prefWidth="66.0" text="DateFin" />
+                  <Label layoutX="288.0" layoutY="237.0" text="Description" />
+                  <TableView layoutX="6.0" layoutY="348.0" prefHeight="153.0" prefWidth="821.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="villeDep" />
+                      <TableColumn prefWidth="75.0" text="villeDest" />
+                        <TableColumn fx:id="DateDeb" prefWidth="75.0" text="DateDeb" />
+                        <TableColumn fx:id="DateFin" prefWidth="75.0" text="DateFin" />
+                        <TableColumn fx:id="nbrPlace" prefWidth="75.0" text="nbrPlace" />
+                        <TableColumn fx:id="Categ" prefWidth="75.0" text="Categ" />
+                        <TableColumn fx:id="prix" prefWidth="75.0" text="prix" />
+                        <TableColumn fx:id="Desc" prefWidth="75.0" text="Description" />
+                    </columns>
+                  </TableView>
+               </children>
+               <effect>
+                  <DisplacementMap>
+                     <mapData>
+                        <FloatMap />
+                     </mapData>
+                  </DisplacementMap>
+               </effect></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="tabCat">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

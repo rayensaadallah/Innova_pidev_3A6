@@ -840,6 +840,16 @@ afficherAgent();
 
     @FXML
     void gestVo(ActionEvent event) {
+       try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("MainFXML.fxml"));
+		Parent root = loader.load();
+		VoyOrgFXMLController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}  
 
     }
 

@@ -159,18 +159,21 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
     private void loadTableHebegement() {// hebergement affiche
          List <Hebergement> ls =hs.afficher();
         ls.forEach(e->oblistH.add(e));
-         h_affiche_paye.setCellValueFactory(new PropertyValueFactory<>("paye"));
+        System.out.println("table"+ls);
+  
+        h_affiche_paye.setCellValueFactory(new PropertyValueFactory<>("paye"));
         h_affiche_adress.setCellValueFactory(new PropertyValueFactory<>("adress"));
         h_affiche_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         h_affiche_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         h_affiche_pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
         h_affiche_datestart.setCellValueFactory(new PropertyValueFactory<>("date_start"));
         h_affiche_dateend.setCellValueFactory(new PropertyValueFactory<>("date_end"));
-        h_affiche_contact.setCellValueFactory(new PropertyValueFactory<>("nbr_detoile"));
-        h_affiche_nbrdetoile.setCellValueFactory(new PropertyValueFactory<>("nbr_suite"));
-        h_affiche_nbrsuite.setCellValueFactory(new PropertyValueFactory<>("nbr_parking"));
-        h_affiche_nbrparking.setCellValueFactory(new PropertyValueFactory<>("model_caravane"));
-        
+        h_affiche_contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        h_affiche_nbrdetoile.setCellValueFactory(new PropertyValueFactory<>("nbr_detoile"));
+        h_affiche_nbrsuite.setCellValueFactory(new PropertyValueFactory<>("nbr_suite"));
+        h_affiche_nbrparking.setCellValueFactory(new PropertyValueFactory<>("nbr_parking"));
+       
+
      hebergement_table.setItems(oblistH);
    idc.setText(rs.NomP(idC));
      

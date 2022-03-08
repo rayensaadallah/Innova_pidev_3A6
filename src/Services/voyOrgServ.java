@@ -4,40 +4,31 @@
  * and open the template in the editor.
  */
 package Services;
-import Entities.voyageOrganise;
-import Utilis.Datasource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-;
+import Entities.voyageOrganise;
+import Utilis.Datasource;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  *
- * @author Asus
+ * @author Amal Chibani
  */
-public class voyOrgServ implements IService<voyageOrganise> {
-       private Connection conn;
+
+public class voyOrgServ implements serv<voyageOrganise> {
+     private Connection conn;
     private Statement ste;
     private PreparedStatement pste;
     
     public voyOrgServ (){
     conn = Datasource.getInstance().getCnx();
     }
-
-    @Override
-    public void modifier(voyageOrganise entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void supprimer(voyageOrganise entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
     
-     @Override
     public void ajouter(voyageOrganise vo) {
         String req = "INSERT INTO `voyageorganise` (`idVoy`,`villeDepart`,`villeDest`,`dateDepart`,`dateArrive`,`nbrPlace`,`idCat`,`prix`,`description`) VALUE ('" + vo.getIdVoy()+ "','" + vo.getVilleDepart() + "','" + vo.getVilleDest() + "','" + vo.getDateDepart() + "','" + vo.getDateArrive() + "','" + vo.getNbrPlace() + "','" + vo.getIdCat() + "','" +vo.getPrix() + "','" + vo.getDescription() + "')";
         try {
@@ -82,7 +73,7 @@ public class voyOrgServ implements IService<voyageOrganise> {
     
     
 
-   
+    @Override
     public void delete(int idvoy) {
        try
         {   String req = "DELETE FROM `voyageorganise` WHERE `idVoy` = "+idvoy;
@@ -95,6 +86,7 @@ public class voyOrgServ implements IService<voyageOrganise> {
         }    
     }
 
+    @Override
     public void update(voyageOrganise vo) {
        String sql = "UPDATE voyageorganise SET `villeDepart`=?,`villeDest`=?,`dateDepart`=?,`dateArrive`=?,`nbrPlace`=?,`idCat`=?,`prix`=?,`description`=? WHERE idVoy=" + vo.getIdVoy();
         PreparedStatement ste;
@@ -188,24 +180,39 @@ List<voyageOrganise> voyageorganise = new ArrayList<>();
 
     }
     
-    public List<voyageOrganise> TrierParPrix()  {
-        List<voyageOrganise> list = new ArrayList<>();
-        try{
-        ste = conn.createStatement();
-        
-        ResultSet res = ste.executeQuery("select distinct * FROM `voyageorganise` ORDER BY prix ASC");
-        
-        voyageOrganise com = null;
-        while (res.next()) {
-            com = new voyageOrganise(res.getInt(1),res.getString(2), res.getString(3),res.getString(4),res.getString(5),res.getInt(6),res.getInt(7),res.getFloat(8),res.getString(9));
-            list.add(com);
-            //System.out.println(list);
-        }
-        }catch (SQLException ex) {
+    public ObservableList<voyageOrganise> TrierParPrix()  {
+        ObservableList<voyageOrganise> observ = FXCollections.observableArrayList();
+         String req = "select * FROM `voyageorganise` ORDER BY prix ASC";
+       try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+            
+            
+
+            while (rs.next()) {
+               voyageOrganise vo= new voyageOrganise();
+                vo.setIdVoy(rs.getInt("IdVoy"));
+                vo.setVilleDepart(rs.getString(2));
+                vo.setVilleDest(rs.getString(3));
+                vo.setDateDepart(rs.getString(4));
+                vo.setDateArrive(rs.getString(5));
+                vo.setNbrPlace(rs.getInt("nbrPlace"));
+                vo.setIdCat(rs.getInt("IdCat"));
+                vo.setPrix(rs.getFloat("prix"));
+                vo.setDescription(rs.getString(9));
+                
+                
+                observ.add(vo);
+            }
+
+        } catch (SQLException ex) {
             Logger.getLogger(voyOrgServ.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+
+        return observ;
+
     }
+    
     
     public int stat() {
         int nb = 0;
@@ -223,4 +230,5 @@ try{
         return nb;
 
     }
-}
+   }
+ 

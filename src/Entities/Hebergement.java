@@ -9,10 +9,11 @@ import java.sql.Date;
 
 /**
  *
- * @author Asus
+ * @author Rayen
  */
+
 public class Hebergement {
-     private int referance;
+    private int referance;
     private int offreur;
     private String paye;
     private String adress;
@@ -29,7 +30,7 @@ public class Hebergement {
     private int id_confeg;
 
     
-    public Hebergement(int offreur, String paye, String adress, float prix, String description, String photo, Date date_start, Date date_end, String contact, int nbr_detoile, int nbr_suite, int nbr_parking, String model_caravane, int id_confeg) {
+    public Hebergement( String paye, String adress, float prix, String description, String photo, Date date_start, Date date_end, String contact, int nbr_detoile, int nbr_suite, int nbr_parking, String model_caravane, int id_confeg ,int offreur) {
        
         this.offreur = offreur;
         this.paye = paye;
@@ -176,4 +177,6 @@ public class Hebergement {
         this.id_confeg = id_confeg;
     }
 
+    
+    
 }

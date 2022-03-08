@@ -145,7 +145,7 @@ public class ReserverVolController implements Initializable {
         // TODO
         
         
-     
+     //button invisible 
          loadTableVol();
          BooleanBinding booleanBinding =(nbplaceRvol.textProperty().isEqualTo("0")).or(
         prixvolr.textProperty().isEqualTo("")).or(

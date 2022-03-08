@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VoyOrgFXMLController">
+   <children>
+      <TabPane layoutX="318.0" prefHeight="821.0" prefWidth="986.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="VoyageOrganise">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="704.0" prefWidth="1331.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="21.0" layoutY="14.0" prefHeight="21.0" prefWidth="65.0" text="villeDep">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="10.0" layoutY="124.0" prefHeight="21.0" prefWidth="82.0" text="DateDebut">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="19.0" layoutY="180.0" prefHeight="21.0" prefWidth="65.0" text="DateFin">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="381.0" layoutY="17.0" text="NbrPlace">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="379.0" layoutY="75.0" text="Categorie">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Button fx:id="btnAdd" layoutX="21.0" layoutY="309.0" mnemonicParsing="false" onAction="#Add" prefHeight="31.0" prefWidth="82.0" text="Add" />
+                        <Label layoutX="388.0" layoutY="124.0" text="prix">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="txtvilleDep" layoutX="103.0" layoutY="23.0" />
+                        <TextField fx:id="txtvilleDest" layoutX="103.0" layoutY="70.0" />
+                        <TextField fx:id="txtnbrPlace" layoutX="464.0" layoutY="12.0" />
+                        <TextField fx:id="txtCat" layoutX="464.0" layoutY="70.0" />
+                        <TextField fx:id="txtprix" layoutX="464.0" layoutY="130.0" />
+                        <TextArea fx:id="txtdesc" layoutX="464.0" layoutY="186.0" prefHeight="104.0" prefWidth="187.0" />
+                        <Label layoutX="376.0" layoutY="180.0" text="description">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Button fx:id="btnUpdate" layoutX="249.0" layoutY="309.0" mnemonicParsing="false" onAction="#updatevo" prefHeight="31.0" prefWidth="82.0" text="update" />
+                        <Button fx:id="btnDelete" layoutX="129.0" layoutY="309.0" mnemonicParsing="false" onAction="#deletevo" prefHeight="31.0" prefWidth="88.0" text="delete" />
+                        <TextField fx:id="txtsearch" layoutX="505.0" layoutY="309.0" />
+                        <Button fx:id="btnsearch" layoutX="702.0" layoutY="309.0" mnemonicParsing="false" onAction="#searchvo" prefHeight="31.0" prefWidth="82.0" text="search" />
+                        <Button fx:id="btnstat" layoutX="856.0" layoutY="309.0" mnemonicParsing="false" onAction="#statistique" prefHeight="31.0" prefWidth="88.0" text="stat" />
+                        <TableView fx:id="tableviewVO" layoutX="21.0" layoutY="425.0" onMouseClicked="#select" prefHeight="351.0" prefWidth="956.0">
+                          <columns>
+                            <TableColumn fx:id="VilleDep" prefWidth="143.0" text="villeDep" />
+                            <TableColumn fx:id="villeDest" minWidth="7.0" prefWidth="142.0" text="villeDest" />
+                              <TableColumn fx:id="DateDeb" prefWidth="164.0" text="DateDeb" />
+                              <TableColumn fx:id="DateFin" prefWidth="157.0" text="DateFin" />
+                              <TableColumn fx:id="nbrPlace" prefWidth="75.0" text="nbrPlace" />
+                              <TableColumn fx:id="categ" prefWidth="68.0" text="Categorie" />
+                              <TableColumn fx:id="prix" prefWidth="50.0" text="prix" />
+                              <TableColumn fx:id="Desc" prefWidth="156.0" text="Description" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="23.0" layoutY="75.0" text="villeDest">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Button fx:id="btnsort" layoutX="349.0" layoutY="309.0" mnemonicParsing="false" onAction="#sortprix" prefHeight="31.0" prefWidth="88.0" text="sort" />
+                        <WebView fx:id="WebView" layoutX="743.0" layoutY="30.0" onMouseClicked="#map" prefHeight="200.0" prefWidth="200.0" />
+                        <DatePicker fx:id="txtdateDeb" layoutX="103.0" layoutY="130.0" />
+                        <DatePicker fx:id="txtdateFin" layoutX="103.0" layoutY="175.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Categorie">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="42.0" layoutY="71.0" text="idCategorie">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <Label layoutX="25.0" layoutY="152.0" prefHeight="21.0" prefWidth="102.0" text="nomcategorie">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                        <TextField fx:id="txtidCat" layoutX="161.0" layoutY="66.0" />
+                        <TextField fx:id="txtnomCat" layoutX="161.0" layoutY="147.0" />
+                        <Button fx:id="btnaddC" layoutX="62.0" layoutY="238.0" mnemonicParsing="false" onAction="#addCat" text="Add" />
+                        <Button fx:id="btndeleteC" layoutX="190.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteCat" text="Delete" />
+                        <Button fx:id="btnupdateC" layoutX="316.0" layoutY="238.0" mnemonicParsing="false" onAction="#updateCat" text="Update" />
+                        <TableView fx:id="tableviewCat" layoutX="533.0" layoutY="28.0" onMouseClicked="#selectCat" prefHeight="533.0" prefWidth="314.0">
+                          <columns>
+                            <TableColumn fx:id="idCat" prefWidth="75.0" text="idCategorie" />
+                            <TableColumn fx:id="nomCat" prefWidth="75.0" text="nomCat" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <VBox alignment="TOP_CENTER" prefHeight="821.0" prefWidth="321.0" style="-fx-background-color: ffd800;" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="272.0" style="-fx-background-color: #ffd800;" stylesheets="@style.css" text="Gestion voyages Organises">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="268.0" stylesheets="@style.css" text="Gestion utilisateurs">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="267.0" stylesheets="@style.css" text="Gestion des activités">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="269.0" stylesheets="@style.css" text="Statistiques">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnOrders1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="193.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="268.0" stylesheets="@style.css" text="Gestion Avis">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="267.0" stylesheets="@style.css" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

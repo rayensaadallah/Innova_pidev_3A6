@@ -208,4 +208,25 @@ private Connection conn;
     }
     
     
+     public int   selectidoff(String nom , String password ) {
+         
+        String req = "SELECT  id  FROM `offreur` WHERE  nom='"+nom+"' and password='"+password+"' " ;
+     int i=0;
+        try {
+
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+             i=rs.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return i;
+    }
+    
+    
 }
