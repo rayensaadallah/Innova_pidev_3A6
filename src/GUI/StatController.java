@@ -52,7 +52,7 @@ public class StatController implements Initializable {
     private Connection con = Datasource.getInstance().getCnx();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      String req =" select a.id_avion , COUNT(v.ville_arrivee) from vol v join avion a on v.id_avion=a.id_avion group by a.id_avion; ";
+      String req =" select a.nom_avion , COUNT(v.ville_arrivee) from vol v join avion a on v.id_avion=a.id_avion group by a.id_avion; ";
         XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();
         try {
              PreparedStatement ste = (PreparedStatement) con.prepareStatement(req);

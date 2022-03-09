@@ -660,5 +660,27 @@ public class VolService implements IService<Vol> {
         return OVol;
 }
       
+      
+ public boolean test1(int id_vol) {
+        String req = "SELECT a.id_vol FROM vol a join reservation v where a.id_vol=? and v.id_vol=a.id_vol; ";
+      
+        try {
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setInt(1, id_vol);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            if(rs.next()){
+                System.out.println("supp!");
+               return true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AvionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+
+    }
      
 }

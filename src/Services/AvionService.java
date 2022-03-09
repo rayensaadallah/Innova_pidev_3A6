@@ -227,6 +227,28 @@ public class AvionService implements IService<Avion>{
     }
 
      
+      public boolean test1(int id_avion) {
+        String req = "SELECT a.id_avion FROM avion a join vol v where a.id_avion=? and v.id_avion=a.id_avion ";
+      
+        try {
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setInt(1, id_avion);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            if(rs.next()){
+                System.out.println("supp !");
+               return true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AvionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+
+    }
+     
   
    
 }

@@ -228,7 +228,7 @@ public class AgentAerienController implements Initializable {
 
     public void getida(int id)
     {
-        
+         
         String req ="SELECT id_avion from avion where id_agence='"+id+"'";
          try {
             Connection conn = getConnection();
@@ -237,8 +237,8 @@ public class AgentAerienController implements Initializable {
             ResultSet rs = ste.executeQuery(req);
             
             while(rs.next()){
-        
-            id_avion.getItems().addAll(rs.getString("id_avion"));
+                System.out.println(rs.getString(1));
+            id_avion.getItems().add(rs.getString(1));
             }}
          catch (SQLException ex) {
             Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
@@ -296,9 +296,10 @@ public class AgentAerienController implements Initializable {
         p.setId_agence(Integer.parseInt(id_agence.getValue()));
         p.setNbr_place(Integer.parseInt(nbr_place.getText()));
        as.ajouter(p);
-         
+       
        tb_a.getItems().clear();
        afficher1(ida);
+      
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
     alert.setTitle("information");
@@ -420,20 +421,29 @@ alert.showAndWait();
     @FXML
     private void supprimer1(ActionEvent event) {
         
-       Avion a = new Avion();
-       
       Avion r=  tb_a.getSelectionModel().getSelectedItem();
+      Avion a =r;
       AvionService as = new AvionService();
+        System.out.println("ID :"+a.getId_avion());
+      if(as.test1(a.getId_avion())==true)
+                {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+    alert.setTitle("information");
+    alert.setHeaderText(null);
+    alert.setContentText("ce avion a un vol, supprimer les vols d'abord!");
+    alert.showAndWait();}
+                else{
      
       as.supprimer(r);
       tb_a.getItems().clear();
        afficher1(ida);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
-alert.setTitle("intformation");
-alert.setHeaderText(null);
-alert.setContentText("suppression avec succes!");
-alert.showAndWait();
+    alert.setTitle("information");
+    alert.setHeaderText(null);
+    alert.setContentText("Avion supprimé!");
+    alert.showAndWait();
+      }
     }
 
     @FXML
@@ -629,9 +639,17 @@ alert.showAndWait();
       @FXML
      private void supprimer(ActionEvent event) {
         
-       
+         
       Vol r=  tb_v.getSelectionModel().getSelectedItem();
       VolService vs = new VolService();
+      Vol a =r;
+      if(vs.test1(a.getId_vol())==true)
+         {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("information");
+    alert.setHeaderText(null);
+    alert.setContentText("ce Vol a une reservation, supprimer les reservations d'abord!");
+    alert.showAndWait();}
+                else{
       vs.supprimer(r);
       tb_v.getItems().clear();
        afficher(ida);
@@ -641,6 +659,9 @@ alert.setTitle("intformation");
 alert.setHeaderText(null);
 alert.setContentText("suppression avec succes!");
 alert.showAndWait();
+        
+        
+      }
         
         
         
