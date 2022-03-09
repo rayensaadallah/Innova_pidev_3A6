@@ -230,7 +230,8 @@ public class ReserverActiviteController implements Initializable {
          if(Integer.parseInt(nbpA.getText())==10)
              
          {
-             prixtotalt= prixtotalt*01;
+             float remise= prixtotalt*(float)(0.1) ;
+             prixtotalt= prixtotalt-remise ;
                 
           }
          
@@ -240,7 +241,18 @@ public class ReserverActiviteController implements Initializable {
          rs.modifiernbplaceA(A.getRefAct(),Integer.parseInt(nbpA.getText()));
          
          
-          Notifications.create().title("Reservation Activite ").text(" Reservation est Créé ").show();
+            NotificationPane notificationPane;
+            
+               notificationPane = new NotificationPane();
+       
+        String imagePath = ReserverVolController.class.getResource("img/remise.png").toExternalForm();
+        ImageView image = new ImageView(imagePath);
+        notificationPane.setGraphic(image);
+               Notifications  notificationBuilder  =   Notifications.create().title("OFFRE SPECIALE").graphic(image).hideAfter(javafx.util.Duration.seconds(5)).position(Pos.TOP_CENTER);
+               
+                 notificationBuilder .show();
+          
+          
         }
           else
           {     Notifications.create().title("Reservation Activite ").text(" Nombre de place non valide  ").show();
