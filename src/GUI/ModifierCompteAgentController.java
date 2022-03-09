@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.crypto.spec.SecretKeySpec;
 import Services.AgentAerienService;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -73,7 +74,31 @@ public class ModifierCompteAgentController implements Initializable {
 
     @FXML
     void modifier(ActionEvent event) throws Exception {
-        AgentAerienService as =new AgentAerienService();
+        if(!(txtnom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+           else if(!(txtprenom.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+              
+            else if(!(txtemail.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$")))  {
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+              
+            else if  (txtmdp.getText().length()<4) {
+
+            JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }
+              else if(!(txtnomAgence.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom d'agence ");
+             }
+              else{
+                    AgentAerienService as =new AgentAerienService();
     AgentAerien a= as.selectmodifier(ida);
      a.setEmail(txtemail.getText());
         a.setNom( txtnom.getText());
@@ -82,8 +107,11 @@ public class ModifierCompteAgentController implements Initializable {
        a.setPwd(mdpcry);
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
         a.setNomAgence(txtnomAgence.getText());
-
 as.modifier(a);
+JOptionPane.showMessageDialog(null, "modification avec succes ");
+              
+              }
+  
     }
     
     

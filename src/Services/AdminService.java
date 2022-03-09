@@ -65,6 +65,7 @@ private Connection conn;
                 a.setEmail(rs.getString(4));
                 a.setAdresse(rs.getString(5));
                 a.setPwd(rs.getString(6));
+                
                 admins.add(a);
             }
             

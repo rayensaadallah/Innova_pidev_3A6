@@ -311,7 +311,7 @@
                               <Font name="Times New Roman Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="tvRC" layoutX="41.0" layoutY="147.0" prefHeight="160.0" prefWidth="491.0">
+                        <TableView fx:id="tvRC" layoutX="41.0" layoutY="147.0" prefHeight="358.0" prefWidth="491.0">
                            <columns>
                               <TableColumn fx:id="colObj" prefWidth="112.0" text="Objet" />
                               <TableColumn fx:id="colDesc" prefWidth="281.0" text="Description" />
@@ -319,6 +319,8 @@
                            </columns>
                         </TableView>
                         <Button fx:id="btnTraiter" layoutX="606.0" layoutY="164.0" mnemonicParsing="false" onAction="#traiter" prefHeight="25.0" prefWidth="84.0" text="Traiter" />
+                        <Button fx:id="btnCapturer" layoutX="604.0" layoutY="221.0" mnemonicParsing="false" onAction="#capturer" prefHeight="25.0" prefWidth="88.0" text="Capturer" />
+                        <ImageView fx:id="display" fitHeight="552.0" fitWidth="598.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                      </children>
                   </AnchorPane>
                </content>

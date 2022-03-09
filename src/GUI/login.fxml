@@ -6,17 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="1066.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
    <children>
-      <VBox prefHeight="622.0" prefWidth="517.0">
-         <children>
-            <VBox prefHeight="622.0" prefWidth="403.0" style="-fx-background-color: #FFD700;" />
-         </children>
-      </VBox>
       <Label layoutX="638.0" layoutY="44.0" text="Se connecter">
          <font>
             <Font name="Arial Black" size="25.0" />
@@ -45,5 +41,19 @@
             <Font size="14.0" />
          </font>
       </Hyperlink>
+      <AnchorPane layoutY="-6.0" prefHeight="646.0" prefWidth="489.0" style="-fx-background-color: #FFD700;">
+         <children>
+            <Hyperlink fx:id="linkcreerCompte" layoutX="131.0" layoutY="346.0" onAction="#creernvCompte" text="Vous n'avez pas un compte? Creer un !" textAlignment="CENTER" textFill="#000000f8">
+               <font>
+                  <Font name="Times New Roman Bold" size="14.0" />
+               </font>
+            </Hyperlink>
+            <ImageView fitHeight="152.0" fitWidth="345.0" layoutX="63.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

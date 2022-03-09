@@ -22,10 +22,10 @@ public class encryption {
     public static void main(String[] args) throws Exception {
            Key key = generateKey();
        String encriptValue = encrypt("dali123",key);
-      decrypt(encriptValue,key);
+      decrypt("GaA6aBKHj91qptnjNRvEhw==",key);
     }
     
-     private static Key generateKey() throws Exception {
+     public  static Key generateKey() throws Exception {
         Key key = new SecretKeySpec(keyValue, ALGORITHM);
         return key;
     }

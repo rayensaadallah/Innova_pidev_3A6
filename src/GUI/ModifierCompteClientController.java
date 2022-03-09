@@ -80,7 +80,7 @@ public class ModifierCompteClientController implements Initializable {
     public void setIdc(int idc) {
         
         ClientService cs =new ClientService();
-    
+        System.out.println(idc);
     Client c= cs.selectmodifier(idc);
      txtnomCMod.setText(c.getNom());
      txtprenomCMOD.setText(c.getPrenom());
@@ -115,7 +115,40 @@ public class ModifierCompteClientController implements Initializable {
     }  
       @FXML
     void modifier(ActionEvent event) throws Exception {
-    ClientService cs =new ClientService();
+          if(!(txtnomCMod.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre nom");
+             }
+          else  if(!(txtprenomCMOD.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre prenom");
+             }
+              
+          else if(!(txtemailCMOD.getText().matches("^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"
+                        + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$"))) {
+//              - commence par une lettre majuscule ou minuscule
+//- suivi éventuellement d'une combinaison de lettres, chiffres, points, underscores ou tirets
+//- suivi d'au moins un caractère ou chiffre
+//- suivi d'une arobase
+//- suivi d'au moins d'une lettre
+//- suivi éventuellement d'une combinaison de lettres, chiffres, points, underscores ou tirets
+//- suivi d'au moins d'une lettre
+//- suivi d'un point
+//- se termine par entre 2 et 4 lettres
+
+            JOptionPane.showMessageDialog(null, "verifier votre email");
+             }
+          else if(!(txtRepCMod.getText().matches("^[a-zA-Z]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre reponse");
+             }
+              
+            else if  (txtmdpCMOD.getText().length()<4) {
+
+            JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }else{
+            
+                ClientService cs =new ClientService();
     Client c= cs.selectmodifier(idc);
      c.setEmail(txtemailCMOD.getText());
         c.setNom( txtnomCMod.getText());
@@ -127,6 +160,8 @@ public class ModifierCompteClientController implements Initializable {
 c.setAnswer(txtRepCMod.getText());
 cs.modifier(c);
           JOptionPane.showMessageDialog(null, "votre compte est modifie avec succes");
+            }
+
     
          
     }

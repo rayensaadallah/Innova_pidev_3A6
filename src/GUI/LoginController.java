@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import Entities.encryption;
+import static Entities.encryption.ALGORITHM;
+import static Entities.encryption.keyValue;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -31,6 +34,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import Services.*;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * FXML Controller class
@@ -39,7 +43,7 @@ import Services.*;
  */
 public class LoginController implements Initializable {
 
-  
+   String mdpn="";
     @FXML
     private TextField txtnom;
 
@@ -51,8 +55,12 @@ public class LoginController implements Initializable {
     
         @FXML
     private ComboBox combo;
-            @FXML
+           @FXML
     private Hyperlink linkmdpoublie;
+            
+                @FXML
+    private Hyperlink linkcreerCompte;
+     
              @FXML
     void mdpoublie(ActionEvent event) throws IOException {
  Parent root = FXMLLoader.load(getClass().getResource("mdpoub.fxml"));
@@ -61,9 +69,26 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    
+    
 
     @FXML
-    void login(ActionEvent event) throws IOException  {
+    void creernvCompte(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("NvCompte.fxml"));
+  Stage stage = new Stage();
+        Scene scene =new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+            
+  
+    
+    
+
+    @FXML
+    void login(ActionEvent event) throws IOException, Exception  {
 String nom = txtnom.getText();
 String mdp = txtmdp.getText();
 ClientService cs = new ClientService();
@@ -74,13 +99,14 @@ if(nom.equals("") && mdp.equals("")||nom.equals("")||mdp.equals(""))
 }
 else {
     try {
+        mdpn= encryption.encrypt(mdp.toString(),  encryption.generateKey());
         Class.forName("com.mysql.jdbc.Driver");
          Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/getaway", "root", "");
         if(combo.getSelectionModel().getSelectedItem().toString()=="Admin"){
          String sql="select * from admin where nom=? and password=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdp);
+pste.setString(2,mdpn);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "admin and password matched");
@@ -113,7 +139,7 @@ pste.setString(2,mdp);
          String sql="select * from client where nom=? and password=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdp);
+pste.setString(2,mdpn);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
        if(rs.getInt("etat")==0){
@@ -130,7 +156,7 @@ pste.setString(2,mdp);
 		Parent root = loader.load();
 		ClientDController  ee = loader.getController();
                 
-                int i=cs.selectidC(txtnom.getText(),txtmdp.getText());
+                int i=cs.selectidC(txtnom.getText(),mdpn);
                 ee.setIdc(i);
               
 		((Button) event.getSource()).getScene().setRoot(root);
@@ -153,33 +179,16 @@ pste.setString(2,mdp);
          String sql="select * from offreur where nom=? and password=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdp);
+pste.setString(2,mdpn);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Offreur and password matched");
-                
-                 try{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML.fxml"));
-		Parent root = loader.load();
-		FXMLController  ee = loader.getController();
-                     int i=cs. selectidoff(txtnom.getText(),txtmdp.getText());
-                     System.out.println("id"+i);
-               ee.setIdoffreur(i);
-                          
-               
-              
-		((Button) event.getSource()).getScene().setRoot(root);
-		}catch(Exception ex){
-			System.out.println(ex);
-		}
-//                 txtnom.setText("");
-//                     txtmdp.setText("");
+                JOptionPane.showMessageDialog(null, "Offreur and password matched"); 
      try{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteOffreur.fxml"));
 		Parent root = loader.load();
 		ModifierCompteOffreurController  ee = loader.getController();
                 
-                int i=os.selectidO(txtnom.getText(),txtmdp.getText());
+                int i=os.selectidO(txtnom.getText(),mdpn);
                 ee.setIdc(i);
               
 		((Button) event.getSource()).getScene().setRoot(root);
@@ -196,7 +205,7 @@ pste.setString(2,mdp);
          String sql="select * from `agent-aerien` where nom=? and password=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdp);
+pste.setString(2,mdpn);
  ResultSet rs = pste.executeQuery();
  
    if(rs.next()){
@@ -205,12 +214,12 @@ pste.setString(2,mdp);
 //                     txtmdp.setText("");
 
  try{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Agentaerien.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteAgent.fxml"));
 		Parent root = loader.load();
-		 AgentAerienController  ee = loader.getController();
+		ModifierCompteAgentController  ee = loader.getController();
                 AgentAerienService as = new AgentAerienService();
-                int i=as.selectidA(txtnom.getText(),txtmdp.getText());
-                ee.setIdagent(i);
+                int i=as.selectidA(txtnom.getText(),mdpn);
+                ee.setIdc(i);
                 
               
 		((Button) event.getSource()).getScene().setRoot(root);
@@ -256,6 +265,8 @@ pste.setString(2,mdp);
 //{
 //
 //}
+
+
     
     
 }

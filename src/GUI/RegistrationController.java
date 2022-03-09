@@ -51,6 +51,14 @@ import Services.ClientService;
 import Services.ReclamationService;
 import Utilis.Datasource;
 import Services.OffreurService;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javax.imageio.ImageIO;
 import utilis.*;
 /**
  * FXML Controller class
@@ -146,8 +154,6 @@ private Connection conn;
     @FXML
     private Button btnajouterC;
 
-    @FXML
-    private Button btnmodifierC;
 
     @FXML
     private Button btnsuppC;
@@ -286,6 +292,10 @@ private Connection conn;
     @FXML
     private Button btnlogout;
     private int idadmin;
+    @FXML
+    private Button btnCapturer;
+    @FXML
+    private ImageView display;
 
     public void setIdadmin(int idadmin) {
         this.idadmin = idadmin;
@@ -412,7 +422,15 @@ nbtotalAdmin();
 decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 as.ajouter(a);
 tvadmin.getItems().clear();
-afficherAdmin();}
+afficherAdmin();
+txtnom.setText("");
+txtprenom.setText("");
+txtadr.setText("");
+   txtemail.setText("");
+   txtmdp.setText("");         
+           
+           
+           }
     }
     
     
@@ -421,6 +439,7 @@ afficherAdmin();}
     void modifier(ActionEvent event) throws Exception {
 
        Admin a =  tvadmin.getSelectionModel().getSelectedItem();
+    
             if(!(txtnom.getText().matches("^[a-zA-Z]+$"))) {
 
             JOptionPane.showMessageDialog(null, "verifier votre nom");
@@ -454,7 +473,13 @@ afficherAdmin();}
         decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
         as.modifier(a);
         tvadmin.getItems().clear();
-        afficherAdmin();}
+        afficherAdmin();
+        txtnom.setText("");
+txtprenom.setText("");
+txtadr.setText("");
+   txtemail.setText("");
+   txtmdp.setText("");
+          }
     }
     
     
@@ -463,9 +488,16 @@ afficherAdmin();}
     void supprimer(ActionEvent event) {
 
 Admin a =  tvadmin.getSelectionModel().getSelectedItem();
+String pwd=a.getPwd();
 as.supprimer(a.getId());
 tvadmin.getItems().clear();
 afficherAdmin();
+txtnom.setText("");
+txtprenom.setText("");
+txtadr.setText("");
+   txtemail.setText("");
+   txtmdp.setText("");
+   
     }
     
     
@@ -487,7 +519,8 @@ tvadmin.getItems().clear();
      txtprenom.setText(""+  colprenom.getCellData(index));
      txtemail.setText(""+colemail.getCellData(index));
     txtadr.setText(""+coladr.getCellData(index));
-    txtmdp.setText("");
+      String pwd=tvadmin.getSelectionModel().getSelectedItem().getPwd();
+       txtmdp.setText(pwd);
       
     }
     
@@ -561,6 +594,12 @@ afficherClient();
 cs.ajouter(c);
 tvClient.getItems().clear();
 afficherClient();
+txtnomC.setText("");
+txtprenomC.setText("");
+
+   txtemailC.setText("");
+   txtmdpC.setText("");
+   txtrep.setText("");
              }
 }
 
@@ -596,6 +635,11 @@ Client c =  tvClient.getSelectionModel().getSelectedItem();
 cs.supprimer(c.getId());
 tvClient.getItems().clear();
 afficherClient();
+txtnomC.setText("");
+txtprenomC.setText("");
+
+   txtemailC.setText("");
+   txtmdpC.setText("");
 }
     
     
@@ -627,10 +671,12 @@ tvClient.getItems().clear();
      txtnomC.setText(colnomC.getCellData(index));
      txtprenomC.setText(""+  colprenomC.getCellData(index));
      txtemailC.setText(""+colemailC.getCellData(index));
-     txtmdpC.setText("");
+      String pwd=tvClient.getSelectionModel().getSelectedItem().getPwd();
+       txtmdpC.setText(pwd);
       txtrep.setText("");
      ObservableList<String> list1 = FXCollections.observableArrayList("veuillez choisir une question","votre premiere voiture","pays de ton reve","ton idole");
         combosecurity.setItems(list1);
+       
              
               
               
@@ -650,7 +696,9 @@ ObservableList<Offreur> oblist2 = FXCollections.observableArrayList();
      txtprenomOF.setText(""+  colprenomOF.getCellData(index));
      txtemailOF.setText(""+colemailOF.getCellData(index));
      txtTelOF.setText(""+colTelOF.getCellData(index));
-     txtmdpOF.setText("");
+     
+           String pwd=tvOffreur.getSelectionModel().getSelectedItem().getPwd();
+       txtmdpOF.setText(pwd);
       
     }
     
@@ -701,6 +749,12 @@ ObservableList<Offreur> oblist2 = FXCollections.observableArrayList();
 os.ajouter(o);
 tvOffreur.getItems().clear();
 afficherOffreur();
+txtnomOF.setText("");
+txtprenomOF.setText("");
+
+   txtemailOF.setText("");
+   txtmdpOF.setText("");
+   txtTelOF.setText("");
              }   
     }
     
@@ -743,6 +797,12 @@ afficherOffreur();
 os.modifier(o);
 tvOffreur.getItems().clear();
 afficherOffreur();
+txtnomOF.setText("");
+txtprenomOF.setText("");
+
+   txtemailOF.setText("");
+   txtmdpOF.setText("");
+   txtTelOF.setText("");
          }
         
     }
@@ -752,6 +812,12 @@ Offreur o =  tvOffreur.getSelectionModel().getSelectedItem();
 os.supprimer(o.getId());
 tvOffreur.getItems().clear();
 afficherOffreur();
+txtnomOF.setText("");
+txtprenomOF.setText("");
+
+   txtemailOF.setText("");
+   txtmdpOF.setText("");
+   txtTelOF.setText("");
     }
         @FXML
     void rechercherO(ActionEvent event) {
@@ -802,6 +868,12 @@ decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 ags.ajouter(ag);
 tvAgent.getItems().clear();
 afficherAgent();
+txtnomAG.setText("");
+txtprenomAG.setText("");
+
+   txtemailAG.setText("");
+   txtmdpAG.setText("");
+  txtNomAgence.setText("");
              }   
     }
     
@@ -843,6 +915,12 @@ afficherAgent();
 ags.modifier(ag);
 tvAgent.getItems().clear();
 afficherAgent();
+txtnomAG.setText("");
+txtprenomAG.setText("");
+
+   txtemailAG.setText("");
+   txtmdpAG.setText("");
+  txtNomAgence.setText("");
          }
     }
     
@@ -862,7 +940,10 @@ tvAgent.getItems().clear();
      txtprenomAG.setText(""+  colprenomAG.getCellData(index));
      txtemailAG.setText(""+colemailAG.getCellData(index));
      txtNomAgence.setText(""+colNomAgence.getCellData(index));
-     txtmdpAG.setText("");
+    
+       String pwd=tvAgent.getSelectionModel().getSelectedItem().getPwd();
+       txtmdpAG.setText(pwd);
+     
     }
     
         private void afficherAgent() {
@@ -881,6 +962,12 @@ AgentAerien ag =  tvAgent.getSelectionModel().getSelectedItem();
 ags.supprimer(ag.getId());
 tvAgent.getItems().clear();
 afficherAgent();
+txtnomAG.setText("");
+txtprenomAG.setText("");
+
+   txtemailAG.setText("");
+   txtmdpAG.setText("");
+  txtNomAgence.setText("");
     }
     
     
@@ -938,6 +1025,26 @@ afficherAgent();
 			System.out.println(ex);
 		}
 
+    }
+
+    @FXML
+    private void capturer(ActionEvent event) {
+           try{
+            Robot robot =new Robot();
+            Rectangle rectangle = new Rectangle(100,100,1200,600);
+            BufferedImage image = robot.createScreenCapture(rectangle);
+        Image myImage = SwingFXUtils.toFXImage(image, null);
+        display.setImage(myImage);
+        ImageIO.write(image, "jpg", new File("capture/out.jpg"));
+      JOptionPane.showMessageDialog(null, "capture avec succes");
+        
+        
+        }catch(Exception ex){
+            Logger.getLogger(RegistrationController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+        
+        
     }
 
     

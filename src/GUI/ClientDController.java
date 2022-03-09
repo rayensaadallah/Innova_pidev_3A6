@@ -149,6 +149,7 @@ public class ClientDController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
 		Parent root = loader.load();
 		ModifierCompteClientController  e = loader.getController();
+                System.out.println(idc);
                 e.setIdc(idc);
 		((Button) event.getSource()).getScene().setRoot(root);
 		}catch(Exception ex){
