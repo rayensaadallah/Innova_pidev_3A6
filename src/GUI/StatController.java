@@ -58,6 +58,7 @@ public class StatController implements Initializable {
              PreparedStatement ste = (PreparedStatement) con.prepareStatement(req);
             ResultSet rs = ste.executeQuery();
             while (rs.next()){
+                System.out.println("aaaavi"+rs.getString(1));
                 series.getData().add(new XYChart.Data<>(rs.getString(1),rs.getInt(2)));
             }
             barChart.getData().add(series);

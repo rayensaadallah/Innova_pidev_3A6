@@ -502,7 +502,15 @@ public class AfficherReservationController implements Initializable {
 
     @FXML
     private void consulterCompteC(ActionEvent event) {
-        
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
+		Parent root = loader.load();
+		GUI.ModifierCompteClientController  e = loader.getController();
+                e.setIdc(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
         
     }
 
@@ -558,10 +566,29 @@ public class AfficherReservationController implements Initializable {
 
     @FXML
     private void reclamations(ActionEvent event) {
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+		Parent root = loader.load();
+		ReclamationController  e = loader.getController();
+                e.setIdc(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
     private void signout(ActionEvent event) {
+          try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
@@ -573,6 +600,20 @@ public class AfficherReservationController implements Initializable {
 		ReserverHebergementController  e = loader.getController();
                 e.setIdC(idc);
                 
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
+
+    @FXML
+    private void avis(ActionEvent event) {
+        
+           try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		GUI.AvisController  e = loader.getController();
+                e.setIdclient(idc);
 		((Button) event.getSource()).getScene().setRoot(root);
 		}catch(Exception ex){
 			System.out.println(ex);

@@ -204,6 +204,7 @@ public class AvisController implements Initializable {
             Avis av = tvavis.getSelectionModel().getSelectedItem();
             System.out.println(av.getRefActivite());
             av.setMessage(txtcomment.getSelectionModel().getSelectedItem().toString());
+            av.setRating(Float.parseFloat(total.getText()));
             System.out.println(txtcomment.getSelectionModel().getSelectedItem().toString());
             avs.modifier(av);
 
@@ -215,6 +216,8 @@ public class AvisController implements Initializable {
 
             tvavis.getItems().clear();
             affichageAv();
+             tvavisa.getItems().clear();
+            AffActAv();
         }
 
     }

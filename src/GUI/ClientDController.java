@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import Services.*;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -66,6 +68,12 @@ public class ClientDController implements Initializable {
     private Button bReclamation;
     @FXML
     private Button btnOrders1;
+    @FXML
+    private Label voyage;
+    @FXML
+    private Label nombreR;
+    @FXML
+    private Label nombreA;
     public void setIdc(int idc) {
         System.out.println(idc);
         this.idc = idc;
@@ -73,6 +81,16 @@ public class ClientDController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        voyOrgServ vs = new voyOrgServ();
+        
+       String nbVOY= "Nombre de voyage : "+vs.afficher().size();
+       voyage.setText(nbVOY);
+      ReservationService rs= new ReservationService();
+      String nbres=" Nombre de Reservation "+rs.afficher().size();
+      nombreR.setText(nbres);
+      ActiviteService as = new ActiviteService();
+      String nba=" nombre d'activite "+as.afficher().size();
+      nombreA.setText(nba);
         // TODO
     }    
 

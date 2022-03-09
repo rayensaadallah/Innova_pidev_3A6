@@ -645,6 +645,8 @@ txtprenomC.setText("");
 
    txtemailC.setText("");
    txtmdpC.setText("");
+   txtrep.setText("");
+   txtnumtel.setText("");
 }
     
     

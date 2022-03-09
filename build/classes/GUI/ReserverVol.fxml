@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="835.0" prefWidth="1310.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReserverVolController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1348.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReserverVolController">
    <children>
       <Label layoutX="925.0" layoutY="328.0" prefHeight="21.0" prefWidth="117.0" text="Ville d'arrive " />
       <TextField fx:id="destinationvol" editable="false" layoutX="1042.0" layoutY="323.0" />
@@ -75,7 +75,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -87,7 +87,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Person_32px.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -99,7 +99,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Xbox_Menu_32px.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -111,7 +111,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Box_32px.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -123,7 +123,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Slider__32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -135,7 +135,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Slider__32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -147,7 +147,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Slider__32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -159,7 +159,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>

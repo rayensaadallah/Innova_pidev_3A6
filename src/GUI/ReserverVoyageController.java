@@ -173,7 +173,7 @@ ReservationService rs = new ReservationService();
               java.sql.Date datR = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         java.sql.Date Datedv = new java.sql.Date(parsedd.getTime());
         java.sql.Date Dateav = new java.sql.Date(parseda.getTime());
-           System.out.print(Integer.parseInt(idc.getText()));
+        
         Reservation r= new Reservation(datR,Integer.parseInt(nbp.getText()), Datedv, Dateav,v.getIdVoy(),0,0,0,"Approuve", idclient,"Voyage");
         if(rs. verifierNbplaceVoyage(v.getIdVoy(), Integer.parseInt(nbp.getText())))
         {rs.ajouter(r);

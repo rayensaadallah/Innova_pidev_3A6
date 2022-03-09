@@ -72,7 +72,7 @@ public class AvisService extends SendSms implements IService<Avis> {
     @Override
     public void modifier(Avis av) {
         System.out.println(av.getId());
-        String req = "UPDATE Avis SET Date= NOW() ,Message='" + av.getMessage() + "' WHERE RefAvis='" + av.getRefAvis() + "'";
+       String req = "UPDATE Avis SET Date= NOW() ,Message='" + av.getMessage() + "',Rating='" + av.getRating()+ "'WHERE RefAvis='" + av.getRefAvis() + "'";
         try {
             ste = conn.createStatement();
             ste.executeUpdate(req);

@@ -30,7 +30,7 @@ public class NewFXMain extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("ReserverVoyage.fxml"));
        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("agenda.fxml"));
-        Scene scene = new Scene(root, 900, 900);
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
 

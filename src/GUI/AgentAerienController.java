@@ -446,8 +446,9 @@ alert.showAndWait();
      
       as.supprimer(r);
       tb_a.getItems().clear();
+       id_avion.getItems().clear();
        afficher1(ida);
-        id_avion.getItems().clear();
+       
        getida(ida).forEach(e->
      id_avion.getItems().addAll(e));
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -799,7 +800,7 @@ alert.showAndWait();
      @FXML
     private void telechargerVol(ActionEvent event) throws SQLException, DocumentException {
          
-                String ad="C:\\Users\\Malek\\Desktop\\Gestion_Vol\\ListVol.pdf";
+                String ad="D:\\3eme\\Innova_pidev_3A6\\pdf\\ListVol.pdf";
                 Document doc=new Document();
            
              

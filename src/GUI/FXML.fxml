@@ -17,21 +17,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1348.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="744.0" prefWidth="1348.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLController">
    <children>
       <Pane layoutX="257.0" layoutY="7.0" prefHeight="768.0" prefWidth="1109.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TabPane fx:id="F_hebergement" layoutY="-1.0" prefHeight="720.0" prefWidth="1109.0" style="-fx-background-color: blue;" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="F_hebergement" layoutY="-1.0" prefHeight="744.0" prefWidth="1109.0" style="-fx-background-color: #027ebc;" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="ajouter_hebegement" text="Ajouter">
                   <content>
-                    <AnchorPane fx:id="hebergement_ajouter" minHeight="0.0" minWidth="0.0" prefHeight="682.0" prefWidth="1109.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+                    <AnchorPane fx:id="hebergement_ajouter" minHeight="0.0" minWidth="0.0" prefHeight="731.0" prefWidth="1109.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
                            <children>
                               <Label layoutX="317.0" layoutY="178.0" prefHeight="29.0" prefWidth="73.0" stylesheets="@style.css" text="jusqu'a :" />
-                              <Label layoutX="412.0" layoutY="238.0" prefHeight="26.0" prefWidth="164.0" stylesheets="@style.css" text="nombre de place parking :" />
-                              <Label layoutX="678.0" layoutY="238.0" prefHeight="26.0" prefWidth="66.0" stylesheets="@style.css" text="Rating" />
-                              <Label layoutX="205.0" layoutY="238.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="nombre de suite :" />
-                              <Label layoutX="32.0" layoutY="238.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="Modele" />
+                              <Label layoutX="528.0" layoutY="312.0" prefHeight="26.0" prefWidth="164.0" stylesheets="@style.css" text="nombre de place parking :" />
+                              <Label layoutX="315.0" layoutY="390.0" prefHeight="26.0" prefWidth="66.0" stylesheets="@style.css" text="Rating" />
+                              <Label layoutX="259.0" layoutY="312.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="nombre de suite :" />
+                              <Label layoutX="24.0" layoutY="312.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="Modele" />
                               <Label layoutX="19.0" layoutY="183.0" prefHeight="26.0" prefWidth="128.0" stylesheets="@style.css" text="Disponile depuis  : " />
                               <Label layoutX="32.0" layoutY="134.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="Prix :" />
                               <Label layoutX="328.0" layoutY="51.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@style.css" text="adress" />
@@ -45,10 +45,10 @@
                               <DatePicker fx:id="a_datestart" layoutX="158.0" layoutY="183.0" prefHeight="26.0" prefWidth="149.0" stylesheets="@style.css" />
                               <DatePicker fx:id="a_dateend" layoutX="373.0" layoutY="183.0" prefHeight="26.0" prefWidth="149.0" stylesheets="@style.css" />
                               <Label layoutX="315.0" layoutY="134.0" prefHeight="26.0" prefWidth="124.0" stylesheets="@style.css" text="Numero categorie:" />
-                              <TextField fx:id="a_modele" layoutX="90.0" layoutY="238.0" prefHeight="26.0" prefWidth="102.0" stylesheets="@style.css" />
-                              <TextField fx:id="a_nbr_suite" layoutX="321.0" layoutY="238.0" prefHeight="26.0" prefWidth="80.0" stylesheets="@style.css" />
-                              <TextField fx:id="a_nbr_parking" layoutX="576.0" layoutY="238.0" prefHeight="26.0" prefWidth="80.0" stylesheets="@style.css" />
-                              <TextField fx:id="a_nbr_detoile" layoutX="730.0" layoutY="238.0" prefHeight="31.0" prefWidth="125.0" stylesheets="@style.css" />
+                              <TextField fx:id="a_modele" layoutX="116.0" layoutY="309.0" prefHeight="26.0" prefWidth="102.0" stylesheets="@style.css" />
+                              <TextField fx:id="a_nbr_suite" layoutX="408.0" layoutY="309.0" prefHeight="26.0" prefWidth="80.0" stylesheets="@style.css" />
+                              <TextField fx:id="a_nbr_parking" layoutX="704.0" layoutY="310.0" prefHeight="26.0" prefWidth="80.0" stylesheets="@style.css" />
+                              <TextField fx:id="a_nbr_detoile" layoutX="377.0" layoutY="388.0" prefHeight="31.0" prefWidth="125.0" stylesheets="@style.css" />
                               <ImageView fx:id="a_picture_kol" fitHeight="142.0" fitWidth="151.0" layoutX="743.0" layoutY="293.0" onDragDetected="#Import" pickOnBounds="true" preserveRatio="true" />
                               <Button fx:id="B_c_ajouter" layoutX="949.0" layoutY="123.0" mnemonicParsing="false" onAction="#C_ajouter" prefHeight="32.0" prefWidth="87.0" stylesheets="@style.css" text="Ajouter" />
                               <TableView fx:id="categorie_table" layoutX="593.0" layoutY="14.0" prefHeight="146.0" prefWidth="273.0" stylesheets="@style.css">
@@ -71,9 +71,9 @@
                 </Tab>
                 <Tab text="Afficher">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="497.0" prefWidth="1090.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="1109.0" style="-fx-background-color: #027ebc;">
                            <children>
-                              <TableView fx:id="hebergement_table" layoutX="14.0" layoutY="14.0" onMouseClicked="#h_select" prefHeight="375.0" prefWidth="1090.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="14.0">
+                              <TableView fx:id="hebergement_table" layoutX="3.0" layoutY="14.0" onMouseClicked="#h_select" prefHeight="477.0" prefWidth="1102.0" AnchorPane.bottomAnchor="214.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="14.0">
                                 <columns>
                                   <TableColumn fx:id="h_affiche_referance" prefWidth="85.0" text="Referance" />
                                   <TableColumn fx:id="h_affiche_paye" prefWidth="47.0" text="paye" />
@@ -92,14 +92,14 @@
                                     <TableColumn fx:id="h_affiche_offreur" minWidth="0.0" prefWidth="81.0" text="ID offreur" />
                                 </columns>
                               </TableView>
-                              <Button fx:id="B_h_supp" layoutX="838.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#h_hebergement" prefHeight="39.0" prefWidth="87.0" text="Supprimer" />
-                              <Button fx:id="B_h_recherche" layoutX="929.0" layoutY="407.0" mnemonicParsing="false" onAction="#H_recherche" prefHeight="38.0" prefWidth="96.0" text="Recherche " AnchorPane.rightAnchor="28.0" />
-                              <TextField fx:id="h_recherche_referance" layoutX="528.0" layoutY="412.0" prefHeight="35.0" prefWidth="152.0" />
-                              <ComboBox fx:id="h_combo_recherche" layoutX="356.0" layoutY="412.0" prefHeight="36.0" prefWidth="159.0" promptText="Choose" />
-                              <Button fx:id="h_share_qr" layoutX="689.0" layoutY="407.0" mnemonicParsing="false" onAction="#h_share_qr" prefHeight="38.0" prefWidth="134.0" text="Share" />
-                              <Button fx:id="b_h_promo" layoutX="197.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#h_promo" prefHeight="34.0" prefWidth="148.0" text="Add promotion " />
-                              <ComboBox fx:id="h_combo_promo" layoutX="94.0" layoutY="414.0" prefHeight="31.0" prefWidth="87.0" />
-                              <Button fx:id="stat" layoutX="14.0" layoutY="415.0" mnemonicParsing="false" onAction="#h_statistique" prefHeight="31.0" prefWidth="67.0" text="Stat" />
+                              <Button fx:id="B_h_supp" layoutX="952.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#h_hebergement" prefHeight="39.0" prefWidth="110.0" text="Supprimer" />
+                              <Button fx:id="B_h_recherche" layoutX="974.0" layoutY="592.0" mnemonicParsing="false" onAction="#H_recherche" prefHeight="38.0" prefWidth="96.0" text="Recherche " AnchorPane.rightAnchor="39.0" />
+                              <TextField fx:id="h_recherche_referance" layoutX="592.0" layoutY="525.0" prefHeight="35.0" prefWidth="152.0" />
+                              <ComboBox fx:id="h_combo_recherche" layoutX="400.0" layoutY="524.0" prefHeight="36.0" prefWidth="159.0" promptText="Choose" />
+                              <Button fx:id="h_share_qr" layoutX="779.0" layoutY="522.0" mnemonicParsing="false" onAction="#h_share_qr" prefHeight="38.0" prefWidth="134.0" text="Share" />
+                              <Button fx:id="b_h_promo" layoutX="210.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#h_promo" prefHeight="34.0" prefWidth="148.0" text="Add promotion " />
+                              <ComboBox fx:id="h_combo_promo" layoutX="99.0" layoutY="525.0" prefHeight="31.0" prefWidth="87.0" />
+                              <Button fx:id="stat" layoutX="14.0" layoutY="525.0" mnemonicParsing="false" onAction="#h_statistique" prefHeight="31.0" prefWidth="67.0" text="Stat" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -108,7 +108,7 @@
             </TabPane>
          </children>
       </Pane>
-      <VBox alignment="TOP_CENTER" layoutX="3.0" layoutY="3.0" prefHeight="768.0" prefWidth="256.0" style="-fx-background-color: #ffd800;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="3.0" layoutY="3.0" prefHeight="744.0" prefWidth="261.0" style="-fx-background-color: #ffd800;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
@@ -148,7 +148,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

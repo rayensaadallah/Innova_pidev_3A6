@@ -192,37 +192,98 @@ cs.modifier(c);
 
     @FXML
     void reserverActivite(ActionEvent event) {
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserverActivite.fxml"));
+		Parent root = loader.load();
+		ReserverActiviteController  e = loader.getController();
+                
+           
+                e.setIdclient(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 
     @FXML
     void reserverHebergement(ActionEvent event) {
+           try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserverHebergement.fxml"));
+		Parent root = loader.load();
+		ReserverHebergementController  e = loader.getController();
+                e.setIdC(idc);
+                
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 
     @FXML
     void reserverVol(ActionEvent event) {
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserverVol.fxml"));
+		Parent root = loader.load();
+		ReserverVolController  e = loader.getController();
+                e.setIdclient(idc);
+                
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 
     @FXML
     void reserverVoyageO(ActionEvent event) {
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReserverVoyage.fxml"));
+		Parent root = loader.load();
+		ReserverVoyageController  e = loader.getController();
+           
+                e.setIdclient(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
     
         @FXML
     void avis(ActionEvent event) {
+        
+           try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		GUI.AvisController  e = loader.getController();
+                e.setIdclient(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 
     @FXML
     void consulterProfil(ActionEvent event) throws IOException {
+        
+        
 
     }
 
     @FXML
     void consulterReservation(ActionEvent event) {
-
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherReservation.fxml"));
+		Parent root = loader.load();
+		AfficherReservationController  e = loader.getController();
+                e.setIdc(idc);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
     
        @FXML

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="770.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierCompteClientController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1748.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierCompteClientController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="20.0" prefWidth="100.0" />
       <Label layoutX="350.0" layoutY="224.0" text="Prenom :">
@@ -56,7 +56,7 @@
       </Label>
       <TextField fx:id="txtRepCMod" layoutX="435.0" layoutY="365.0" prefHeight="25.0" prefWidth="192.0" />
       <TextField fx:id="txtQS" layoutX="522.0" layoutY="320.0" prefHeight="25.0" prefWidth="192.0" />
-      <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="588.0" prefWidth="313.0" style="-fx-background-color: ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css">
+      <VBox alignment="TOP_CENTER" layoutY="1.0" prefHeight="744.0" prefWidth="313.0" style="-fx-background-color: ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css">
          <children>
             <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -70,7 +70,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -88,7 +88,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -100,7 +100,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -112,7 +112,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -124,7 +124,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -132,11 +132,11 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterReservation" prefHeight="42.0" prefWidth="269.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Consuter les reservation">
+            <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#consulterReservation" prefHeight="42.0" prefWidth="280.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Consuter les reservations">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -144,11 +144,11 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="bReclamation" mnemonicParsing="false" onAction="#reclamation" prefHeight="43.0" prefWidth="328.0" text="Reclamation">
+            <Button fx:id="bReclamation" mnemonicParsing="false" onAction="#reclamation" prefHeight="43.0" prefWidth="328.0" text="consulter les reclamations">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -157,7 +157,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -169,7 +169,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>

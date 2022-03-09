@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1348.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AvisController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1348.0" style="-fx-background-color: #027ebc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AvisController">
    <children>
       <TabPane layoutX="310.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1040.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -42,21 +42,21 @@
                         <Label layoutX="375.0" layoutY="72.0" text="Nom Activite:" />
                         <Label layoutX="703.0" layoutY="72.0" text="Votre Avis:" />
                         <Button fx:id="btnmodifierav" layoutX="643.0" layoutY="235.0" mnemonicParsing="false" onAction="#modifierAv" prefHeight="32.0" prefWidth="83.0" text="Modifier" />
-                        <Button fx:id="btnsupprimerav" layoutX="738.0" layoutY="235.0" mnemonicParsing="false" onAction="#supprimerav" prefHeight="32.0" prefWidth="83.0" text="Supprimer" />
+                        <Button fx:id="btnsupprimerav" layoutX="738.0" layoutY="235.0" mnemonicParsing="false" onAction="#supprimerav" prefHeight="32.0" prefWidth="108.0" text="Supprimer" />
                         <Button fx:id="btnviderav" layoutX="375.0" layoutY="195.0" mnemonicParsing="false" onAction="#viderAv" prefHeight="32.0" prefWidth="85.0" text="Vider" />
                         <ComboBox fx:id="txtcomment" layoutX="783.0" layoutY="67.0" prefHeight="29.0" prefWidth="186.0" promptText="Selection de la liste:" />
                         <Button fx:id="btnajouterav" layoutX="545.0" layoutY="235.0" mnemonicParsing="false" onAction="#ajouterav" prefHeight="32.0" prefWidth="83.0" text="Ajouter" />
                         <Button fx:id="btnstat" layoutX="376.0" layoutY="241.0" mnemonicParsing="false" onAction="#stat" prefHeight="32.0" prefWidth="83.0" text="Stat" />
                         <Rating fx:id="rate" layoutX="586.0" layoutY="143.0" rating="0.0" />
                         <Label layoutX="460.0" layoutY="149.0" text="Evaluer l'activité:" />
-                        <Label fx:id="total" layoutX="96.0" layoutY="611.0" />
+                        <Label fx:id="total" layoutX="96.0" layoutY="611.0" visible="false" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <VBox alignment="TOP_CENTER" prefHeight="727.0" prefWidth="310.0" style="-fx-background-color: ffd800;">
+      <VBox alignment="TOP_CENTER" prefHeight="744.0" prefWidth="310.0" style="-fx-background-color: ffd800;" stylesheets="@style.css">
          <children>
             <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                <image>

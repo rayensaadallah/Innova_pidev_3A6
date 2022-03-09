@@ -159,8 +159,6 @@ public class FXMLController implements Initializable {
     @FXML
     private Button B_h_modifer;
     @FXML
-    private TextField h_referance_modifer;
-    @FXML
     private ComboBox<String> h_combo_recherche;
     @FXML
     private TableColumn<?, ?> h_affiche_model;
@@ -625,6 +623,20 @@ loadTableHebegement_offreur();
 		}catch(Exception ex){
 			System.out.println(ex);
 		}  
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+         try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
     
 
