@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 public class Activite {
    
    private Connection conn;
+
+   
     private Statement ste;
     private PreparedStatement pste; 
     
@@ -33,6 +35,7 @@ public class Activite {
    private String Type;
    private String Location;
    private float Prix;
+   private float rating;
    
    public Activite() {
     }
@@ -134,6 +137,15 @@ public class Activite {
     public void setPrix(float Prix) {
         this.Prix = Prix;
     }
+    
+     public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
 
     @Override
     public String toString() {

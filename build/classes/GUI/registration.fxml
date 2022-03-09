@@ -373,7 +373,7 @@
                   <Font name="Arial Black" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btngestActv" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestAct" prefHeight="42.0" prefWidth="331.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des activites ">
+            <Button fx:id="butAct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestiondesA" prefHeight="42.0" prefWidth="328.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des Activites ">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

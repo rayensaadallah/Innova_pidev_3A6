@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package Services;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Entities.Activite;
+import Entities.Avis;
 import Utilis.Datasource;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -26,12 +28,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-
 /**
  *
  * @author TheBoss'07
  */
 public class ActiviteService implements IService<Activite> {
+
     private Connection conn;
     private Statement ste;
     private PreparedStatement pste;
@@ -39,36 +41,32 @@ public class ActiviteService implements IService<Activite> {
     public ActiviteService() {
         conn = Datasource.getInstance().getCnx();
     }
-    
-    
-    public List<String> recupAdrM()
-    {
-        List<String> mail= new ArrayList();
-        
-        String req="Select email from Client";
+
+    public List<String> recupAdrM() {
+        List<String> mail = new ArrayList();
+
+        String req = "Select email from Client";
         try {
             pste = conn.prepareStatement(req);
             ResultSet rs = pste.executeQuery();
-            
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 String s = new String();
-                s=rs.getNString(1);
+                s = rs.getNString(1);
                 mail.add(s);
-                
-        }
-            
+
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return mail;
     }
-    
-    public void envoyerMail(String from,String pass,List<String> to,String object,String subject) throws UnsupportedEncodingException
-    {
-    
-         String password ="getaway123";
-        String fromEmail ="getawayvoy.services@gmail.com";
+
+    public void envoyerMail(String from, String pass, List<String> to, String object, String subject) throws UnsupportedEncodingException {
+
+        String password = "getaway123";
+        String fromEmail = "getawayvoy.services@gmail.com";
 
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
@@ -84,14 +82,14 @@ public class ActiviteService implements IService<Activite> {
         //Start our mail message
         MimeMessage msg = new MimeMessage(session);
         try {
-            msg.setFrom(new InternetAddress(fromEmail,"Getaway Service"));
-            
+            msg.setFrom(new InternetAddress(fromEmail, "Getaway Service"));
+
             InternetAddress[] toAddress = new InternetAddress[to.size()];
-            for( int i = 0; i < to.size(); i++ ) {
+            for (int i = 0; i < to.size(); i++) {
                 toAddress[i] = new InternetAddress(to.get(i));
             }
-            for( int i = 0; i < toAddress.length; i++) {
-                msg.addRecipient(Message .RecipientType.TO, toAddress[i]);
+            for (int i = 0; i < toAddress.length; i++) {
+                msg.addRecipient(Message.RecipientType.TO, toAddress[i]);
             }
             msg.setSubject(subject);
 
@@ -110,15 +108,15 @@ public class ActiviteService implements IService<Activite> {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void ajouter(Activite a) {
-        String req = "INSERT INTO `Activite` (`Nom`,`Descrip`,`Duree`,`NbrPlace`,`Date`,`Type`,`Location`,`Prix`) VALUE ('" + a.getNom() + "','" + a.getDescrip() +"', '" + a.getDuree() +"','" + a.getNbrPlace() +"','" + a.getDate() +"','" + a.getType() +"','" + a.getLocation() +"','" + a.getPrix() +"')";
+        String req = "INSERT INTO `Activite` (`Nom`,`Descrip`,`Duree`,`NbrPlace`,`Date`,`Type`,`Location`,`Prix`) VALUE ('" + a.getNom() + "','" + a.getDescrip() + "', '" + a.getDuree() + "','" + a.getNbrPlace() + "','" + a.getDate() + "','" + a.getType() + "','" + a.getLocation() + "','" + a.getPrix() + "')";
         try {
             ste = conn.createStatement();
             ste.executeUpdate(req);
             System.out.println("Activite créée");
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,47 +126,53 @@ public class ActiviteService implements IService<Activite> {
 //            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
-    
+
     @Override
     public void modifier(Activite a) {
-       String req = "UPDATE Activite SET RefAct='" + a.getRefAct() + "',Nom='" + a.getNom() + "',Descrip='" + a.getDescrip() + "',Duree='" + a.getDuree() + "',NbrPlace='" + a.getNbrPlace() + "',Date='" + a.getDate() + "',Type='" + a.getType() + "',Location='" + a.getLocation() + "',Prix='" + a.getPrix() + "' WHERE RefAct='" + a.getRefAct()+"'";
-    try {
+        String req = "UPDATE Activite SET RefAct='" + a.getRefAct() + "',Nom='" + a.getNom() + "',Descrip='" + a.getDescrip() + "',Duree='" + a.getDuree() + "',NbrPlace='" + a.getNbrPlace() + "',Date='" + a.getDate() + "',Type='" + a.getType() + "',Location='" + a.getLocation() + "',Prix='" + a.getPrix() + "' WHERE RefAct='" + a.getRefAct() + "'";
+        try {
             ste = conn.createStatement();
             ste.executeUpdate(req);
-        System.out.println("Activite Modifié");
-    }   catch (SQLException ex) {
-            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    @Override
-    public void supprimer(Activite a) {
-        
-      String req = "DELETE FROM Activite WHERE RefAct='" + a.getRefAct()+"'";
-    try {
-            ste = conn.createStatement();
-            ste.executeUpdate(req);
-        System.out.println("Activite Supprimer");
-    }   catch (SQLException ex) {
+            System.out.println("Activite Modifié");
+        } catch (SQLException ex) {
             Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    
+    @Override
+    public void supprimer(Activite a) {
+        try {
+            if(this.verif(a)==false)
+            {
+                System.out.println("You can");
+                String req = "DELETE FROM Activite WHERE RefAct='" + a.getRefAct() + "'";
+                try {
+                    ste = conn.createStatement();
+                    ste.executeUpdate(req);
+                    System.out.println("Activite Supprimer");
+                } catch (SQLException ex) {
+                    Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }   } catch (SQLException ex) {
+            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+    }
+
     @Override
     public List<Activite> afficher() {
         List<Activite> activites = new ArrayList<>();
         String req = "SELECT * FROM `Activite`";
-        
+
         try {
             pste = conn.prepareStatement(req);
             ResultSet rs = pste.executeQuery();
-            
+
 //            ste = conn.createStatement();
 //            ResultSet rs = ste.executeQuery(req);
-            
             //System.out.println("Liste des activites:");
-            
-            while(rs.next()){
+            while (rs.next()) {
                 Activite a = new Activite();
                 a.setRefAct(rs.getInt(1));
                 a.setNom(rs.getString(2));
@@ -179,132 +183,30 @@ public class ActiviteService implements IService<Activite> {
                 a.setType(rs.getString(7));
                 a.setLocation(rs.getString(8));
                 a.setPrix(rs.getFloat(9));
-                
+                a.setRating(this.getRatingFromActivite(a));
+
                 activites.add(a);
-                
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return activites;
-    }   
-    
+    }
+
     public List<Activite> rechercherActiviteRef(int input) { //Rechercher le contenu du input
         List<Activite> activites = new ArrayList<>();
-        String req = "SELECT * FROM `Activite` Where RefAct="+input+"";
-        
+        String req = "SELECT * FROM `Activite` Where RefAct=" + input + "";
+
         try {
             pste = conn.prepareStatement(req);
             ResultSet rs = pste.executeQuery();
-            
+
 //            ste = conn.createStatement();
 //            ResultSet rs = ste.executeQuery(req);
-            
             System.out.println("Resultat du recherche:");
-            
-            while(rs.next()){
-                Activite a = new Activite();
-                a.setRefAct(rs.getInt(1));
-                a.setNom(rs.getString(2));
-                a.setDescrip(rs.getString(3));
-                a.setDuree(rs.getString(4));
-                a.setNbrPlace(rs.getInt(5));
-                a.setDate(rs.getString(6));
-                a.setType(rs.getString(7));
-                a.setLocation(rs.getString(8));
-                a.setPrix(rs.getFloat(9));
-                
-                activites.add(a);
-                
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return activites;
-
-    }
-    
-    public List<Activite> rechercherActiviteNom(String nom, String type) { //Rechercher le contenu du input
-        List<Activite> activites = new ArrayList<>();
-        String req = "SELECT * FROM `Activite` Where Nom='"+nom+"' OR Type='"+type+"'";
-        
-        try {
-            pste = conn.prepareStatement(req);
-            ResultSet rs = pste.executeQuery();
-            
-//            ste = conn.createStatement();
-//            ResultSet rs = ste.executeQuery(req);
-            
-            System.out.println("Resultat du recherche:");
-            
-            while(rs.next()){
-                Activite a = new Activite();
-                a.setRefAct(rs.getInt(1));
-                a.setNom(rs.getString(2));
-                a.setDescrip(rs.getString(3));
-                a.setDuree(rs.getString(4));
-                a.setNbrPlace(rs.getInt(5));
-                a.setDate(rs.getString(6));
-                a.setType(rs.getString(7));
-                a.setLocation(rs.getString(8));
-                a.setPrix(rs.getFloat(9));
-                
-                activites.add(a);
-                
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return activites;
-
-    }
-    
-     public ObservableList<Activite> rechercherActivite(String input) {//Rechercher le contenu du input
-        
-        ObservableList<Activite> OActivite = FXCollections.observableArrayList();
-        
-        String req = "SELECT * FROM `Activite` Where Nom LIKE '%"+input+"%' OR Type LIKE '%"+input+"%' OR NbrPlace LIKE '%"+input+"%' OR Date LIKE '%"+input+"%' OR Descrip LIKE '%"+input+"%' OR Duree LIKE '%"+input+"%' OR Date LIKE '%"+input+"%' OR Location LIKE '%"+input+"%' OR Prix LIKE '%"+input+"%'";
-        try {
-            pste = conn.prepareStatement(req);
-            ResultSet rs = pste.executeQuery();
-            
-            System.out.println("Resultat du recherche:");
-            
-            while(rs.next()){
-                Activite a = new Activite();
-                a.setRefAct(rs.getInt(1));
-                a.setNom(rs.getString(2));
-                a.setDescrip(rs.getString(3));
-                a.setDuree(rs.getString(4));
-                a.setNbrPlace(rs.getInt(5));
-                a.setDate(rs.getString(6));
-                a.setType(rs.getString(7));
-                a.setLocation(rs.getString(8));
-                a.setPrix(rs.getFloat(9));
-                
-                OActivite.add(a);
-                
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return OActivite;
-}
-     
-     
-     public ObservableList<Activite> trierActiviteNbrplace() {
-       ObservableList<Activite> OActivite = FXCollections.observableArrayList();
-        String req = "SELECT * FROM `Activite` ORDER BY NbrPlace";
-        try {
-            pste = conn.prepareStatement(req);
-            ResultSet rs = pste.executeQuery();
-            
-            
 
             while (rs.next()) {
                 Activite a = new Activite();
@@ -317,7 +219,105 @@ public class ActiviteService implements IService<Activite> {
                 a.setType(rs.getString(7));
                 a.setLocation(rs.getString(8));
                 a.setPrix(rs.getFloat(9));
-                
+
+                activites.add(a);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return activites;
+
+    }
+
+    public List<Activite> rechercherActiviteNom(String nom, String type) { //Rechercher le contenu du input
+        List<Activite> activites = new ArrayList<>();
+        String req = "SELECT * FROM `Activite` Where Nom='" + nom + "' OR Type='" + type + "'";
+
+        try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+
+//            ste = conn.createStatement();
+//            ResultSet rs = ste.executeQuery(req);
+            System.out.println("Resultat du recherche:");
+
+            while (rs.next()) {
+                Activite a = new Activite();
+                a.setRefAct(rs.getInt(1));
+                a.setNom(rs.getString(2));
+                a.setDescrip(rs.getString(3));
+                a.setDuree(rs.getString(4));
+                a.setNbrPlace(rs.getInt(5));
+                a.setDate(rs.getString(6));
+                a.setType(rs.getString(7));
+                a.setLocation(rs.getString(8));
+                a.setPrix(rs.getFloat(9));
+
+                activites.add(a);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return activites;
+
+    }
+
+    public ObservableList<Activite> rechercherActivite(String input) {//Rechercher le contenu du input
+
+        ObservableList<Activite> OActivite = FXCollections.observableArrayList();
+
+        String req = "SELECT * FROM `Activite` Where Nom LIKE '%" + input + "%' OR Type LIKE '%" + input + "%' OR NbrPlace LIKE '%" + input + "%' OR Date LIKE '%" + input + "%' OR Descrip LIKE '%" + input + "%' OR Duree LIKE '%" + input + "%' OR Date LIKE '%" + input + "%' OR Location LIKE '%" + input + "%' OR Prix LIKE '%" + input + "%'";
+        try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+
+            System.out.println("Resultat du recherche:");
+
+            while (rs.next()) {
+                Activite a = new Activite();
+                a.setRefAct(rs.getInt(1));
+                a.setNom(rs.getString(2));
+                a.setDescrip(rs.getString(3));
+                a.setDuree(rs.getString(4));
+                a.setNbrPlace(rs.getInt(5));
+                a.setDate(rs.getString(6));
+                a.setType(rs.getString(7));
+                a.setLocation(rs.getString(8));
+                a.setPrix(rs.getFloat(9));
+
+                OActivite.add(a);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return OActivite;
+    }
+
+    public ObservableList<Activite> trierActiviteNbrplace() {
+        ObservableList<Activite> OActivite = FXCollections.observableArrayList();
+        String req = "SELECT * FROM `Activite` ORDER BY NbrPlace";
+        try {
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+
+            while (rs.next()) {
+                Activite a = new Activite();
+                a.setRefAct(rs.getInt(1));
+                a.setNom(rs.getString(2));
+                a.setDescrip(rs.getString(3));
+                a.setDuree(rs.getString(4));
+                a.setNbrPlace(rs.getInt(5));
+                a.setDate(rs.getString(6));
+                a.setType(rs.getString(7));
+                a.setLocation(rs.getString(8));
+                a.setPrix(rs.getFloat(9));
+
                 OActivite.add(a);
             }
 
@@ -328,7 +328,46 @@ public class ActiviteService implements IService<Activite> {
         return OActivite;
 
     }
+
+    private float getRatingFromActivite(Activite activite) {
+        float rating = 0;
+
+        AvisService avisService = new AvisService();
+        int nbrAvis = avisService.avisListStat(activite.getRefAct(), null).size();
+        int somme = 0;
+        for (Avis avis : avisService.avisListStat(activite.getRefAct(), null)) {
+
+            somme += avis.getRating();
+
+        }
+        if (nbrAvis != 0) {
+            rating = (float) somme / nbrAvis;
+
+        }
+        return rating;
+
     }
     
-     
+    public boolean verif(Activite activite) throws SQLException
+    {
+       boolean found;
+       
+      
+       
+      String req= "Select * FROM Avis Join Activite WHERE avis.RefActivite=Activite.RefAct && Activite.RefAct='" + activite.getRefAct() + "'";
+       
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
 
+            if (rs.next()==false) {
+                found=false;
+            }
+            else {
+                found=true;
+            }
+      return found;
+     
+    
+}
+
+}   

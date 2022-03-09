@@ -15,6 +15,9 @@ public class Avis {
     private String Date;
     private int Id;
     private int RefActivite;
+    private String NomClient;
+    private String NomAct;
+    private float Rating;
     
     public Avis() {
     }
@@ -84,10 +87,38 @@ public class Avis {
         this.Id = Id;
     }
 
+    public String getNomClient() {
+        return NomClient;
+    }
+
+    public void setNomClient(String NomClient) {
+        this.NomClient = NomClient;
+    }
+
+    public String getNomAct() {
+        return NomAct;
+    }
+
+    public void setNomAct(String NomAct) {
+        this.NomAct = NomAct;
+    }
+
+    public float getRating() {
+        return Rating;
+    }
+
+    public void setRating(float Rating) {
+        this.Rating = Rating;
+    }
+
     @Override
     public String toString() {
-        return "Avis{" + "RefAvis=" + RefAvis + ", Message=" + Message + ", Date=" + Date + ", Id=" + Id + ", RefActivite=" + RefActivite + '}';
+        return "Avis{" + "RefAvis=" + RefAvis + ", Message=" + Message + ", Date=" + Date + ", Id=" + Id + ", RefActivite=" + RefActivite + ", Rating=" + Rating + '}';
     }
+    
+    
+
+    
 
    
     

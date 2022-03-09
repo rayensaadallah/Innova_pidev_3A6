@@ -6,6 +6,7 @@
 package GUI;
 
 
+import Services.AvisService;
 import Utilis.Datasource;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
+
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javax.activation.DataSource;
@@ -38,13 +40,8 @@ import javax.activation.DataSource;
  *
  * @author TheBoss'07
  */
-public class StatisiqueController extends GestionActivitesController implements Initializable {
+public class StatisiqueController extends GestionactadminController implements Initializable {
 
-    @FXML
-    private NumberAxis y;
-    @FXML
-    private CategoryAxis x;
-    @FXML
     private BarChart<String,Integer> Stat;
 
     
@@ -55,70 +52,102 @@ public class StatisiqueController extends GestionActivitesController implements 
     private Connection con = Datasource.getInstance().getCnx();
     @FXML
     private Button btnretour;
+    @FXML
+    private PieChart statActivite;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
        
        
         
-String req= "Select Message ,count(Message) from Avis where `RefActivite`=31 AND Message= 'Très Satisfait'";
-String req1= "Select Message ,count(Message) from Avis where `RefActivite`=31 AND Message= 'Satisfait'";
-String req2= "Select Message ,count(Message) from Avis where `RefActivite`=31 AND Message= 'Neutre'";
-String req3= "Select Message ,count(Message) from Avis where `RefActivite`=31 AND Message= 'Très déçu'";
 
-
-
-        XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();
-        XYChart.Series<String,Integer> series1 = new XYChart.Series<String,Integer>();
-        XYChart.Series<String,Integer> series2 = new XYChart.Series<String,Integer>();
-        XYChart.Series<String,Integer> series3 = new XYChart.Series<String,Integer>();
-
-
-        
-             PreparedStatement ste,ste1,ste2,ste3;
-        try {
-            ste = (PreparedStatement) con.prepareStatement(req);
-            ste1 = (PreparedStatement) con.prepareStatement(req1);
-            ste2 = (PreparedStatement) con.prepareStatement(req2);
-            ste3 = (PreparedStatement) con.prepareStatement(req3);
-
-
-            
-            ResultSet rs = ste.executeQuery();
-            ResultSet rs1 = ste1.executeQuery();
-            ResultSet rs2 = ste2.executeQuery();
-            ResultSet rs3 = ste3.executeQuery();
-
-            
-            
-            series.setName("Très Satisfait");
-            series1.setName("Satisfait");
-            series2.setName("Neutre");
-            series3.setName("Très déçu");
-            
-            while (rs.next() && rs1.next() && rs2.next() && rs3.next()){
-                series.getData().add(new XYChart.Data<>(rs.getString(1),rs.getInt(2)));
-                series1.getData().add(new XYChart.Data<>(rs1.getString(1),rs1.getInt(2)));
-                series2.getData().add(new XYChart.Data<>(rs2.getString(1),rs2.getInt(2)));
-                series3.getData().add(new XYChart.Data<>(rs3.getString(1),rs3.getInt(2)));
-
-            }
-            Stat.getData().add(series);
-            Stat.getData().add(series1);
-            Stat.getData().add(series2);
-            Stat.getData().add(series3);
-
-                    
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(StatisiqueController.class.getName()).log(Level.SEVERE, null, ex);
-}
     }
+    
+        public void initializeFxml(int idStat) {
+
+
+        statav(idStat);
+        }
+        
+        
+    @SuppressWarnings("empty-statement")
+            public void statav(int idStat) {
+
+        AvisService avisService = new AvisService();
+
+        String message1 = "Très Satisfait";
+        String message2 = "Satisfait";
+        String message3 = "Neutre";
+        String message4 = "Très déçu";
+
+        int message1Size = avisService.avisListStat(idStat, message1).size();
+
+        int message2Size = avisService.avisListStat(idStat, message2).size();
+
+        int message3Size = avisService.avisListStat(idStat, message3).size();
+        int message4Size = avisService.avisListStat(idStat, message4).size();
+
+        int all = message1Size + message2Size + message3Size + message4Size;
+                ObservableList<PieChart.Data> list_stat;
+
+        
+        
+        
+        if(message1Size==all)
+        {
+         list_stat = FXCollections.observableArrayList(
+                new PieChart.Data(message1+" : " + (message1Size * 100) / all + "%", message1Size))      ;
+        
+        }
+        else
+        if(message4Size==all)
+        {
+         list_stat = FXCollections.observableArrayList(
+                new PieChart.Data(message4 +" : "+ (message4Size * 100) / all + "%", message4Size));
+        
+        }
+        
+        else
+         if(message2Size==all)
+        {
+        list_stat = FXCollections.observableArrayList(
+                new PieChart.Data(message2 +" : "+ (message2Size * 100) / all + "%", message2Size));
+        
+        }
+         
+         
+         else
+          if(message3Size==all)
+        {
+          list_stat = FXCollections.observableArrayList(
+                new PieChart.Data(message3 +" : "+ (message3Size * 100) / all + "%", message3Size));
+        
+        }
+          else{
+        
+
+         list_stat = FXCollections.observableArrayList(
+                new PieChart.Data(message1+" : " + (message1Size * 100) / all + "%", message1Size),
+                new PieChart.Data(message2 +" : "+ (message2Size * 100) / all + "%", message2Size),
+                new PieChart.Data(message3 +" : "+ (message3Size * 100) / all + "%", message3Size),
+                new PieChart.Data(message4 +" : "+ (message4Size * 100) / all + "%", message4Size)
+        );
+          
+          }
+        statActivite.setData(list_stat);
+        }
+
+    
+
+        
+        
+
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
+        
     
-    FXMLLoader loader=new FXMLLoader(getClass().getResource("GestionActivites.fxml"));
+    FXMLLoader loader=new FXMLLoader(getClass().getResource("Avis.fxml"));
                        Parent root ;
         
             root=loader.load();

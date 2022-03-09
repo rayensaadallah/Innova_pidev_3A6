@@ -71,7 +71,7 @@ public class StatActController implements Initializable {
 
     @FXML
     private void retour2(ActionEvent event) throws IOException {
-FXMLLoader loader=new FXMLLoader(getClass().getResource("GestionActivites.fxml"));
+FXMLLoader loader=new FXMLLoader(getClass().getResource("Gestionactadmin.fxml"));
                        Parent root ;
         
             root=loader.load();

@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 package Services;
-import java.util.*;
+
+import java.util.List;
 
 /**
  *
- * @author Asus
+ * @author TheBoss'07
+ * @param <T>
  */
 public interface IService<T> {
-    void ajouter(T entity);
+     void ajouter(T entity);
     void modifier(T entity);
     void supprimer(T entity);
     List<T> afficher();
+    
 }

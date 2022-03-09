@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1348.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GestionactadminController">
+   <children>
+      <TabPane layoutX="310.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1040.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Gestion Activites">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane" stylesheets="@style.css">
+                     <children>
+                        <Label layoutX="96.0" layoutY="57.0" prefHeight="25.0" prefWidth="79.0" text="Nom:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="717.0" layoutY="92.0" prefHeight="25.0" prefWidth="101.0" text="Description:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="91.0" layoutY="121.0" prefHeight="25.0" prefWidth="79.0" text="Durée:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnajouter" layoutX="66.0" layoutY="236.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="32.0" prefWidth="79.0" text="Ajouter" />
+                        <Label layoutX="23.0" layoutY="174.0" prefHeight="25.0" prefWidth="164.0" text="Nombre de Place:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtnom" layoutX="147.0" layoutY="57.0" prefHeight="25.0" prefWidth="103.0" />
+                        <TextField fx:id="txtduree" layoutX="147.0" layoutY="120.0" prefHeight="26.0" prefWidth="65.0" />
+                        <TextField fx:id="txtnbrp" layoutX="150.0" layoutY="174.0" prefHeight="26.0" prefWidth="59.0" />
+                        <TableView fx:id="tvactivite" layoutX="10.0" layoutY="367.0" onMouseClicked="#selectAll" prefHeight="279.0" prefWidth="934.0">
+                          <columns>
+                            <TableColumn fx:id="colnom" prefWidth="140.0" text="Nom" />
+                              <TableColumn fx:id="colduree" prefWidth="97.0" text="Durée" />
+                              <TableColumn fx:id="colnbrp" prefWidth="105.0" text="Nombre de place" />
+                              <TableColumn fx:id="coldate" prefWidth="156.0" text="Date" />
+                              <TableColumn fx:id="coltype" prefWidth="92.0" text="Type" />
+                              <TableColumn fx:id="colloc" prefWidth="117.0" text="Location" />
+                              <TableColumn fx:id="colprix" prefWidth="81.0" text="Prix" />
+                              <TableColumn fx:id="coldesc" prefWidth="316.0" text="Description" />
+                          </columns>
+                        </TableView>
+                        <TextArea fx:id="textdescrip" layoutX="823.0" layoutY="64.0" prefHeight="81.0" prefWidth="159.0" />
+                        <Label layoutX="388.0" layoutY="54.0" prefHeight="25.0" prefWidth="79.0" text="Type:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="366.0" layoutY="124.0" prefHeight="25.0" prefWidth="69.0" text="Location:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txttype" layoutX="443.0" layoutY="54.0" prefHeight="25.0" prefWidth="110.0" />
+                        <DatePicker fx:id="txtdate" layoutX="823.0" layoutY="171.0" />
+                        <Label layoutX="741.0" layoutY="170.0" prefHeight="25.0" prefWidth="79.0" text="Date:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtprix" layoutX="443.0" layoutY="173.0" prefHeight="26.0" prefWidth="79.0" />
+                        <TextField fx:id="txtloc" layoutX="443.0" layoutY="120.0" prefHeight="26.0" prefWidth="109.0" />
+                        <Button fx:id="btnmodifier" layoutX="66.0" layoutY="282.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="79.0" text="Modifier" />
+                        <Button fx:id="btnsupprimer" layoutX="951.0" layoutY="600.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="32.0" prefWidth="79.0" text="Supprimer" />
+                        <Button fx:id="btnvider" layoutX="173.0" layoutY="282.0" mnemonicParsing="false" onAction="#vider" prefHeight="32.0" prefWidth="79.0" text="Vider" />
+                        <Label layoutX="381.0" layoutY="174.0" prefHeight="25.0" prefWidth="79.0" text="Prix:">
+                           <font>
+                              <Font name="Roboto" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnrecherche" layoutX="597.0" layoutY="295.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="Rechercher" textAlignment="CENTER" />
+                        <TextField fx:id="txtinput" layoutX="419.0" layoutY="298.0" onKeyReleased="#recherchek" />
+                        <Button fx:id="btntri" layoutX="717.0" layoutY="295.0" mnemonicParsing="false" onAction="#trier" prefHeight="32.0" prefWidth="82.0" text="Trier" />
+                        <Button fx:id="btnetat" layoutX="939.0" layoutY="14.0" mnemonicParsing="false" onAction="#help" prefHeight="32.0" prefWidth="80.0" text="Etat" />
+                        <Button fx:id="btnstat2" layoutX="823.0" layoutY="295.0" mnemonicParsing="false" onAction="#Statact" prefHeight="32.0" prefWidth="89.0" text="Statistique" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Gestion Avis">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="AnchorPane" stylesheets="@style.css">
+                     <children>
+                        <TableView fx:id="tvavis" layoutX="90.0" layoutY="163.0" prefHeight="379.0" prefWidth="860.0">
+                          <columns>
+                            <TableColumn fx:id="colmessage" prefWidth="180.0" text="Message" />
+                            <TableColumn fx:id="coldateav" prefWidth="197.0" text="Date" />
+                              <TableColumn fx:id="colnomcl" prefWidth="178.0" text="Nom Client" />
+                              <TableColumn fx:id="colnomact" prefWidth="189.0" text="Nom Activite" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="720.0" prefWidth="313.0" style="-fx-background-color: ffd800;">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="btngestU" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GestionU" prefHeight="42.0" prefWidth="337.0" style="-fx-background-color: #ffd800;" stylesheets="@../../../../../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des utilisateurs">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btngestVo" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestVo" prefHeight="42.0" prefWidth="328.0" stylesheets="@../../../../../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des voyages organises">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btngestActv" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestAct" prefHeight="42.0" prefWidth="331.0" stylesheets="@../../../../../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des activites ">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnStat" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#statistique" prefHeight="42.0" prefWidth="320.0" stylesheets="@../../../../../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Statistiques">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnlogout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="330.0" stylesheets="@../../../../../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/6961939.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

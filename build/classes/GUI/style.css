@@ -22,7 +22,7 @@
 }
 .AnchorPane
 {
-    -fx-background-color :  #C3C3C3
+    -fx-background-color :  #027ebc
 }
 
 .VBox
@@ -34,7 +34,7 @@
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-background-color:  #027ebc; 
+    -fx-background-color:  #ffd800; 
 }
 .table-view .column-header .label{
    -fx-text-fill: white;

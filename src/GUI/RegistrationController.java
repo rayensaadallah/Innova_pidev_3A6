@@ -283,8 +283,6 @@ private Connection conn;
     @FXML
     private Button btngestVo;
 
-    @FXML
-    private Button btngestActv;
 
     @FXML
     private Button btnStat;
@@ -296,6 +294,8 @@ private Connection conn;
     private Button btnCapturer;
     @FXML
     private ImageView display;
+    @FXML
+    private Button butAct;
 
     public void setIdadmin(int idadmin) {
         this.idadmin = idadmin;
@@ -977,10 +977,8 @@ txtprenomAG.setText("");
 
     }
     
-     @FXML
-    void gestAct(ActionEvent event) {
-
-    }
+     
+    
 
     @FXML
     void gestVo(ActionEvent event) {
@@ -1044,6 +1042,25 @@ txtprenomAG.setText("");
         
         }
         
+        
+    }
+
+    @FXML
+    private void gestiondesA(ActionEvent event) {
+        
+           
+        try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Gestionactadmin.fxml"));
+               
+		Parent root = loader.load();
+                  root.getStylesheets().add(getClass().getResource("style.css").toExternalFo‌​rm());
+		GestionactadminController  e = loader.getController();
+              
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
         
     }
 
