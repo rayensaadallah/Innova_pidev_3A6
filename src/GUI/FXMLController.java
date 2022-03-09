@@ -468,22 +468,29 @@ loadTableHebegement_offreur();
     @FXML
     private void h_ajouterlast(ActionEvent event) {
         java.sql.Date datestart =Date.valueOf(a_datestart.getValue());
-     java.sql.Date dateend = Date.valueOf(a_dateend.getValue());
-     float nbr5 = Float.parseFloat(a_prix.getText());
-        if(a_adress.getText().equals("") || a_category.getText().equals("")||a_paye.getText().equals("")||a_contact.getText().equals("")||a_nbr_detoile.getText().equals("")||a_nbr_suite.getText().equals("")||a_nbr_parking.getText().equals("")){ 
+        java.sql.Date dateend = Date.valueOf(a_dateend.getValue());
+        float nbr5 = Float.parseFloat(a_prix.getText());
+        int nbr1=Integer.parseInt(a_nbr_detoile.getText());  
+        int nbr2=Integer.parseInt(a_nbr_suite.getText());  
+        int nbr3=Integer.parseInt(a_nbr_parking.getText());  
+        int nbr4=Integer.parseInt(a_category.getText()); 
+        int nbr6 =idoffreur;
+        if((a_adress.getText().equals("")) ||
+                (a_category.getText().equals(""))||
+                (a_paye.getText().equals(""))||
+                (a_contact.getText().equals(""))||
+                (a_nbr_suite.getText().equals(""))||
+                (a_nbr_parking.getText().equals(""))||
+                (datestart.compareTo(dateend) > 0)||(nbr5 < 0)
+                ){ 
             JOptionPane.showMessageDialog(null, "veuillez remplir tous le minimum des champs (Adress , paye,contact, category)");
         }
-        else if (datestart.compareTo(dateend) > 0){JOptionPane.showMessageDialog(null,"veuiller remplir avec parametre reel");}
-        else if (nbr5 < 0){JOptionPane.showMessageDialog(null, "if faut que le prix etre positive");}
         else{
+            
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //     java.sql.Date datestart =Date.valueOf(a_datestart.getValue());
 //     java.sql.Date dateend = Date.valueOf(a_dateend.getValue());
-     int nbr1=Integer.parseInt(a_nbr_detoile.getText());  
-     int nbr2=Integer.parseInt(a_nbr_suite.getText());  
-     int nbr3=Integer.parseInt(a_nbr_parking.getText());  
-     int nbr4=Integer.parseInt(a_category.getText()); 
-     int nbr6 =idoffreur;
+    
      Hebergement h= new Hebergement(a_paye.getText(),a_adress.getText(),nbr5,a_description.getText(),a_pic.getText(),datestart,dateend,a_contact.getText(),nbr1 ,nbr2,nbr3,a_modele.getText(),nbr4,nbr6);
      hs.ajouter(h); 
         hebergement_table.getItems().clear();
@@ -516,7 +523,7 @@ loadTableHebegement_offreur();
 
     @FXML
     private void h_importpath(ActionEvent event) {
-        //String url = "https://media.istockphoto.com/photos/downtown-cleveland-hotel-entrance-and-waiting-taxi-cab-picture-id472899538?b=1&k=20&m=472899538&s=170667a&w=0&h=oGDM26vWKgcKA3ARp2da-H4St2dMEhJg23TTBeJgPDE=";
+            //String url = "https://media.istockphoto.com/photos/downtown-cleveland-hotel-entrance-and-waiting-taxi-cab-picture-id472899538?b=1&k=20&m=472899538&s=170667a&w=0&h=oGDM26vWKgcKA3ARp2da-H4St2dMEhJg23TTBeJgPDE=";
         String url=a_pic.getText();
         System.out.println(url);
 
@@ -552,7 +559,7 @@ loadTableHebegement_offreur();
             System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa"+details);/* toString(hs.getByReferanc(Integer.parseInt(h_recherche_referance.getText())))*/ 
             ByteArrayOutputStream out =QRCode.from(hs.taktak(Integer.parseInt(h_recherche_referance.getText()))).to(ImageType.PNG).stream();
             String f_name = h_recherche_referance.getText();
-            String Path_name="C:\\Users\\Amal Chibani\\Desktop\\Innova_pidev_3A6\\src\\GUI\\img\\";//******************************************
+            String Path_name="D:\\3eme\\Innova_pidev_3A6\\src\\GUI\\images\\";//******************************************
             FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name +".PNG")));
                     fout.write(out.toByteArray());
                     fout.flush();

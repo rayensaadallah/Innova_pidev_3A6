@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Services;
-import Entities.categorie;
-import Entities.voyageOrganise;
-import Utilis.Datasource;
+import Entities.*;
+
+import Utilis.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,16 +98,52 @@ List<categorie> categ = new ArrayList<>();
             Logger.getLogger(voyageOrganise.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//
-//    @Override
-//    public String FindVoyById(categorie entity) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public Boolean FindIdVoyById(int idvoy) throws SQLException {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+public List<categorie> FindNameCat(String name) {
+        
+List<categorie> cat = new ArrayList<>();
+        String req = "SELECT * FROM `categorievoy` where nomcat='" + name + "'";
+        
+        try {
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            
+            while(rs.next()){
+               categorie categ = new categorie();
+                categ.setIdcat(rs.getInt("idcat"));
+                categ.setNomcat(rs.getString("nomcat"));
+               
+                cat.add(categ);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(categorieServ.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cat;
+}
+
+public boolean verifIdCat(categorie cat) throws SQLException
+    {
+       boolean found;
+       
+      
+       
+      String req= "Select * FROM voyageorganise Join categorievoy WHERE voyageorganise.idCat=categorievoy.idcat && categorievoy.idcat='" + cat.getIdcat() + "'";
+       
+            pste = conn.prepareStatement(req);
+            ResultSet rs = pste.executeQuery();
+
+            if (rs.next()==false) {
+                found=false;
+            }
+            else {
+                found=true;
+            }
+      return found;
+     
+    
+}
+
 }
     
 

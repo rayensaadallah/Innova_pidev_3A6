@@ -59,7 +59,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.imageio.ImageIO;
-import utilis.*;
+import Utilis.*;
 /**
  * FXML Controller class
  *
@@ -295,8 +295,9 @@ private Connection conn;
     @FXML
     private ImageView display;
     @FXML
+    private TextField txtnumtel;
+    @FXML
     private Button butAct;
-
     public void setIdadmin(int idadmin) {
         this.idadmin = idadmin;
         
@@ -585,11 +586,14 @@ afficherClient();
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
              }
+             
              else{
                  
-
-           String mdpcry = encryption.encrypt(txtmdpC.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
-         Client c= new Client(combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(), txtnomC.getText(), txtprenomC.getText(),mdpcry, txtemailC.getText());
+ 
+           String mdpcry = encryption.encrypt(txtmdpC.getText(),new SecretKeySpec(keyValue, ALGORITHM));   
+           Client c = new Client(combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(),txtnumtel.getText(),  txtnomC.getText(), txtprenomC.getText(),mdpcry, txtemailC.getText());
+       
+//         Client c= new Client(combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(), txtnomC.getText(), txtprenomC.getText(),mdpcry, txtemailC.getText(),txtnumtel.getText());
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 cs.ajouter(c);
 tvClient.getItems().clear();
@@ -600,6 +604,7 @@ txtprenomC.setText("");
    txtemailC.setText("");
    txtmdpC.setText("");
    txtrep.setText("");
+   txtnumtel.setText("");
              }
 }
 
@@ -672,8 +677,11 @@ tvClient.getItems().clear();
      txtprenomC.setText(""+  colprenomC.getCellData(index));
      txtemailC.setText(""+colemailC.getCellData(index));
       String pwd=tvClient.getSelectionModel().getSelectedItem().getPwd();
+      String rep =tvClient.getSelectionModel().getSelectedItem().getAnswer();
+      String tel =tvClient.getSelectionModel().getSelectedItem().getNumtel();
        txtmdpC.setText(pwd);
-      txtrep.setText("");
+     txtrep.setText(rep);
+     txtnumtel.setText(tel);
      ObservableList<String> list1 = FXCollections.observableArrayList("veuillez choisir une question","votre premiere voiture","pays de ton reve","ton idole");
         combosecurity.setItems(list1);
        
@@ -977,8 +985,10 @@ txtprenomAG.setText("");
 
     }
     
-     
-    
+     void gestAct(ActionEvent event) {
+       
+
+    }
 
     @FXML
     void gestVo(ActionEvent event) {
@@ -1048,20 +1058,16 @@ txtprenomAG.setText("");
     @FXML
     private void gestiondesA(ActionEvent event) {
         
-           
-        try{
+         try{
 		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Gestionactadmin.fxml"));
-               
 		Parent root = loader.load();
-                  root.getStylesheets().add(getClass().getResource("style.css").toExternalFo‌​rm());
 		GestionactadminController  e = loader.getController();
-              
+               
               
 		((Button) event.getSource()).getScene().setRoot(root);
 		}catch(Exception ex){
 			System.out.println(ex);
-		}
-        
+		} 
     }
 
     

@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1348.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AvisController">
    <children>
-      <TabPane layoutX="310.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1040.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="310.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1040.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Gestion Avis">
             <content>

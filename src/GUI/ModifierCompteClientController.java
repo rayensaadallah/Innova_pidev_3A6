@@ -76,6 +76,8 @@ public class ModifierCompteClientController implements Initializable {
     private Button btnOrders1;
     @FXML
     private Button btnSignout;
+        @FXML
+    private TextField txtnumtel;
 
     public void setIdc(int idc) {
         
@@ -88,6 +90,7 @@ public class ModifierCompteClientController implements Initializable {
      txtmdpCMOD.setText(c.getPwd());
      txtQS.setText(c.getSecurityQ());
       txtRepCMod.setText(c.getAnswer());
+      txtnumtel.setText(c.getNumtel());
         this.idc = idc;
     }
     
@@ -146,13 +149,19 @@ public class ModifierCompteClientController implements Initializable {
             else if  (txtmdpCMOD.getText().length()<4) {
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
-             }else{
+             }
+             else if(!(txtnumtel.getText().matches("^[0-9]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre numero de telephone");
+             }
+            else{
             
                 ClientService cs =new ClientService();
     Client c= cs.selectmodifier(idc);
      c.setEmail(txtemailCMOD.getText());
         c.setNom( txtnomCMod.getText());
         c.setPrenom(txtprenomCMOD.getText());
+        c.setNumtel(txtnumtel.getText());
               String mdpcry = encryption.encrypt(txtmdpCMOD.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
        c.setPwd(mdpcry);
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));

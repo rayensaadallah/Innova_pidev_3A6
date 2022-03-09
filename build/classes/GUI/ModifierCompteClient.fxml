@@ -179,5 +179,11 @@
             </Button>
          </children>
       </VBox>
+      <TextField fx:id="txtnumtel" layoutX="440.0" layoutY="417.0" />
+      <Label layoutX="348.0" layoutY="423.0" text="Telephone">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -51,6 +51,9 @@ public class NvCompteController implements Initializable {
 
     @FXML
     private ComboBox combosecNVC;
+    
+    @FXML
+    private TextField txtnumtel;
 ClientService cs = new ClientService();
     @FXML
     void validerCompte(ActionEvent event) throws Exception {
@@ -79,10 +82,12 @@ ClientService cs = new ClientService();
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
              }
+              
             else{
-                
+               
+                     
                    String mdpcry = encryption.encrypt(txtmdpNVC.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
-               Client c= new Client(combosecNVC.getSelectionModel().getSelectedItem().toString(), txtrepNVC.getText(), txtnomNVC.getText(), txtprenomNVC.getText(),mdpcry, txtemailNVC.getText());
+               Client c= new Client(combosecNVC.getSelectionModel().getSelectedItem().toString(), txtrepNVC.getText(),txtnumtel.getText() ,txtnomNVC.getText(), txtprenomNVC.getText(),mdpcry, txtemailNVC.getText());
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
           cs.ajouter(c);
         JOptionPane.showMessageDialog(null, "votre compte est cree avec succes");

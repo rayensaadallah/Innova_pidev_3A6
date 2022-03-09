@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import jfxtras.scene.control.agenda.*;
-import jfxtras.scene.control.agenda.Agenda.Appointment;
+
 
 /**
  * FXML Controller class

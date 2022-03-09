@@ -4,46 +4,63 @@
  * and open the template in the editor.
  */
 package GUI;
-import Entities.*;
+import Entities.categorie;
+import Entities.voyageOrganise;
 import Services.*;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
+import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToolBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+
 
 /**
  * FXML Controller class
@@ -51,7 +68,7 @@ import javax.swing.JOptionPane;
  * @author Amal Chibani
  */
 public class VoyOrgFXMLController implements Initializable {
-
+private Timeline locationUpdateTimeline;
     @FXML
     private TableView<voyageOrganise> tableviewVO;
 
@@ -139,24 +156,20 @@ public class VoyOrgFXMLController implements Initializable {
     private Button btndeleteC;
     @FXML
     private Button btnupdateC;
+    
+    @FXML
+    private Button btnsearchCat;
+    @FXML
+    private TextField txtSearchCat;
     @FXML
     private TableView<categorie> tableviewCat;
     @FXML
     private TableColumn<categorie, Integer> idCat;
     @FXML
     private TableColumn<categorie, String> nomCat;
-    @FXML
-    private Button btnOverview;
-    @FXML
-    private Button btnOrders;
-    @FXML
-    private Button btnCustomers;
-    @FXML
-    private Button btnMenus;
-    @FXML
-    private Button btnOrders1;
-    @FXML
-    private Button btnPackages;
+    
+      final WebView webView = new WebView();
+        final WebEngine webEngine = webView.getEngine();
     /**
      * Initializes the controller class.
      */
@@ -195,20 +208,21 @@ public class VoyOrgFXMLController implements Initializable {
         LocalDate from = txtdateDeb.getValue();
     LocalDate to = txtdateFin.getValue();
         voyOrgServ vos= new voyOrgServ();
-        if(txtvilleDep.getText().equals("")||(txtvilleDest.getText().equals("")))
+        if((txtvilleDep.getText().equals(""))||(txtvilleDest.getText().equals(""))||(txtdesc.getText().equals("")))
             JOptionPane.showMessageDialog(null, "verifier vos champs vides ");
                 
         else if(!(txtvilleDep.getText().matches("^[a-zA-Z]+$"))) {
 
-            JOptionPane.showMessageDialog(null, "verifier votre choix");}
+            JOptionPane.showMessageDialog(null, "verifier la ville depart");}
         else if((from.compareTo(to) >= 0)) {
 
             JOptionPane.showMessageDialog(null, "verifier  date ");}
         
        else if(!(txtvilleDest.getText().matches("^[a-zA-Z]+$"))){
 
-            JOptionPane.showMessageDialog(null, "verifier votre choix");
+            JOptionPane.showMessageDialog(null, "verifier la ville arrive");
              }
+       
 
         else{
        voyageOrganise v;
@@ -312,49 +326,146 @@ tableviewVO.getItems().clear();
             root=loader.load();
              btnstat.getScene().setRoot(root);
         } catch (IOException ex) {
-            Logger.getLogger(GUI.StatisiqueController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUI.StatisiqueControllerVO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
-    
-//     public boolean verifierDate ()
-//    {
-//          java.sql.Timestamp DatT= java.sql.Timestamp.valueOf(DateDeb.getText());
-//          java.sql.Timestamp Date_fin= java.sql.Timestamp.valueOf(DateFin.getText());
-//        
-//        if (DateFin.before(DateDeb))
-//        
-//    {
-//        
-//        Alert alert = new Alert(Alert.AlertType.WARNING);
-//    alert.setTitle("Valider Les Champs");
-//    alert.setHeaderText(null);
-//    alert.setContentText("Verifier La Date ");
-//    alert.showAndWait();
-//    return false;
-//    }
-//   
-//   return true;
-//    }
+  
     
        @FXML
     void map(MouseEvent event) {
 Stage stage = new Stage ();
-         
-        final WebView webView = new WebView();
-        final WebEngine webEngine = webView.getEngine();
+      
         webEngine.load(getClass().getResource("/gui/map.html").toString());
+       /////////////////////////
        
+        // create map type buttons
+        final ToggleGroup mapTypeGroup = new ToggleGroup();
+        final ToggleButton road = new ToggleButton("Road");
+        road.setSelected(true);
+        road.setToggleGroup(mapTypeGroup);
+        final ToggleButton satellite = new ToggleButton("Satellite");
+        satellite.setToggleGroup(mapTypeGroup);
+        final ToggleButton hybrid = new ToggleButton("Hybrid");
+        hybrid.setToggleGroup(mapTypeGroup);
+        final ToggleButton terrain = new ToggleButton("Terrain");
+        terrain.setToggleGroup(mapTypeGroup);
+        mapTypeGroup.selectedToggleProperty().addListener( new ChangeListener<Toggle>() {
+            public void changed(
+                    ObservableValue<? extends Toggle> observableValue,
+                    Toggle toggle, Toggle toggle1) {
+                if (road.isSelected()) {
+                    webEngine.executeScript("document.setMapTypeRoad()");
+                } else if (satellite.isSelected()) {
+                    webEngine.executeScript("document.setMapTypeSatellite()");
+                } else if (hybrid.isSelected()) {
+                    webEngine.executeScript("document.setMapTypeHybrid()");
+                } else if (terrain.isSelected()) {
+                    webEngine.executeScript("document.setMapTypeTerrain()");
+                }
+            }
+        });
+        // add map source toggles
+        ToggleGroup mapSourceGroup = new ToggleGroup();
+        final ToggleButton google = new ToggleButton("Google");
+        google.setSelected(true);
+        google.setToggleGroup(mapSourceGroup);
+        // listen to selected source
+        mapSourceGroup.selectedToggleProperty().addListener(
+                            new ChangeListener<Toggle>() {
+            public void changed(
+                    ObservableValue<? extends Toggle> observableValue,
+                    Toggle toggle, Toggle toggle1) {
+                terrain.setDisable(true);
+                if (google.isSelected()) {
+                    terrain.setDisable(false);
+                    webEngine.load(
+                          getClass().getResource("googlemap.html").toString());
+                }
+                mapTypeGroup.selectToggle(road);
+            }
+        });
+        // add search
+        final TextField searchBox = new TextField("95054");
+       // searchBox.setC
+        searchBox.setPromptText("Search");
+
+  
+
+        Button zoomIn = new Button("Zoom In");
+        zoomIn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                webEngine.executeScript("document.zoomIn()");
+            }
+        });
+        Button zoomOut = new Button("Zoom Out");
+        zoomOut.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                webEngine.executeScript("document.zoomOut()");
+            }
+        });
+        // create toolbar
+        ToolBar toolBar = new ToolBar();
+        toolBar.getStyleClass().add("map-toolbar");
+        toolBar.getItems().addAll(
+                road, satellite, hybrid, terrain,
+                createSpacer(),
+                google,
+                createSpacer(),
+                new Label("Location:"), searchBox, zoomIn, zoomOut);
+          
         
+        
+        /////////////////////
+                // create root
+        BorderPane root = new BorderPane();
+        root.getStyleClass().add("map");
+        root.setCenter(webView);
+        root.setTop(toolBar);
         stage.setTitle("localisation");
-        Scene scene = new Scene(webView,1000,700, Color.web("#666970"));
+        Scene scene = new Scene(root,1000,700, Color.web("#666970"));
+          scene.getStylesheets().add("/webmap/WebMap.css");
         stage.setScene(scene);
         // show stage
         stage.show();
+        //
+      
+        // show stag
+    }
+              public void changed(
+                    ObservableValue<? extends String> observableValue,
+                    String s, String s1) {
+                // delay location updates to we don't go too fast file typing
+                if (locationUpdateTimeline!=null) locationUpdateTimeline.stop();
+                locationUpdateTimeline = new Timeline();
+//               locationUpdateTimeline.getKeyFrames().add(new KeyFrame(new Duration(400),
+//                       new EventHandler<ActionEvent>() {
+//                        public void handle(ActionEvent actionEvent) {
+//                         //   webEngine.executeScript("document.goToLocation(\""+searchBox.getRawText()+"\")");
+//                        }}));
+
+
+
+//                locationUpdateTimeline.getKeyFrames().add(new KeyFrame(new Duration(400),
+//                            new eh<ActionEvent>() {
+//                        public void handle(ActionEvent actionEvent) {
+//                            webEngine.executeScript("document.goToLocation(\""+
+//                                    searchBox.getRawText()+"\")");
+//                        }
+//                    })
+//                );
+                locationUpdateTimeline.play();
+            }
+     private Node createSpacer() {
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        return spacer;
     }
     static { // use system proxy settings when standalone application
         System.setProperty("java.net.useSystemProxies", "true");
+        
+        
     }
 
     @FXML
@@ -382,26 +493,51 @@ Stage stage = new Stage ();
     }
 
     @FXML
-    private void deleteCat(ActionEvent event) {
+    private void deleteCat(ActionEvent event) throws SQLException {
 categorie cat =  tableviewCat.getSelectionModel().getSelectedItem();
-cats.delete(cat.getIdcat());
-tableviewCat.getItems().clear();
+
+Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Notification de Confirmation");
+		alert.setHeaderText(null);
+		alert.setContentText("Vous confirmer la suppression ?");
+		Optional<ButtonType> action = alert.showAndWait();
+                
+                if(cats.verifIdCat(cat)==true)
+        {
+            JOptionPane.showMessageDialog(null, "impossible de suppression");
+        }
+        else
+        {
+cats.delete(cat.getIdcat());                
+                tableviewCat.getItems().clear();
+                
+
  loadTableCat();
     }
-
+    }
+    
     @FXML
     private void updateCat(ActionEvent event) {
 categorie cat =  tableviewCat.getSelectionModel().getSelectedItem();
 
-        cat.setNomcat(txtnomCat.getText());
-        
-        cat.setIdcat(Integer.parseInt(txtidCat.getText()));
-       
-        cats.update(cat);
+      categorie c= new categorie();
+      
+      c.setIdcat(Integer.parseInt(txtidCat.getText()));
+      c.setNomcat(txtnomCat.getText());
+             
+        cats.update(c);
         tableviewCat.getItems().clear();
         loadTableCat();
     }
-
+@FXML
+    void searchCat(ActionEvent event) {
+ObservableList<categorie> oblist = FXCollections.observableArrayList();
+     List <categorie> ls =cats.FindNameCat(txtSearchCat.getText());
+    tableviewCat.getItems().clear();
+    tableviewCat.getItems().addAll(ls);
+    
+    }
+    
     @FXML
     private void selectCat(MouseEvent event) {
       

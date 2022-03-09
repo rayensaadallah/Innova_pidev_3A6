@@ -45,12 +45,18 @@
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnvalider" layoutX="309.0" layoutY="470.0" mnemonicParsing="false" onAction="#validerCompte" text="Valider" />
+      <Button fx:id="btnvalider" layoutX="318.0" layoutY="506.0" mnemonicParsing="false" onAction="#validerCompte" text="Valider" />
       <TextField fx:id="txtnomNVC" layoutX="108.0" layoutY="119.0" prefHeight="25.0" prefWidth="222.0" />
       <TextField fx:id="txtprenomNVC" layoutX="108.0" layoutY="173.0" prefHeight="25.0" prefWidth="222.0" />
       <TextField fx:id="txtemailNVC" layoutX="108.0" layoutY="227.0" prefHeight="25.0" prefWidth="222.0" />
       <TextField fx:id="txtrepNVC" layoutX="108.0" layoutY="344.0" prefHeight="25.0" prefWidth="222.0" />
       <PasswordField fx:id="txtmdpNVC" layoutX="133.0" layoutY="405.0" prefHeight="25.0" prefWidth="185.0" />
       <ComboBox fx:id="combosecNVC" layoutX="185.0" layoutY="286.0" prefHeight="25.0" prefWidth="201.0" promptText="Veuillez choisir une question" />
+      <TextField fx:id="txtnumtel" layoutX="143.0" layoutY="458.0" />
+      <Label layoutX="13.0" layoutY="464.0" text="Telephone">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

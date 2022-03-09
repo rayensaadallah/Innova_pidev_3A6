@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AgentAerienController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1348.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AgentAerienController">
    <children>
       <StackPane layoutX="267.0" prefHeight="821.0" prefWidth="1114.0" style="-fx-background-color: #027ebc;">
          <children>
@@ -27,7 +27,7 @@
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="617.0" prefWidth="828.0" stylesheets="@style.css">
                <children>
-                  <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="301.0" text="GetAway voyage " textFill="#e7e5e5">
+                  <Label layoutX="33.0" layoutY="25.0" prefHeight="81.0" prefWidth="325.0" text="GetAway voyage " textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -42,7 +42,7 @@
                            <children>
                               <TextField fx:id="nom_avion" layoutX="122.0" layoutY="95.0" promptText="nom" />
                               <TextField fx:id="nbr_place" layoutX="122.0" layoutY="144.0" promptText="nbr" />
-                              <TextField fx:id="nomagent" layoutX="122.0" layoutY="263.0" />
+                              <TextField fx:id="nomagent" layoutX="165.0" layoutY="262.0" />
                               <ComboBox fx:id="id_agence" layoutX="122.0" layoutY="204.0" prefWidth="150.0" promptText="id" />
                               <Label layoutX="22.0" layoutY="99.0" text="Nom Avion" />
                               <Label layoutX="22.0" layoutY="148.0" text="Nombre place" />
@@ -55,14 +55,14 @@
                                  </columns>
                               </TableView>
                               <Button fx:id="id_button1" layoutX="26.0" layoutY="349.0" mnemonicParsing="false" onAction="#ajouter1" prefHeight="30.0" prefWidth="74.0" text="Ajouter" />
-                              <Button fx:id="modifier1" layoutX="118.0" layoutY="349.0" mnemonicParsing="false" onAction="#modifier1" prefHeight="30.0" prefWidth="75.0" text="Modifier" />
-                              <Button fx:id="supp1" layoutX="209.0" layoutY="349.0" mnemonicParsing="false" onAction="#supprimer1" prefHeight="30.0" prefWidth="79.0" text="Supprimer" />
+                              <Button fx:id="modifier1" layoutX="118.0" layoutY="349.0" mnemonicParsing="false" onAction="#modifier1" prefHeight="31.0" prefWidth="92.0" text="Modifier" />
+                              <Button fx:id="supp1" layoutX="233.0" layoutY="349.0" mnemonicParsing="false" onAction="#supprimer1" prefHeight="31.0" prefWidth="95.0" text="Supprimer" />
                               <Button fx:id="r_id1" layoutX="564.0" layoutY="42.0" mnemonicParsing="false" onAction="#recherche1" text="Rechercher" />
-                              <Button layoutX="645.0" layoutY="42.0" mnemonicParsing="false" onAction="#trier1" text="Trier" />
+                              <Button layoutX="684.0" layoutY="42.0" mnemonicParsing="false" onAction="#trier1" text="Trier" />
                               <TextField fx:id="id_rech1" layoutX="428.0" layoutY="42.0" prefHeight="25.0" prefWidth="118.0" promptText="nom" />
                               <TextField fx:id="nbavion" layoutX="483.0" layoutY="417.0" />
-                              <Label layoutX="374.0" layoutY="421.0" text="Nombre d'avion :" />
-                              <Button fx:id="actualiser" layoutX="659.0" layoutY="417.0" mnemonicParsing="false" onAction="#actualiser1" prefHeight="22.0" prefWidth="93.0" text="Actualiser" />
+                              <Label layoutX="352.0" layoutY="422.0" text="Nombre d'avion :" />
+                              <Button fx:id="actualiser" layoutX="698.0" layoutY="417.0" mnemonicParsing="false" onAction="#actualiser1" prefHeight="22.0" prefWidth="93.0" text="Actualiser" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -99,7 +99,7 @@
                               <Button fx:id="modifier" layoutX="125.0" layoutY="369.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="75.0" text="Modifier" />
                               <Button fx:id="supp" layoutX="223.0" layoutY="369.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="33.0" prefWidth="75.0" text="Supprimer" />
                               <Button layoutX="844.0" layoutY="20.0" mnemonicParsing="false" onAction="#trier" prefHeight="35.0" prefWidth="78.0" text="Trier" />
-                              <Button fx:id="r_id" layoutX="733.0" layoutY="21.0" mnemonicParsing="false" onAction="#recherche" prefHeight="33.0" prefWidth="85.0" text="Rechercher" />
+                              <Button fx:id="r_id" layoutX="733.0" layoutY="21.0" mnemonicParsing="false" onAction="#recherche" prefHeight="33.0" prefWidth="106.0" text="Rechercher" />
                               <Button fx:id="meteo" layoutX="608.0" layoutY="422.0" mnemonicParsing="false" onAction="#meteo" prefHeight="37.0" prefWidth="87.0" text="Méteo" />
                               <Button fx:id="pdf" layoutX="704.0" layoutY="422.0" mnemonicParsing="false" onAction="#telechargerVol" prefHeight="37.0" prefWidth="83.0" text="PDF" />
                               <Button fx:id="stat" layoutX="796.0" layoutY="422.0" mnemonicParsing="false" onAction="#statistique" prefHeight="35.0" prefWidth="96.0" text="Statistique" />
@@ -107,8 +107,8 @@
                               <TextField fx:id="id_arrivee" layoutX="452.0" layoutY="25.0" prefHeight="25.0" prefWidth="126.0" promptText="ville arrivee" />
                               <TextField fx:id="id_depart" layoutX="317.0" layoutY="25.0" prefHeight="25.0" prefWidth="121.0" promptText="ville depart" />
                               <TextField fx:id="nbvol" layoutX="408.0" layoutY="480.0" />
-                              <Label layoutX="275.0" layoutY="484.0" text="Nombre de vol Total :" />
-                              <Button fx:id="actualiser" layoutX="578.0" layoutY="480.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="27.0" prefWidth="104.0" text="Actualiser" />
+                              <Label layoutX="245.0" layoutY="485.0" text="Nombre de vol Total :" />
+                              <Button fx:id="actualiser" layoutX="617.0" layoutY="480.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="27.0" prefWidth="104.0" text="Actualiser" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -161,7 +161,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>

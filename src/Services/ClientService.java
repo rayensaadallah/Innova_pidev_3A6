@@ -31,7 +31,7 @@ private Connection conn;
  
     
     public void ajouter(Client c) {
-          String req = "INSERT INTO client (`nom`,`prenom`,`email`,`password`,`etat`,`securityQ`,`answer`) VALUE ('" + c.getNom() + "','" + c.getPrenom() + "','"+c.getEmail()+ "','"+c.getPwd()+ "','"+c.getEtat()+"','"+c.getSecurityQ()+"','"+c.getAnswer()+"')";
+          String req = "INSERT INTO client (`nom`,`prenom`,`email`,`password`,`etat`,`securityQ`,`answer`,`NumTel`) VALUE ('" + c.getNom() + "','" + c.getPrenom() + "','"+c.getEmail()+ "','"+c.getPwd()+ "','"+c.getEtat()+"','"+c.getSecurityQ()+"','"+c.getAnswer()+"','"+c.getNumtel()+"')";
    
         try {
             ste = conn.createStatement();
@@ -48,7 +48,7 @@ private Connection conn;
     public void modifier(Client c) {
              String sql ="UPDATE `client` SET nom = '"+c.getNom()+"',prenom = '"
                     +c.getPrenom()+"',email = '"+c.getEmail()+"',password = '"
-                    +c.getPwd()+"',etat = '"+c.getEtat()+"',securityQ = '"+c.getSecurityQ()+"',answer = '"+c.getAnswer()+"' WHERE id ="+ c.getId()+";";
+                    +c.getPwd()+"',etat = '"+c.getEtat()+"',securityQ = '"+c.getSecurityQ()+"',answer = '"+c.getAnswer()+"',NumTel = '"+c.getNumtel()+"' WHERE id ="+ c.getId()+";";
           try {
             Statement stl = conn.createStatement();
             stl.executeUpdate(sql);
@@ -107,6 +107,9 @@ private Connection conn;
                 a.setEmail(rs.getString(4));
                 a.setPwd(rs.getString(5));
                 a.setEtat(rs.getInt("etat"));
+                 a.setSecurityQ(rs.getString(7));
+                a.setAnswer(rs.getString(8));
+                 a.setNumtel(rs.getString(9));
                 clients.add(a);
             }
             
@@ -189,7 +192,7 @@ private Connection conn;
                 a.setPwd(rs.getString(5));
                a.setSecurityQ(rs.getString(7));
                 a.setAnswer(rs.getString(8));
-           
+            a.setNumtel(rs.getString(9));
                 System.out.println(a.toString());                
             }
         } 

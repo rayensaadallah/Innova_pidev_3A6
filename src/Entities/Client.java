@@ -12,7 +12,25 @@ package Entities;
 public class Client extends User{
 String securityQ;
 String answer;
+String numtel;
    private int etat=1;
+
+    public Client(String securityQ, String answer, String numtel, String nom, String prenom, String pwd, String email) {
+        super(nom, prenom, pwd, email);
+        this.securityQ = securityQ;
+        this.answer = answer;
+        this.numtel = numtel;
+    }
+
+    public String getNumtel() {
+        return numtel;
+    }
+
+    public void setNumtel(String numtel) {
+        this.numtel = numtel;
+    }
+   
+   
     public Client(int id, String nom, String prenom, String pwd, String email, int etat) {
      super(id,nom,prenom,pwd,email);
      
@@ -69,7 +87,7 @@ String answer;
 
     @Override
     public String toString() {
-        return "Client{" +super.toString()+", etat=" + etat +", securityQ=" + securityQ +", answer=" + answer +'}';
+        return "Client{" +super.toString()+", etat=" + etat +", securityQ=" + securityQ +", answer=" + answer +", NumTel=" + numtel +'}';
     }
    
 }

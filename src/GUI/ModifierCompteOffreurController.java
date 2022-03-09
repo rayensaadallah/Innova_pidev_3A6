@@ -106,8 +106,9 @@ public class ModifierCompteOffreurController implements Initializable {
            String mdpcry = encryption.encrypt(txtmdp.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
        o.setPwd(mdpcry);
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
+         int num = Integer.parseInt(txtnumtel.getText());
         
-//o.setNumtl(txtnumtel.getText());
+o.setNumtl(num);
 os.modifier(o);
         JOptionPane.showMessageDialog(null, "modification avec succes");
       }}

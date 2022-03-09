@@ -162,6 +162,12 @@
                         </Label>
                         <ComboBox fx:id="combosecurity" layoutX="220.0" layoutY="180.0" prefHeight="25.0" prefWidth="208.0" promptText="Veuillez choisir une question" />
                         <TextField fx:id="txtrep" layoutX="139.0" layoutY="213.0" prefHeight="25.0" prefWidth="190.0" />
+                        <TextField fx:id="txtnumtel" layoutX="444.0" layoutY="213.0" />
+                        <Label layoutX="344.0" layoutY="218.0" prefHeight="21.0" prefWidth="88.0" text="Telephone:">
+                           <font>
+                              <Font name="Times New Roman Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>

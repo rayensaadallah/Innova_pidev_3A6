@@ -82,8 +82,6 @@ public class AgentAerienController implements Initializable {
     @FXML
     private Button btnOrders;
     
-    @FXML
-    private Button actualiser1;
     
     @FXML
     private Button actualiser;
@@ -192,7 +190,8 @@ public class AgentAerienController implements Initializable {
         nomagent.setText(as.NomA(ida));
         afficher(ida);
         afficher1(ida);
-        getida(ida);
+         getida(ida).forEach(e->id_avion.getItems().addAll(e));
+       
         getidagence(ida);
         nbtotalVol(ida);
         nbtotalAvion(ida);
@@ -209,8 +208,10 @@ public class AgentAerienController implements Initializable {
 //         afficher1(ida);
 //     afficher(ida);
      getidagence(ida);
-     getida(ida);
+ 
      Vol v = tb_v.getSelectionModel().getSelectedItem();
+       getida(ida).forEach(e->id_avion.getItems().addAll(e));
+        
         // TODO
     }    
 
@@ -226,9 +227,9 @@ public class AgentAerienController implements Initializable {
     
     
 
-    public void getida(int id)
+    public List<String> getida(int id)
     {
-         
+     List<String> listA =new ArrayList<>();;    
         String req ="SELECT id_avion from avion where id_agence='"+id+"'";
          try {
             Connection conn = getConnection();
@@ -237,12 +238,17 @@ public class AgentAerienController implements Initializable {
             ResultSet rs = ste.executeQuery(req);
             
             while(rs.next()){
-                System.out.println(rs.getString(1));
-            id_avion.getItems().add(rs.getString(1));
+               
+             listA.add(rs.getString(1));
+           
             }}
+           
          catch (SQLException ex) {
             Logger.getLogger(AgentAerienController.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+        }
+         return listA;
+     
+    }
     
     
     //tabavion
@@ -299,7 +305,11 @@ public class AgentAerienController implements Initializable {
        
        tb_a.getItems().clear();
        afficher1(ida);
-      
+       id_avion.getItems().clear();
+       getida(ida).forEach(e->
+     id_avion.getItems().addAll(e));
+        
+       
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
     alert.setTitle("information");
@@ -437,6 +447,9 @@ alert.showAndWait();
       as.supprimer(r);
       tb_a.getItems().clear();
        afficher1(ida);
+        id_avion.getItems().clear();
+       getida(ida).forEach(e->
+     id_avion.getItems().addAll(e));
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         
     alert.setTitle("information");
