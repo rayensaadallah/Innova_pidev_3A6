@@ -926,6 +926,17 @@ afficherAgent();
     
     @FXML
     void statistique(ActionEvent event) {
+        
+        try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("StatR.fxml"));
+		Parent root = loader.load();
+		StatRController  e = loader.getController();
+               e.setIdA(idadmin);
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
 
     }
 

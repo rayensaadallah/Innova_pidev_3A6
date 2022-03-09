@@ -197,9 +197,22 @@ public class ReserverActiviteController implements Initializable {
      
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
        
-          if(nbpA.getText().matches("^[0-9]+$")&& ! ( modalite.getValue()==null)  )  
+          if(! nbpA.getText().matches("^[0-9]+$")  )  
           {
-              
+               Notifications.create().title("Reservation Activite ").text(" Nombre de place  doit contenir des nombres  ").show();
+          }
+          
+         else if( ( modalite.getValue()==null)  )  
+          {
+               Notifications.create().title("Reservation Activite ").text("  modalite de paiement doit  etre rempli   ").show();
+          }
+          
+         else if( Integer.parseInt(nbpA.getText())<=0 )  
+          {
+               Notifications.create().title("Reservation Activite ").text(" Nombre de place doit etre positive  ").show();
+          }
+          else
+          {   
           
        try
        {    Activite A =  tvactivite.getSelectionModel().getSelectedItem();
@@ -242,12 +255,7 @@ public class ReserverActiviteController implements Initializable {
            System.out.println(e);
        }
     }
-    else
-    {
-        
-        Notifications.create().title("Reservation Activite ").text("  Verifier vos champs  ").show();
-        
-    }}
+    }
     
     
     
@@ -414,6 +422,15 @@ public class ReserverActiviteController implements Initializable {
 
     @FXML
     private void consulterCompteC(ActionEvent event) {
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
+		Parent root = loader.load();
+		GUI.ModifierCompteClientController  e = loader.getController();
+                e.setIdc(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
@@ -495,14 +512,44 @@ public class ReserverActiviteController implements Initializable {
 
     @FXML
     private void reclamations(ActionEvent event) {
+        
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+		Parent root = loader.load();
+		ReclamationController  e = loader.getController();
+                e.setIdc(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+        
     }
 
     @FXML
     private void Avis(ActionEvent event) {
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		GUI.AvisController  e = loader.getController();
+                e.setIdclient(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
     private void signout(ActionEvent event) {
+             try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 }
 

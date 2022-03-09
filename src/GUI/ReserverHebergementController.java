@@ -106,6 +106,8 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
     private Button btnSettings1;
     @FXML
     private Button btnSignout;
+    @FXML
+    private Button btnSettings11;
     
     public void setIdC(int idC) {
         System.out.println("aaah"+idC);
@@ -126,7 +128,7 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
         
     
          idc.setText(rs.NomP(idC));
-             System.out.println("IIIIIIIIIIIIIIIIIIIIII"+idC);
+            
         loadTableHebegement();
 
    BooleanBinding bb = Bindings.createBooleanBinding(() -> {
@@ -187,10 +189,12 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
           PaiementService ps = new PaiementService();
       Hebergement h = hebergement_table.getSelectionModel().getSelectedItem();
       
-          if(!( modalite.getValue()==null))
+          if(( modalite.getValue()==null))
           {
-              
-         
+                Notifications.create().title("Reservation Hebergement  ").text("  modalite de paiement doit  etre rempli   ").show();
+          }
+          
+          else{
         try
 
         {     
@@ -222,11 +226,7 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
        {
            System.out.println(e);
        }}
-        else
-          {
-              Notifications.create().title("Reservation Hebergement ").text(" verifier vos champs    ").show();
-              
-          }
+        
         
     }
     
@@ -324,6 +324,15 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
 
     @FXML
     private void consulterCompteC(ActionEvent event) {
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
+		Parent root = loader.load();
+		GUI.ModifierCompteClientController  e = loader.getController();
+                e.setIdc(idC);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
@@ -373,10 +382,29 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
 
     @FXML
     private void reclamations(ActionEvent event) {
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+		Parent root = loader.load();
+		ReclamationController  e = loader.getController();
+                e.setIdc(idC);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
     private void signout(ActionEvent event) {
+         try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
@@ -407,6 +435,20 @@ ObservableList<Hebergement> oblistH = FXCollections.observableArrayList();
     }
 
    
+    @FXML
+    void avis(ActionEvent event) {
+        
+          try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		GUI.AvisController  e = loader.getController();
+                e.setIdclient(idC);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+
+    }
     
     
     

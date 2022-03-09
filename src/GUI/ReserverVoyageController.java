@@ -149,10 +149,23 @@ public class ReserverVoyageController implements Initializable {
    
 ReservationService rs = new ReservationService();
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-       
-       
-       if(nbp.getText().matches("^[0-9]+$") && ! (  modaliteV.getValue()==null) )
+         if(!(nbp.getText().matches("^[0-9]+$")  ) ) 
+          {
+               Notifications.create().title("Reservation Voyage  ").text(" Nombre de place  doit contenir des nombres  ").show();
+          }
+          
+         else if( ( modaliteV.getValue()==null)  )  
+          {
+               Notifications.create().title("Reservation  Voyage ").text("  modalite de paiement doit  etre rempli   ").show();
+          }
+          
+         else if( Integer.parseInt((nbp.getText())) <=0 )
+          {
+               Notifications.create().title("Reservation  Voyage ").text(" Nombre de place doit etre positive  ").show();
+          }
+       else
        {
+           
        try
        { voyageOrganise v = tableviewVO.getSelectionModel().getSelectedItem();
              java.util.Date parsedd = format.parse(dateD.getText());
@@ -190,15 +203,7 @@ ReservationService rs = new ReservationService();
            System.out.println(e);
        }
        }
-       else
-           
-       {
-          
-            
-            Notifications.create().title("Reservation voyage organise ").text(" verifier vos champs  " ) .show();
-           
-           
-       }
+      
     }
 
 
@@ -285,9 +290,30 @@ ReservationService rs = new ReservationService();
       loadTable();
      
     }
+    void avis(ActionEvent event) {
+try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Avis.fxml"));
+		Parent root = loader.load();
+		GUI.AvisController  e = loader.getController();
+                e.setIdclient(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
 
     @FXML
     private void consulterCompteC(ActionEvent event) {
+        
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteClient.fxml"));
+		Parent root = loader.load();
+		GUI.ModifierCompteClientController  e = loader.getController();
+                e.setIdc(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
@@ -328,10 +354,30 @@ ReservationService rs = new ReservationService();
 
     @FXML
     private void reclamations(ActionEvent event) {
+        
+         try{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+		Parent root = loader.load();
+		ReclamationController  e = loader.getController();
+                e.setIdc(idclient);
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
     private void signout(ActionEvent event) {
+          try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
 
     @FXML
