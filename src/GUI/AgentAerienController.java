@@ -764,12 +764,12 @@ alert.showAndWait();
         
            VolService as = new VolService();
          Vol a=new Vol ();
-        
-        ObservableList<Vol> Vol = as.rechercherVol(id_rech.getText(),ida);
-        ObservableList<Vol> listvol = FXCollections.observableArrayList(as.findVolParDest(id_arrivee.getText(),ida));
-        ObservableList<Vol> listvol1 = FXCollections.observableArrayList(as.findVolPardepart(id_depart.getText(),ida));
-       
-        tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+         ObservableList<Vol> Vol ;
+         
+         if(!id_arrivee.getText().isEmpty())
+         {
+            Vol = FXCollections.observableArrayList(as.findVolParDest(id_arrivee.getText(),ida)); 
+             tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
         tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
         tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
@@ -777,6 +777,47 @@ alert.showAndWait();
         tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
         tb_v.getItems().clear();
         tb_v.setItems(Vol);
+             
+         }
+         else if(!id_rech.getText().isEmpty())
+         {
+                  Vol = as.rechercherVol(id_rech.getText(),ida);
+                   tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
+        tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
+        tb_villearrivee.setCellValueFactory(new PropertyValueFactory<>("ville_arrivee"));
+        tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
+        tb_v.getItems().clear();
+        tb_v.setItems(Vol);
+             
+         }
+         else if (! id_depart.getText().isEmpty())
+         {
+              Vol = FXCollections.observableArrayList(as.findVolPardepart(id_depart.getText(),ida));
+               tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
+        tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
+        tb_villearrivee.setCellValueFactory(new PropertyValueFactory<>("ville_arrivee"));
+        tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
+        tb_v.getItems().clear();
+        tb_v.setItems(Vol);
+             
+         }
+         else
+         {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+          alert.setTitle("intformation");
+         alert.setHeaderText(null);
+         alert.setContentText(" verifier vos champs ");
+              alert.showAndWait();
+         }
+
+       
+       
+       
+       
         
     }
 

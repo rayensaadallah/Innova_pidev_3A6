@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VoyOrgFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1348.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VoyOrgFXMLController">
    <children>
       <TabPane layoutX="318.0" prefHeight="821.0" prefWidth="986.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -112,12 +112,14 @@
                             <TableColumn fx:id="nomCat" prefWidth="75.0" text="nomCat" />
                           </columns>
                         </TableView>
+                        <TextField fx:id="txtSearchCat" layoutX="42.0" layoutY="354.0" />
+                        <Button fx:id="btnsearchCat" layoutX="264.0" layoutY="354.0" mnemonicParsing="false" onAction="#searchCat" prefHeight="31.0" prefWidth="88.0" text="search" />
                      </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <VBox alignment="TOP_CENTER" prefHeight="821.0" prefWidth="321.0" style="-fx-background-color: ffd800;" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" prefHeight="826.0" prefWidth="313.0" style="-fx-background-color: ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css">
          <children>
             <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -127,7 +129,7 @@
                   <Insets bottom="10.0" top="50.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="272.0" style="-fx-background-color: #ffd800;" stylesheets="@style.css" text="Gestion voyages Organises">
+            <Button fx:id="btngestU" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GestionU" prefHeight="42.0" prefWidth="337.0" style="-fx-background-color: #ffd800;" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des utilisateurs">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,8 +146,11 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="268.0" stylesheets="@style.css" text="Gestion utilisateurs">
+            <Button fx:id="btngestVo" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestVo" prefHeight="42.0" prefWidth="328.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des voyages organises">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -156,8 +161,11 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="267.0" stylesheets="@style.css" text="Gestion des activités">
+            <Button fx:id="butAct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#gestiondesA" prefHeight="42.0" prefWidth="328.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Gestion des Activites ">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -168,42 +176,39 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="269.0" stylesheets="@style.css" text="Statistiques">
+            <Button fx:id="btnStat" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#satistiqueReservation" prefHeight="42.0" prefWidth="320.0" stylesheets="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/style.css" text="Statistiques">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/6961939.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="btnOrders1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="193.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="268.0" stylesheets="@style.css" text="Gestion Avis">
+            <Button fx:id="btnlogout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="330.0" stylesheets="@style.css" text="Logout">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/6961939.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
-            </Button>
-            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="267.0" stylesheets="@style.css" text="Logout">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/6961939.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
             </Button>
          </children>
       </VBox>

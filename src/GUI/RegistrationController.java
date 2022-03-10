@@ -552,7 +552,7 @@ afficherClient();
      
    @FXML
     void ajouterC(ActionEvent event) throws Exception { 
-        if((txtnomC.getText().length()==0)||(txtprenomC.getText().length()==0)||(txtemailC.getText().length()==0)||(txtrep.getText().length()==0)||(txtmdpC.getText().length()==0))
+        if((txtnomC.getText().length()==0)||(txtprenomC.getText().length()==0)||(txtemailC.getText().length()==0)||(txtrep.getText().length()==0)||(txtmdpC.getText().length()==0)||txtnumtel.getText().length()==0)
              JOptionPane.showMessageDialog(null, "verifier vos champs");
        else if(!(txtnomC.getText().matches("^[a-zA-Z]+$"))) {
 
@@ -585,6 +585,10 @@ afficherClient();
             else if  (txtmdpC.getText().length()<4) {
 
             JOptionPane.showMessageDialog(null, "votre mdp doit contenir au moins 4 characteres");
+             }
+             else if  (txtnumtel.getText().length()<8||(txtnumtel.getText().matches("^[0-9]+$"))) {
+
+            JOptionPane.showMessageDialog(null, "verifier votre num de telephone");
              }
              
              else{

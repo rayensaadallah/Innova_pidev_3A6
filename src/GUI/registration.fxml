@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegistrationController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1348.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegistrationController">
    <children>
-      <TabPane layoutX="314.0" prefHeight="821.0" prefWidth="986.0" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="314.0" prefHeight="821.0" prefWidth="986.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Gestion des administrateur">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="803.0" prefWidth="947.0" style="-fx-background-color: #027ebc;" stylesheets="@style.css">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="738.0" prefWidth="1028.0" style="-fx-background-color: #027eb#027ebc;" stylesheets="@style.css">
                      <children>
                         <Label layoutX="260.0" layoutY="24.0" text="Admin Form " textFill="#183287e5">
                            <font>
@@ -337,7 +337,7 @@
          <children>
             <ImageView fitHeight="108.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/logo.png" />
+                  <Image url="@img/logo.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="50.0" />
@@ -347,7 +347,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/icons8_Person_32px.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -368,7 +368,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -383,7 +383,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/6961939.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -398,7 +398,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -413,7 +413,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Innova_pidev_3A6-Gestion_Reservation/Innova_pidev_3A6-Gestion_Reservation/src/GUI/img/6961939.png" />
+                        <Image url="@img/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>

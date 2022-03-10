@@ -123,6 +123,8 @@ afficherRec();
 rs.ajouter(r);
 tvRec.getItems().clear();
 afficherRec();
+  txtobj.setText("");
+        txtdesc.setText("");
             
 
     }
@@ -141,7 +143,8 @@ afficherRec();
         rs.modifier(r);
         tvRec.getItems().clear();
         afficherRec();
-        
+        txtobj.setText("");
+        txtdesc.setText("");
     }
 
     @FXML
@@ -151,6 +154,8 @@ afficherRec();
 rs.supprimer(o.getIdR());
 tvRec.getItems().clear();
 afficherRec(); 
+ txtobj.setText("");
+        txtdesc.setText("");
         
     }
 

@@ -156,7 +156,6 @@ private Timeline locationUpdateTimeline;
     private Button btndeleteC;
     @FXML
     private Button btnupdateC;
-    
     @FXML
     private Button btnsearchCat;
     @FXML
@@ -170,9 +169,24 @@ private Timeline locationUpdateTimeline;
     
       final WebView webView = new WebView();
         final WebEngine webEngine = webView.getEngine();
+    @FXML
+    private Button btngestU;
+    @FXML
+    private Button btngestVo;
+    @FXML
+    private Button butAct;
+    @FXML
+    private Button btnStat;
+    @FXML
+    private Button btnlogout;
     /**
      * Initializes the controller class.
      */
+    private int idadmin;
+
+    public void setIdadmin(int idadmin) {
+        this.idadmin = idadmin;
+    }
     
     private void loadTable() {
      
@@ -530,7 +544,7 @@ categorie cat =  tableviewCat.getSelectionModel().getSelectedItem();
         loadTableCat();
     }
 @FXML
-    void searchCat(ActionEvent event) {
+void searchCat(ActionEvent event) {
 ObservableList<categorie> oblist = FXCollections.observableArrayList();
      List <categorie> ls =cats.FindNameCat(txtSearchCat.getText());
     tableviewCat.getItems().clear();
@@ -546,6 +560,69 @@ ObservableList<categorie> oblist = FXCollections.observableArrayList();
       txtidCat.setText(""+idCat.getCellData(index1));
       
      
+    }
+
+    @FXML
+    private void GestionU(ActionEvent event) {
+         try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Registration.fxml"));
+		Parent root = loader.load();
+		RegistrationController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
+
+    @FXML
+    private void gestVo(ActionEvent event) {
+    }
+
+    @FXML
+    private void gestiondesA(ActionEvent event) {
+           try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Gestionactadmin.fxml"));
+		Parent root = loader.load();
+		GestionactadminController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+        
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        
+        try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+		Parent root = loader.load();
+		LoginController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
+    }
+
+    @FXML
+    private void satistiqueReservation(ActionEvent event) {
+        
+          try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("StatR.fxml"));
+		Parent root = loader.load();
+		StatRController  e = loader.getController();
+               e.setIdA(idadmin);
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		}
     }
      
 }

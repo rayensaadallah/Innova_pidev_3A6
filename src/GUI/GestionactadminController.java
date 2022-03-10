@@ -422,6 +422,17 @@ public class GestionactadminController implements Initializable {
 
 @FXML
         private void GestionU(ActionEvent event) {
+            
+             try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Registration.fxml"));
+		Parent root = loader.load();
+		RegistrationController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		} 
     }
 
     @FXML

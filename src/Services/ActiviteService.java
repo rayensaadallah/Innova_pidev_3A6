@@ -120,11 +120,11 @@ public class ActiviteService implements IService<Activite> {
         } catch (SQLException ex) {
             Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        try {
-//            this.envoyerMail("Hey", "Aymenultras123",this.recupAdrM() ,"Détails:"+a.toString()+"" ,"Nouvelle activite: "+a.getNom()+"");
-//        } catch (UnsupportedEncodingException ex) {
-//            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            this.envoyerMail("Hey", "Aymenultras123",this.recupAdrM() ,"Détails:"+a.toString()+"" ,"Nouvelle activite: "+a.getNom()+"");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ActiviteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

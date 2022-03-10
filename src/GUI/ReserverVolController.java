@@ -45,6 +45,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
@@ -425,14 +426,14 @@ public class ReserverVolController implements Initializable {
 
     @FXML
     private void rechercheVolA(ActionEvent event) {
-            VolService as = new VolService();
+              VolService as = new VolService();
          Vol a=new Vol ();
-        
-        ObservableList<Vol> Vol = as.rechercherVol1(prix.getText());
-        ObservableList<Vol> listvol = FXCollections.observableArrayList(as.findVolParDest1(villeArriveV.getText()));
-        ObservableList<Vol> listvol1 = FXCollections.observableArrayList(as.findVolPardepart1(villeDepartV.getText()));
-       
-        tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+         ObservableList<Vol> Vol ;
+         
+         if(!villeArriveV.getText().isEmpty())
+         {
+            Vol = FXCollections.observableArrayList(as.findVolParDest1(villeArriveV.getText())); 
+             tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
         tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
         tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
@@ -440,6 +441,44 @@ public class ReserverVolController implements Initializable {
         tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
         tb_v.getItems().clear();
         tb_v.setItems(Vol);
+             
+         }
+         else if(!prix.getText().isEmpty())
+         {
+                  Vol = as.rechercherVol1(prix.getText());
+                   tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
+        tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
+        tb_villearrivee.setCellValueFactory(new PropertyValueFactory<>("ville_arrivee"));
+        tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
+        tb_v.getItems().clear();
+        tb_v.setItems(Vol);
+             
+         }
+         else if (! villeDepartV.getText().isEmpty())
+         {
+              Vol = FXCollections.observableArrayList(as.findVolPardepart1(villeDepartV.getText()));
+               tb_datedepart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        tb_datearrivee.setCellValueFactory(new PropertyValueFactory<>("date_arrivee"));
+        tb_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        tb_villedepart.setCellValueFactory(new PropertyValueFactory<>("ville_depart"));
+        tb_villearrivee.setCellValueFactory(new PropertyValueFactory<>("ville_arrivee"));
+        tb_place.setCellValueFactory(new PropertyValueFactory<>("nbr_placedispo"));
+        tb_v.getItems().clear();
+        tb_v.setItems(Vol);
+             
+         }
+         else
+         {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+          alert.setTitle("intformation");
+         alert.setHeaderText(null);
+         alert.setContentText(" verifier vos champs ");
+              alert.showAndWait();
+         }
+
+       
     }
 
     @FXML

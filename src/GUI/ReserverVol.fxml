@@ -169,9 +169,9 @@
             </Button>
          </children>
       </VBox>
-      <TextField fx:id="villeDepartV" layoutX="400.0" layoutY="26.0" />
-      <TextField fx:id="villeArriveV" layoutX="581.0" layoutY="26.0" />
-      <TextField fx:id="prix" layoutX="768.0" layoutY="26.0" />
-      <Button fx:id="rechercherVol" layoutX="1013.0" layoutY="26.0" mnemonicParsing="false" onAction="#rechercheVolA" text="Rechercher" />
+      <TextField fx:id="villeDepartV" layoutX="281.0" layoutY="26.0" promptText="Ville Depart" />
+      <TextField fx:id="villeArriveV" layoutX="581.0" layoutY="26.0" promptText="Ville Arrive " />
+      <TextField fx:id="prix" layoutX="902.0" layoutY="26.0" promptText="prix" />
+      <Button fx:id="rechercherVol" layoutX="1136.0" layoutY="26.0" mnemonicParsing="false" onAction="#rechercheVolA" text="Rechercher" />
    </children>
 </AnchorPane>

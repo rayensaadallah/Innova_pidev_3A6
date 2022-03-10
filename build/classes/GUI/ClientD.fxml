@@ -26,19 +26,19 @@
                         <Font name="Arial Bold" size="38.0" />
                      </font>
                   </Label>
-                  <Label fx:id="voyage" layoutX="278.0" layoutY="607.0" prefHeight="122.0" prefWidth="695.0" textFill="#ffd800">
+                  <Label fx:id="voyage" layoutX="187.0" layoutY="308.0" prefHeight="122.0" prefWidth="695.0" text="label2" textFill="#ffd800">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreR" layoutX="199.0" layoutY="186.0" prefHeight="122.0" prefWidth="884.0" textFill="#ffd800">
+                  <Label fx:id="nombreR" layoutX="199.0" layoutY="186.0" prefHeight="122.0" prefWidth="884.0" text="label1" textFill="#ffd800">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nombreA" layoutX="278.0" layoutY="411.0" prefHeight="122.0" prefWidth="695.0" textFill="#ffd800">
+                  <Label fx:id="nombreA" layoutX="193.0" layoutY="428.0" prefHeight="122.0" prefWidth="695.0" text="label3" textFill="#ffd800">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font></Label>
                </children>
             </Pane>

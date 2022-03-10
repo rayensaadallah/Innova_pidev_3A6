@@ -479,10 +479,15 @@ loadTableHebegement_offreur();
                 (a_contact.getText().equals(""))||
                 (a_nbr_suite.getText().equals(""))||
                 (a_nbr_parking.getText().equals(""))||
-                (datestart.compareTo(dateend) > 0)||(nbr5 < 0)
+                (a_nbr_detoile.getText().equals(""))||
+               // (a_nbr_suite.getText().equals(""))||
+                (nbr5 < 0)
                 ){ 
-            JOptionPane.showMessageDialog(null, "veuillez remplir tous le minimum des champs (Adress , paye,contact, category)");
+            JOptionPane.showMessageDialog(null, "veuillez remplir tous le minimum des champs (Adress , paye,contact, category,nombre de suite ,nomber de parking ,nomber de etoile )");
         }
+        if (nbr5 < 0) {     JOptionPane.showMessageDialog(null, "verifier voter prix ");}
+        if (datestart.compareTo(dateend)>0){JOptionPane.showMessageDialog(null, "veuillez verifier voter date disponible ");}
+  
         else{
             
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -602,7 +607,7 @@ loadTableHebegement_offreur();
             hebergement_table.getItems().clear();
             loadTableHebegement_offreur();
             JOptionPane.showMessageDialog(null, "Promotion has been added");
-//            int time=10000;
+//            int time=3000;
 //            sleep(time);
 //            System.out.println("fine");
 //        } catch (InterruptedException ex) {

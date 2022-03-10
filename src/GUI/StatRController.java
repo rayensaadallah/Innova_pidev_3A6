@@ -62,7 +62,7 @@ public class StatRController implements Initializable {
         
       
        pieChart.setData(piedata);
-       pieChart.setTitle("test");
+     
     }    
 
     @FXML
@@ -95,6 +95,21 @@ public class StatRController implements Initializable {
 
     @FXML
     private void gestAct(ActionEvent event) {
+        
+        try{
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("Gestionactadmin.fxml"));
+		Parent root = loader.load();
+		GestionactadminController  e = loader.getController();
+               
+              
+		((Button) event.getSource()).getScene().setRoot(root);
+		}catch(Exception ex){
+			System.out.println(ex);
+		} 
+        
+        
+        
+        
     }
 
     @FXML
