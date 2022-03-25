@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -298,13 +299,16 @@ loadTableHebegement_offreur();
 //        //Integer.valueOf(req);
 //        int i=Integer.parseInt(req);
 //        i++;
+if (!Pattern.matches("[a-zA-Z]+", a_category.getText()))
+{ JOptionPane.showMessageDialog(null, "veuillez remplir avec le nouveau type ");}
+else{
         Category c= new Category(a_category.getText());
         //c.setId_categ(i);
         cs.ajouter(c);
         categorie_table.getItems().clear();
         loadTablecateg();
     }//ajouter categ
-    
+    }
     
     
 @FXML
@@ -479,16 +483,16 @@ loadTableHebegement_offreur();
                 (a_contact.getText().equals(""))||
                 (a_nbr_suite.getText().equals(""))||
                 (a_nbr_parking.getText().equals(""))||
-                (a_nbr_detoile.getText().equals(""))||
+                (a_nbr_detoile.getText().equals(""))
                // (a_nbr_suite.getText().equals(""))||
-                (nbr5 < 0)
+                //(nbr5 < 0)
                 ){ 
             JOptionPane.showMessageDialog(null, "veuillez remplir tous le minimum des champs (Adress , paye,contact, category,nombre de suite ,nomber de parking ,nomber de etoile )");
         }
-        if (nbr5 < 0) {     JOptionPane.showMessageDialog(null, "verifier voter prix ");}
-        if (datestart.compareTo(dateend)>0){JOptionPane.showMessageDialog(null, "veuillez verifier voter date disponible ");}
+       else if (nbr5 < 0) {     JOptionPane.showMessageDialog(null, "verifier voter prix ");}
+       else if (datestart.compareTo(dateend)>0){JOptionPane.showMessageDialog(null, "veuillez verifier voter date disponible ");}
   
-        else{
+        else {
             
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //     java.sql.Date datestart =Date.valueOf(a_datestart.getValue());
@@ -526,7 +530,7 @@ loadTableHebegement_offreur();
 
     @FXML
     private void h_importpath(ActionEvent event) {
-            //String url = "https://media.istockphoto.com/photos/downtown-cleveland-hotel-entrance-and-waiting-taxi-cab-picture-id472899538?b=1&k=20&m=472899538&s=170667a&w=0&h=oGDM26vWKgcKA3ARp2da-H4St2dMEhJg23TTBeJgPDE=";
+            //https://media.istockphoto.com/photos/downtown-cleveland-hotel-entrance-and-waiting-taxi-cab-picture-id472899538?b=1&k=20&m=472899538&s=170667a&w=0&h=oGDM26vWKgcKA3ARp2da-H4St2dMEhJg23TTBeJgPDE=
         String url=a_pic.getText();
         System.out.println(url);
 

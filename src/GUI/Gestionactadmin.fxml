@@ -81,16 +81,15 @@
                         <TextField fx:id="txtprix" layoutX="443.0" layoutY="173.0" prefHeight="26.0" prefWidth="79.0" />
                         <TextField fx:id="txtloc" layoutX="443.0" layoutY="120.0" prefHeight="26.0" prefWidth="109.0" />
                         <Button fx:id="btnmodifier" layoutX="66.0" layoutY="282.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="79.0" text="Modifier" />
-                        <Button fx:id="btnsupprimer" layoutX="932.0" layoutY="295.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="32.0" prefWidth="97.0" text="Supprimer" />
+                        <Button fx:id="btnsupprimer" layoutX="797.0" layoutY="299.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="32.0" prefWidth="97.0" text="Supprimer" />
                         <Button fx:id="btnvider" layoutX="173.0" layoutY="282.0" mnemonicParsing="false" onAction="#vider" prefHeight="32.0" prefWidth="79.0" text="Vider" />
                         <Label layoutX="381.0" layoutY="174.0" prefHeight="25.0" prefWidth="79.0" text="Prix:">
                            <font>
                               <Font name="Roboto" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnrecherche" layoutX="597.0" layoutY="295.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="Rechercher" textAlignment="CENTER" />
                         <TextField fx:id="txtinput" layoutX="391.0" layoutY="299.0" onKeyReleased="#recherchek" />
-                        <Button fx:id="btntri" layoutX="717.0" layoutY="295.0" mnemonicParsing="false" onAction="#trier" prefHeight="32.0" prefWidth="82.0" text="Trier" />
+                        <Button fx:id="btntri" layoutX="625.0" layoutY="299.0" mnemonicParsing="false" onAction="#trier" prefHeight="32.0" prefWidth="82.0" text="Trier" />
                         <Button fx:id="btnetat" layoutX="939.0" layoutY="14.0" mnemonicParsing="false" onAction="#help" prefHeight="32.0" prefWidth="80.0" text="Etat" />
                         <Button fx:id="btnstat2" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#Statact" prefHeight="32.0" prefWidth="102.0" text="Statistique" />
                      </children>
