@@ -13,12 +13,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import Services.ClientService;
 import Entities.*;
 import Entities.encryption;
 import static Entities.encryption.ALGORITHM;
 import static Entities.encryption.decrypt;
 import static Entities.encryption.keyValue;
+import Services.UserService;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -81,9 +81,9 @@ public class ModifierCompteClientController implements Initializable {
 
     public void setIdc(int idc) {
         
-        ClientService cs =new ClientService();
+        UserService cs =new UserService();
         System.out.println(idc);
-    Client c= cs.selectmodifier(idc);
+    User c= cs.selectmodifier(idc);
      txtnomCMod.setText(c.getNom());
      txtprenomCMOD.setText(c.getPrenom());
      txtemailCMOD.setText(c.getEmail());
@@ -107,9 +107,9 @@ public class ModifierCompteClientController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-        ClientService cs =new ClientService();
+        UserService cs =new UserService();
     
-    Client c= cs.selectmodifier(idc);
+    User c= cs.selectmodifier(idc);
      txtnomCMod.setText(c.getNom());
      txtprenomCMOD.setText(c.getPrenom());
         txtQS.setText(c.getSecurityQ());
@@ -156,8 +156,8 @@ public class ModifierCompteClientController implements Initializable {
              }
             else{
             
-                ClientService cs =new ClientService();
-    Client c= cs.selectmodifier(idc);
+                UserService cs =new UserService();
+    User c= cs.selectmodifier(idc);
      c.setEmail(txtemailCMOD.getText());
         c.setNom( txtnomCMod.getText());
         c.setPrenom(txtprenomCMOD.getText());
@@ -312,9 +312,9 @@ cs.modifier(c);
 
     @FXML
     private void refresh(MouseEvent event) {
-         ClientService cs =new ClientService();
+         UserService cs =new UserService();
     
-    Client c= cs.selectmodifier(idc);
+    User c= cs.selectmodifier(idc);
      txtnomCMod.setText(c.getNom());
      txtprenomCMOD.setText(c.getPrenom());
      txtemailCMOD.setText(c.getEmail());

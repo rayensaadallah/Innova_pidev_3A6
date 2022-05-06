@@ -304,7 +304,7 @@ private Connection conn;
     }
     public String  NomP(int id) {
          
-        String req = "SELECT CONCAT(`nom`,'  ',`prenom`) FROM `client` WHERE id = "+id+" " ;
+        String req = "SELECT CONCAT(`nom`,'  ',`prenom`) FROM `User` WHERE id = "+id+" " ;
          String s="";
         try {
 

@@ -33,7 +33,7 @@ public class AvisService extends SendSms implements IService<Avis> {
     public String NumTel(Avis av) {
         String NumTel = "";
 
-        String req = "Select DISTINCT NumTel from Client c JOIN Avis a ON c.id=a.Id WHERE a.Id=" + av.getId() + "";
+        String req = "Select DISTINCT NumTel from User c JOIN Avis a ON c.id=a.Id WHERE a.Id=" + av.getId() + "";
         try {
             pste = conn.prepareStatement(req);
             ResultSet rs = pste.executeQuery();
@@ -98,7 +98,7 @@ public class AvisService extends SendSms implements IService<Avis> {
     @Override
     public List<Avis> afficher() {
         List<Avis> avis = new ArrayList<>();
-        String req = "select DISTINCT aa.RefAvis ,aa.Message , aa.Date, c.nom , a.Nom from activite a join avis aa on aa.RefActivite=a.RefAct JOIN client c on c.id=aa.Id;";
+        String req = "select DISTINCT aa.RefAvis ,aa.Message , aa.Date, c.nom , a.Nom from activite a join avis aa on aa.RefActivite=a.RefAct JOIN user c on c.id=aa.Id;";
 
         try {
             pste = conn.prepareStatement(req);

@@ -208,7 +208,7 @@ public class AvionService implements IService<Avion>{
      
      public String  NomA(int id) {
          
-        String req = "SELECT CONCAT(`nom`,'  ',`prenom`) FROM `agent-aerien` WHERE id = "+id+" " ;
+        String req = "SELECT CONCAT(`nom`,'  ',`prenom`) FROM `User` WHERE id = "+id+" " ;
          String s="";
         try {
 

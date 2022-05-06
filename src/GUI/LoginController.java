@@ -91,8 +91,7 @@ public class LoginController implements Initializable {
     void login(ActionEvent event) throws IOException, Exception  {
 String nom = txtnom.getText();
 String mdp = txtmdp.getText();
-ClientService cs = new ClientService();
-OffreurService os = new OffreurService();
+UserService us= new UserService();
 if(nom.equals("") && mdp.equals("")||nom.equals("")||mdp.equals(""))
 {
     JOptionPane.showMessageDialog(null, "veuillez remplir tous les champs vides");
@@ -103,10 +102,12 @@ else {
         Class.forName("com.mysql.jdbc.Driver");
          Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/getaway", "root", "");
         if(combo.getSelectionModel().getSelectedItem().toString()=="Admin"){
-         String sql="select * from admin where nom=? and password=?";
+            String role =combo.getSelectionModel().getSelectedItem().toString();
+         String sql="select * from user where nom=? and password=? and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
 pste.setString(2,mdpn);
+pste.setString(3,role);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "admin and password matched");
@@ -135,11 +136,12 @@ pste.setString(2,mdpn);
                      
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Client"){
-        
-         String sql="select * from client where nom=? and password=?";
+          String role =combo.getSelectionModel().getSelectedItem().toString();
+         String sql="select * from user where nom=? and password=? and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
 pste.setString(2,mdpn);
+pste.setString(3,role);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
        if(rs.getInt("etat")==0){
@@ -156,7 +158,7 @@ pste.setString(2,mdpn);
 		Parent root = loader.load();
 		ClientDController  ee = loader.getController();
                 
-                int i=cs.selectidC(txtnom.getText(),mdpn);
+                int i=us.selectid(txtnom.getText(),mdpn,"Client");
                 ee.setIdc(i);
               
 		((Button) event.getSource()).getScene().setRoot(root);
@@ -176,10 +178,12 @@ pste.setString(2,mdpn);
                      txtmdp.setText("");
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Offreur"){
-         String sql="select * from offreur where nom=? and password=?";
+               String role =combo.getSelectionModel().getSelectedItem().toString();
+         String sql="select * from user where nom=? and password=? and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
 pste.setString(2,mdpn);
+pste.setString(3,role);
  ResultSet rs = pste.executeQuery();
    if(rs.next()){
                 JOptionPane.showMessageDialog(null, "Offreur and password matched"); 
@@ -188,7 +192,7 @@ pste.setString(2,mdpn);
 		Parent root = loader.load();
 		ModifierCompteOffreurController  ee = loader.getController();
                 
-                int i=os.selectidO(txtnom.getText(),mdpn);
+                int i=us.selectid(txtnom.getText(),mdpn,"Offreur");
                 ee.setIdc(i);
               
 		((Button) event.getSource()).getScene().setRoot(root);
@@ -201,11 +205,13 @@ pste.setString(2,mdpn);
                     txtnom.setText("");
                      txtmdp.setText("");
                     }
-    }else if(combo.getSelectionModel().getSelectedItem().toString()=="Agent-Aerien"){
-         String sql="select * from `agent-aerien` where nom=? and password=?";
+    }else if(combo.getSelectionModel().getSelectedItem().toString()=="Agent-Aerien"){ 
+            String role =combo.getSelectionModel().getSelectedItem().toString();
+         String sql="select * from user where nom=? and password=? and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
 pste.setString(2,mdpn);
+pste.setString(3,role);
  ResultSet rs = pste.executeQuery();
  
    if(rs.next()){
@@ -217,8 +223,8 @@ pste.setString(2,mdpn);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteAgent.fxml"));
 		Parent root = loader.load();
 		ModifierCompteAgentController  ee = loader.getController();
-                AgentAerienService as = new AgentAerienService();
-                int i=as.selectidA(txtnom.getText(),mdpn);
+               
+                int i=us.selectid(txtnom.getText(),mdpn,"Agent-Aerien");
                 ee.setIdc(i);
                 
               

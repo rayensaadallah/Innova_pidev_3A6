@@ -87,9 +87,9 @@ ClientService cs = new ClientService();
                
                      
                    String mdpcry = encryption.encrypt(txtmdpNVC.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
-               Client c= new Client(combosecNVC.getSelectionModel().getSelectedItem().toString(), txtrepNVC.getText(),txtnumtel.getText() ,txtnomNVC.getText(), txtprenomNVC.getText(),mdpcry, txtemailNVC.getText());
+//               Client c= new Client(combosecNVC.getSelectionModel().getSelectedItem().toString(), txtrepNVC.getText(),txtnumtel.getText() ,txtnomNVC.getText(), txtprenomNVC.getText(),mdpcry, txtemailNVC.getText());
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
-          cs.ajouter(c);
+//          cs.ajouter(c);
         JOptionPane.showMessageDialog(null, "votre compte est cree avec succes");
           }
 

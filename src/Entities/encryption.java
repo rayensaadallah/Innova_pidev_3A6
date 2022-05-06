@@ -22,7 +22,7 @@ public class encryption {
     public static void main(String[] args) throws Exception {
            Key key = generateKey();
        String encriptValue = encrypt("dali123",key);
-      decrypt("4Bt6knphfBBY+d7n3TSR5kgoHPWSp4dAwjtOP4Zun6c==",key);
+//      decrypt("4Bt6knphfBBY+d7n3TSR5kgoHPWSp4dAwjtOP4Zun6c==",key);
     }
     
      public  static Key generateKey() throws Exception {

@@ -5,12 +5,11 @@
  */
 package GUI;
 
-import Entities.*;
-import Entities.Client;
-import Entities.Offreur;
+import Entities.User;
+
 import Entities.Reclamation;
 import Entities.encryption;
-import Entities.*;
+
 import static Entities.encryption.ALGORITHM;
 import static Entities.encryption.decrypt;
 import static Entities.encryption.keyValue;
@@ -50,7 +49,6 @@ import Services.*;
 import Services.ClientService;
 import Services.ReclamationService;
 import Utilis.Datasource;
-import Services.OffreurService;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
@@ -80,20 +78,20 @@ private Connection conn;
     private TextField txtemail;
 
     @FXML
-    private TableView<Admin> tvadmin;
+    private TableView<User> tvadmin;
 
 
     @FXML
-    private TableColumn<Admin, String> colnom;
+    private TableColumn<User, String> colnom;
 
     @FXML
-    private TableColumn<Admin, String> colprenom;
+    private TableColumn<User, String> colprenom;
 
     @FXML
-    private TableColumn<Admin, String> coladr;
+    private TableColumn<User, String> coladr;
 
     @FXML
-    private TableColumn<Admin, String> colemail;
+    private TableColumn<User, String> colemail;
 
 
     @FXML
@@ -131,19 +129,19 @@ private Connection conn;
     private TextField txtrep;
 
     @FXML
-    private TableView<Client> tvClient;
+    private TableView<User> tvClient;
 
     @FXML
-    private TableColumn<Client, String> colnomC;
+    private TableColumn<User, String> colnomC;
 
     @FXML
-    private TableColumn<Client, String> colprenomC;
+    private TableColumn<User, String> colprenomC;
 
     @FXML
-    private TableColumn<Client, String> colemailC;
+    private TableColumn<User, String> colemailC;
 
     @FXML
-    private TableColumn<Client, Integer> coletatC;
+    private TableColumn<User, Integer> coletatC;
 
     @FXML
     private TextField txtrechClient;
@@ -166,16 +164,16 @@ private Connection conn;
     @FXML
     private Button btnActiver;
         @FXML
-    private TableColumn<Offreur, String> colnomOF;
+    private TableColumn<User, String> colnomOF;
 
     @FXML
-    private TableColumn<Offreur, String> colprenomOF;
+    private TableColumn<User, String> colprenomOF;
 
     @FXML
-    private TableColumn<Offreur, String> colemailOF;
+    private TableColumn<User, String> colemailOF;
 
     @FXML
-    private TableColumn<Offreur, Integer> colTelOF;
+    private TableColumn<User, Integer> colTelOF;
 
     @FXML
     private TextField txtrechOF;
@@ -207,7 +205,7 @@ private Connection conn;
     private TextField txtemailOF;
     
     @FXML
-    private TableView<Offreur> tvOffreur;
+    private TableView<User> tvOffreur;
     
     //agent aerien
 
@@ -229,19 +227,19 @@ private Connection conn;
     private TextField txtrechAG;
 
     @FXML
-    private TableView<AgentAerien> tvAgent;
+    private TableView<User> tvAgent;
 
     @FXML
-    private TableColumn<AgentAerien, String> colnomAG;
+    private TableColumn<User, String> colnomAG;
 
     @FXML
-    private TableColumn<AgentAerien, String> colprenomAG;
+    private TableColumn<User, String> colprenomAG;
 
     @FXML
-    private TableColumn<AgentAerien, String> colemailAG;
+    private TableColumn<User, String> colemailAG;
 
     @FXML
-    private TableColumn<AgentAerien, String> colNomAgence;
+    private TableColumn<User, String> colNomAgence;
 
     @FXML
     private Button btnrechAG;
@@ -349,8 +347,8 @@ afficherReclamation();
     
     //********************************admin*******************************
    
-    ObservableList<Admin> oblist1 = FXCollections.observableArrayList();
-     AdminService as= new AdminService();
+    ObservableList<User> oblist1 = FXCollections.observableArrayList();
+     UserService as= new UserService();
      
         @FXML
     void Actualiser(ActionEvent event) {
@@ -360,7 +358,7 @@ nbtotalAdmin();
     
     public void nbtotalAdmin(){
     try {
-        PreparedStatement pst=conn.prepareStatement("select count(id) from admin");
+        PreparedStatement pst=conn.prepareStatement("select count(id) from User where role='Admin'");
       ResultSet rs=pst.executeQuery();
       while(rs.next())
       {
@@ -380,12 +378,12 @@ nbtotalAdmin();
      
     
      private void afficherAdmin() {
-      List <Admin> ls =as.afficher();
+      List <User> ls =as.afficher("Admin");
       ls.forEach(e->oblist1.add(e));
-      colnom.setCellValueFactory(new PropertyValueFactory<Admin,String>("nom"));
-        colprenom.setCellValueFactory(new PropertyValueFactory<Admin, String>("prenom"));
-         colemail.setCellValueFactory(new PropertyValueFactory<Admin, String>("email"));
-        coladr.setCellValueFactory(new PropertyValueFactory<Admin, String>("adresse"));
+      colnom.setCellValueFactory(new PropertyValueFactory<User,String>("nom"));
+        colprenom.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+         colemail.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        coladr.setCellValueFactory(new PropertyValueFactory<User, String>("adresse"));
         tvadmin.setItems(oblist1);    
     }
      
@@ -419,7 +417,7 @@ nbtotalAdmin();
              }
              else{
                     String mdpcry = encryption.encrypt(txtmdp.getText(),new SecretKeySpec(keyValue, ALGORITHM));
-      Admin a= new Admin(txtnom.getText(), txtprenom.getText(), txtemail.getText(), txtadr.getText(), mdpcry);
+      User a= new User(txtnom.getText(), txtprenom.getText(), mdpcry,txtadr.getText(), txtemail.getText(),"Admin");
 decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 as.ajouter(a);
 tvadmin.getItems().clear();
@@ -439,7 +437,7 @@ txtadr.setText("");
     @FXML
     void modifier(ActionEvent event) throws Exception {
 
-       Admin a =  tvadmin.getSelectionModel().getSelectedItem();
+       User a =  tvadmin.getSelectionModel().getSelectedItem();
     
             if(!(txtnom.getText().matches("^[a-zA-Z]+$"))) {
 
@@ -488,7 +486,7 @@ txtadr.setText("");
     @FXML
     void supprimer(ActionEvent event) {
 
-Admin a =  tvadmin.getSelectionModel().getSelectedItem();
+User a =  tvadmin.getSelectionModel().getSelectedItem();
 String pwd=a.getPwd();
 as.supprimer(a.getId());
 tvadmin.getItems().clear();
@@ -505,7 +503,7 @@ txtadr.setText("");
       @FXML
     void rechercher(ActionEvent event) {
 
-List <Admin> ls =as.rechercher(txtrech.getText());
+List <User> ls =as.rechercher(txtrech.getText());
 tvadmin.getItems().clear();
   tvadmin.getItems().addAll(ls);
     }
@@ -530,11 +528,11 @@ tvadmin.getItems().clear();
     //***********************client**************************** 
    
    
-   ObservableList<Client> oblist = FXCollections.observableArrayList();
-     ClientService cs= new ClientService();
+   ObservableList<User> oblist = FXCollections.observableArrayList();
+     UserService cs= new UserService();
         @FXML
     void Activer(ActionEvent event) {
-        Client c =  tvClient.getSelectionModel().getSelectedItem();
+        User c =  tvClient.getSelectionModel().getSelectedItem();
         int idCB=c.getId();
 as.activerCompteParAdmin(idCB);
 tvClient.getItems().clear();
@@ -543,7 +541,7 @@ afficherClient();
 
     @FXML
     void Bloquer(ActionEvent event) {
-           Client c =  tvClient.getSelectionModel().getSelectedItem();
+           User c =  tvClient.getSelectionModel().getSelectedItem();
         int idCB=c.getId();
 as.BanirCompteParAdmin(idCB);
 tvClient.getItems().clear();
@@ -595,7 +593,8 @@ afficherClient();
                  
  
            String mdpcry = encryption.encrypt(txtmdpC.getText(),new SecretKeySpec(keyValue, ALGORITHM));   
-           Client c = new Client(combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(),txtnumtel.getText(),  txtnomC.getText(), txtprenomC.getText(),mdpcry, txtemailC.getText());
+           
+           User c = new User(txtnomC.getText(), txtprenomC.getText(),mdpcry,combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(),txtnumtel.getText(), txtemailC.getText(),"Client");
        
 //         Client c= new Client(combosecurity.getSelectionModel().getSelectedItem().toString(), txtrep.getText(), txtnomC.getText(), txtprenomC.getText(),mdpcry, txtemailC.getText(),txtnumtel.getText());
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
@@ -640,7 +639,7 @@ txtprenomC.setText("");
 
     @FXML
     void supprimerC(ActionEvent event) {
-Client c =  tvClient.getSelectionModel().getSelectedItem();
+User c =  tvClient.getSelectionModel().getSelectedItem();
 cs.supprimer(c.getId());
 tvClient.getItems().clear();
 afficherClient();
@@ -657,7 +656,7 @@ txtprenomC.setText("");
 
     @FXML
     void rechercherClient(ActionEvent event) {
-List <Client> ls =cs.rechercherclient(txtrechClient.getText());
+List <User> ls =cs.rechercherclient(txtrechClient.getText());
 tvClient.getItems().clear();
   tvClient.getItems().addAll(ls);
   }
@@ -665,12 +664,12 @@ tvClient.getItems().clear();
  
      
    private void afficherClient() {
-      List <Client> ls =cs.afficher();
+      List <User> ls =cs.afficher("Client");
       ls.forEach(e->oblist.add(e));
-      colnomC.setCellValueFactory(new PropertyValueFactory<Client,String>("nom"));
-        colprenomC.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
-         colemailC.setCellValueFactory(new PropertyValueFactory<Client, String>("email"));
-        coletatC.setCellValueFactory(new PropertyValueFactory<Client, Integer>("etat"));
+      colnomC.setCellValueFactory(new PropertyValueFactory<User,String>("nom"));
+        colprenomC.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+         colemailC.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        coletatC.setCellValueFactory(new PropertyValueFactory<User, Integer>("etat"));
         tvClient.setItems(oblist);    
     }
        
@@ -699,8 +698,8 @@ tvClient.getItems().clear();
     }
       //***************Offreur*****************************
    
-ObservableList<Offreur> oblist2 = FXCollections.observableArrayList();
-     OffreurService os= new OffreurService();
+ObservableList<User> oblist2 = FXCollections.observableArrayList();
+     UserService os= new UserService();
    
     @FXML
    private void selectOffreur(javafx.scene.input.MouseEvent event) {
@@ -717,12 +716,12 @@ ObservableList<Offreur> oblist2 = FXCollections.observableArrayList();
     }
     
        private void afficherOffreur() {
-      List <Offreur> ls =os.afficher();
+      List <User> ls =os.afficher("Offreur");
       ls.forEach(e->oblist2.add(e));
-      colnomOF.setCellValueFactory(new PropertyValueFactory<Offreur,String>("nom"));
-        colprenomOF.setCellValueFactory(new PropertyValueFactory<Offreur, String>("prenom"));
-         colemailOF.setCellValueFactory(new PropertyValueFactory<Offreur, String>("email"));
-        colTelOF.setCellValueFactory(new PropertyValueFactory<Offreur, Integer>("numtl"));
+      colnomOF.setCellValueFactory(new PropertyValueFactory<User,String>("nom"));
+        colprenomOF.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+         colemailOF.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        colTelOF.setCellValueFactory(new PropertyValueFactory<User, Integer>("numtl"));
         tvOffreur.setItems(oblist2);    
     }
     
@@ -757,8 +756,8 @@ ObservableList<Offreur> oblist2 = FXCollections.observableArrayList();
              else{
  
  String mdpcry = encryption.encrypt(txtmdpOF.getText(),new SecretKeySpec(keyValue, ALGORITHM));
-         int num = Integer.parseInt(txtTelOF.getText());
-         Offreur o = new Offreur(txtnomOF.getText(), txtprenomOF.getText(), mdpcry, txtemailOF.getText(),num);
+         String num =txtTelOF.getText();
+         User o = new User(txtnomOF.getText(), txtprenomOF.getText(), mdpcry, txtemailOF.getText(),num,"Offreur");
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 os.ajouter(o);
 tvOffreur.getItems().clear();
@@ -774,7 +773,7 @@ txtprenomOF.setText("");
     
     @FXML
     void modifierO(ActionEvent event) throws Exception {
-        Offreur o =  tvOffreur.getSelectionModel().getSelectedItem();
+        User o =  tvOffreur.getSelectionModel().getSelectedItem();
          if(!(txtnomOF.getText().matches("^[a-zA-Z]+$"))) {
 
             JOptionPane.showMessageDialog(null, "verifier votre nom");
@@ -802,7 +801,7 @@ txtprenomOF.setText("");
         o.setEmail(txtemailOF.getText());
         o.setNom( txtnomOF.getText());
         o.setPrenom(txtprenomOF.getText());    
-        o.setNumtl(Integer.parseInt(txtTelOF.getText()));
+        o.setNumtel(txtTelOF.getText());
         String mdpcry = encryption.encrypt(txtmdpOF.getText(),new SecretKeySpec(keyValue, ALGORITHM));
         o.setPwd(mdpcry);
         decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
@@ -822,7 +821,7 @@ txtprenomOF.setText("");
     }
        @FXML
     void supprimerO(ActionEvent event) {
-Offreur o =  tvOffreur.getSelectionModel().getSelectedItem();
+User o =  tvOffreur.getSelectionModel().getSelectedItem();
 os.supprimer(o.getId());
 tvOffreur.getItems().clear();
 afficherOffreur();
@@ -835,7 +834,7 @@ txtprenomOF.setText("");
     }
         @FXML
     void rechercherO(ActionEvent event) {
-List <Offreur> ls =os.rechercheroffreur(txtrechOF.getText());
+List <User> ls =os.rechercheroffreur(txtrechOF.getText());
 tvOffreur.getItems().clear();
   tvOffreur.getItems().addAll(ls);
     }
@@ -844,8 +843,8 @@ tvOffreur.getItems().clear();
     
     //*******************************agent aerien*************************************************
     
-   ObservableList<AgentAerien> oblist3 = FXCollections.observableArrayList();
-     AgentAerienService ags= new AgentAerienService(); 
+   ObservableList<User> oblist3 = FXCollections.observableArrayList();
+     UserService ags= new UserService(); 
      
          @FXML
     void ajouterAG(ActionEvent event) throws Exception {
@@ -877,7 +876,7 @@ tvOffreur.getItems().clear();
              else{
        
  String mdpcry = encryption.encrypt(txtmdpAG.getText(),new SecretKeySpec(keyValue, ALGORITHM));
-AgentAerien ag = new AgentAerien(txtnomAG.getText(), txtprenomAG.getText(), mdpcry, txtemailAG.getText(), txtNomAgence.getText());
+ User ag = new User(txtnomAG.getText(), txtprenomAG.getText(), mdpcry, txtemailAG.getText(), txtNomAgence.getText(),"Agent-Aerien");
 decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
 ags.ajouter(ag);
 tvAgent.getItems().clear();
@@ -893,7 +892,7 @@ txtprenomAG.setText("");
     
     @FXML
     void modifierAG(ActionEvent event) throws Exception {
-      AgentAerien ag =  tvAgent.getSelectionModel().getSelectedItem();
+      User ag =  tvAgent.getSelectionModel().getSelectedItem();
         if(!(txtnomAG.getText().matches("^[a-zA-Z]+$"))) {
 
             JOptionPane.showMessageDialog(null, "verifier votre nom");
@@ -940,7 +939,7 @@ txtprenomAG.setText("");
     
         @FXML
     void rechercherAG(ActionEvent event) {
-List <AgentAerien> ls =ags.rechercheragent(txtrechAG.getText());
+List <User> ls =ags.rechercheragent(txtrechAG.getText());
 tvAgent.getItems().clear();
   tvAgent.getItems().addAll(ls);
     }
@@ -961,18 +960,18 @@ tvAgent.getItems().clear();
     }
     
         private void afficherAgent() {
-      List <AgentAerien> ls =ags.afficher();
+      List <User> ls =ags.afficher("Agent-Aerien");
       ls.forEach(e->oblist3.add(e));
-      colnomAG.setCellValueFactory(new PropertyValueFactory<AgentAerien,String>("nom"));
-        colprenomAG.setCellValueFactory(new PropertyValueFactory<AgentAerien, String>("prenom"));
-         colemailAG.setCellValueFactory(new PropertyValueFactory<AgentAerien, String>("email"));
-       colNomAgence.setCellValueFactory(new PropertyValueFactory<AgentAerien, String>("nomAgence"));
+      colnomAG.setCellValueFactory(new PropertyValueFactory<User,String>("nom"));
+        colprenomAG.setCellValueFactory(new PropertyValueFactory<User, String>("prenom"));
+         colemailAG.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+       colNomAgence.setCellValueFactory(new PropertyValueFactory<User, String>("nomAgence"));
         tvAgent.setItems(oblist3);    
     }
     
     @FXML
     void supprimerAG(ActionEvent event) {
-AgentAerien ag =  tvAgent.getSelectionModel().getSelectedItem();
+User ag =  tvAgent.getSelectionModel().getSelectedItem();
 ags.supprimer(ag.getId());
 tvAgent.getItems().clear();
 afficherAgent();

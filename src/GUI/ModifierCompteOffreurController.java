@@ -5,11 +5,13 @@
  */
 package GUI;
 
-import Entities.Offreur;
+
+import Entities.User;
 import Entities.encryption;
 import static Entities.encryption.ALGORITHM;
 import static Entities.encryption.decrypt;
 import static Entities.encryption.keyValue;
+import Services.UserService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +26,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.crypto.spec.SecretKeySpec;
-import Services.OffreurService;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -36,14 +38,14 @@ public class ModifierCompteOffreurController implements Initializable {
     private int idc;
        public void setIdc(int idc) {
         
-           OffreurService os =new OffreurService();
+           UserService os =new UserService();
     
-           Offreur o= os.selectmodifier(idc);
+           User o= os.selectmodifier(idc);
      txtnom.setText(o.getNom());
      txtprenom.setText(o.getPrenom());
      txtemail.setText(o.getEmail());
      txtmdp.setText(o.getPwd());
-     txtnumtel.setText(o.getNumtl()+"");
+     txtnumtel.setText(o.getNumtel()+"");
         this.idc = idc;
     }
     
@@ -96,8 +98,8 @@ public class ModifierCompteOffreurController implements Initializable {
         
            else{
         
-           OffreurService os =new OffreurService();
-    Offreur o= os.selectmodifier(idc);
+           UserService os =new UserService();
+    User o= os.selectmodifier(idc);
     o.setEmail(txtemail.getText());
      
         o.setNom( txtnom.getText());
@@ -106,9 +108,9 @@ public class ModifierCompteOffreurController implements Initializable {
            String mdpcry = encryption.encrypt(txtmdp.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
        o.setPwd(mdpcry);
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
-         int num = Integer.parseInt(txtnumtel.getText());
+         String num = txtnumtel.getText();
         
-o.setNumtl(num);
+o.setNumtel(num);
 os.modifier(o);
         JOptionPane.showMessageDialog(null, "modification avec succes");
       }}

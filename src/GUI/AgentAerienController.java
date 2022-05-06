@@ -490,7 +490,7 @@ alert.showAndWait();
      public void getidagence(int id)
     {
         
-        String req ="SELECT id FROM `agent-aerien` where id='"+id+"'";
+        String req ="SELECT id FROM `User` where id='"+id+"'and role='Agent-Aerien'";
          try {
             Connection conn = getConnection();
              Statement ste;

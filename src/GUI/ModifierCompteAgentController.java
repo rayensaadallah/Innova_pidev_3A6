@@ -10,6 +10,8 @@ import Entities.encryption;
 import static Entities.encryption.ALGORITHM;
 import static Entities.encryption.decrypt;
 import static Entities.encryption.keyValue;
+import Services.UserService;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +26,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.crypto.spec.SecretKeySpec;
-import Services.AgentAerienService;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -43,9 +45,9 @@ public class ModifierCompteAgentController implements Initializable {
     }
      public void setIdc(int ida) {
               this.ida= ida;
-              AgentAerienService as =new AgentAerienService();
+              UserService as =new UserService();
          System.out.println("houniiiaaaaaaaaaaaa");
-    AgentAerien a= as.selectmodifier(ida);
+    User a= as.selectmodifier(ida);
      txtnom.setText(a.getNom());
      txtprenom.setText(a.getPrenom());
      txtemail.setText(a.getEmail());
@@ -98,8 +100,8 @@ public class ModifierCompteAgentController implements Initializable {
             JOptionPane.showMessageDialog(null, "verifier votre nom d'agence ");
              }
               else{
-                    AgentAerienService as =new AgentAerienService();
-    AgentAerien a= as.selectmodifier(ida);
+                    UserService as =new UserService();
+    User a= as.selectmodifier(ida);
      a.setEmail(txtemail.getText());
         a.setNom( txtnom.getText());
         a.setPrenom(txtprenom.getText());
