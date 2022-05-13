@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/GUI/FXMLController.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/Entities/UpdatableBCrypt.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/Services/UserService.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/Services/ReservationService.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/GUI/LoginController.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/GUI/ReserverActiviteController.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/Entities/Hashing.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/Entities/User.java</file>
+            <file>file:/C:/Users/Asus/OneDrive/Bureau/JavaDesktopIntegration/Innova_pidev_3A6/src/GUI/GestionactadminController.java</file>
+        </group>
     </open-files>
 </project-private>

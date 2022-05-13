@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -53,6 +54,7 @@ public class UserService implements IService<User>  {
 //    }
       @Override
      public void ajouter(User a) {
+         
     String req = "INSERT INTO `user` (`nom`,`prenom`,`email`,`adresse`,`password`,`role`) VALUE ('" + a.getNom() + "','" + a.getPrenom() + "','"+a.getEmail()+ "','"+a.getAdresse()+ "','"+a.getPwd()+"','"+a.getRole()+"')";
         try {
             ste = conn.createStatement();
@@ -65,13 +67,13 @@ public class UserService implements IService<User>  {
 
     @Override
     public void modifier(User a) {
+        
             String sql ="UPDATE user SET nom = '"+a.getNom()+"',prenom = '"
                     +a.getPrenom()+"',email = '"+a.getEmail()+"',adresse = '"
-                    +a.getAdresse()+"',password = '"+a.getPwd()+"',securityQ = '"+a.getSecurityQ()+"'"
+                    +a.getAdresse()+"',password = '"+BCrypt.hashpw(a.getPwd(), BCrypt.gensalt(13)).replace("$2a", "$2y")+"',securityQ = '"+a.getSecurityQ()+"'"
                     + ",answer = '"+a.getAnswer()+"',numtel = '"+a.getNumtel()+"',nomAgence = '"+a.getNomAgence()+"'"
                     + ",role = '"+a.getRole()+"'  WHERE id ="+ a.getId()+";";
-        
-        
+  
         try {
             Statement stl = conn.createStatement();
             stl.executeUpdate(sql);
@@ -148,7 +150,36 @@ public class UserService implements IService<User>  {
     
     
     
-    
+           public User UserByEmail(String email) {
+          User a = new User();
+        try {
+            String findbyemail = "SELECT * FROM `user` WHERE `email`=? ";
+            pste = conn.prepareStatement(findbyemail);
+
+            pste.setString(1, email);
+            ResultSet rs = pste.executeQuery();
+
+            while (rs.next()) {
+              
+                a.setId(rs.getInt("id"));
+                a.setNom(rs.getString(2));
+                a.setPrenom(rs.getString(3));
+                a.setEmail(rs.getString(7));
+                a.setAdresse(rs.getString(8));
+                a.setPwd(rs.getString(4));
+                a.setSecurityQ(rs.getString(5));
+                a.setAnswer(rs.getString(6));
+                a.setNumtel(rs.getString(9));
+                a.setNomAgence(rs.getString(10));
+                a.setRole(rs.getString(11));
+               ;
+                System.out.println(a.toString());   
+            }
+        } catch (SQLException d) {
+            d.printStackTrace();
+        }
+        return a;
+    }  
     
     
     
@@ -357,9 +388,9 @@ public class UserService implements IService<User>  {
             System.out.println("VendorError: " + ex.getErrorCode());
         }    
     }
-     public int   selectid(String nom , String password ,String role ) {
+     public int   selectid(String email , String password ,String role ) {
          
-        String req = "SELECT  id  FROM `user` WHERE  nom='"+nom+"' and password='"+password+"'and role='"+role+"' " ;
+        String req = "SELECT  id  FROM `user` WHERE  email='"+email+"' and role='"+role+"' " ;
      int i=0;
         try {
 

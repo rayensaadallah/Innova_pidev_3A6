@@ -6,6 +6,7 @@
 package Entities;
 
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -51,7 +52,7 @@ public class User {
     public User(String nom, String prenom, String pwd, String securityQ, String answer, String numtel, String email, String role) {
         this.nom = nom;
         this.prenom = prenom;
-        this.pwd = pwd;
+ this.pwd = BCrypt.hashpw(pwd, BCrypt.gensalt(13));
         this.securityQ = securityQ;
         this.answer = answer;
         this.numtel = numtel;
@@ -66,7 +67,7 @@ public class User {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.pwd = pwd;
+ this.pwd = BCrypt.hashpw(pwd, BCrypt.gensalt(13));
         this.adresse = adresse;
         this.securityQ = securityQ;
         this.answer = answer;
@@ -79,7 +80,7 @@ public class User {
     public User(String securityQ, String answer,String numtel, String nom, String prenom, String pwd,  String email) {
         this.nom = nom;
         this.prenom = prenom;
-        this.pwd = pwd;
+         this.pwd = BCrypt.hashpw(pwd, BCrypt.gensalt(13));
         this.securityQ = securityQ;
         this.answer = answer;
         this.numtel = numtel;
@@ -91,7 +92,7 @@ public class User {
     public User(String nom, String prenom, String pwd, String adresse, String securityQ, String answer, String numtel, String email, String nomAgence, String role) {
         this.nom = nom;
         this.prenom = prenom;
-        this.pwd = pwd;
+    this.pwd = BCrypt.hashpw(pwd, BCrypt.gensalt(13));
         this.adresse = adresse;
         this.securityQ = securityQ;
         this.answer = answer;
@@ -104,7 +105,7 @@ public class User {
     public User(String nom, String prenom, String pwd, String adresse, String securityQ, String answer, String numtel, String email, String role) {
         this.nom = nom;
         this.prenom = prenom;
-        this.pwd = pwd;
+        this.pwd = BCrypt.hashpw(pwd, BCrypt.gensalt(13));
         this.adresse = adresse;
         this.securityQ = securityQ;
         this.answer = answer;

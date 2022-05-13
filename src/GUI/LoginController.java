@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import Services.*;
 import javax.crypto.spec.SecretKeySpec;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -98,18 +99,22 @@ if(nom.equals("") && mdp.equals("")||nom.equals("")||mdp.equals(""))
 }
 else {
     try {
-        mdpn= encryption.encrypt(mdp.toString(),  encryption.generateKey());
+       
+        mdpn=  BCrypt.hashpw(mdp.toString(),BCrypt.gensalt(13));
+        System.out.println(mdp);
+         String userpwd=us.UserByEmail(txtnom.getText()).getPwd().replace("$2y", "$2a");
+               System.out.println(userpwd);
+            System.out.println("input_password= "+ BCrypt.checkpw(txtmdp.getText(),userpwd));
         Class.forName("com.mysql.jdbc.Driver");
          Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/getaway", "root", "");
         if(combo.getSelectionModel().getSelectedItem().toString()=="Admin"){
-            String role =combo.getSelectionModel().getSelectedItem().toString();
-         String sql="select * from user where nom=? and password=? and role=?";
+      String sql="select * from user where email=?  and role=?";
+       String role =combo.getSelectionModel().getSelectedItem().toString();
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdpn);
-pste.setString(3,role);
+pste.setString(2,role);
  ResultSet rs = pste.executeQuery();
-   if(rs.next()){
+   if(BCrypt.checkpw(txtmdp.getText(),userpwd)&&rs.next()){
                 JOptionPane.showMessageDialog(null, "admin and password matched");
                  txtnom.setText("");
                      txtmdp.setText("");
@@ -137,19 +142,21 @@ pste.setString(3,role);
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Client"){
           String role =combo.getSelectionModel().getSelectedItem().toString();
-         String sql="select * from user where nom=? and password=? and role=?";
+         String sql="select * from user where email=?  and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdpn);
-pste.setString(3,role);
+pste.setString(2,role);
  ResultSet rs = pste.executeQuery();
+            System.out.println("client"+BCrypt.checkpw(txtmdp.getText(),userpwd));
+            
    if(rs.next()){
        if(rs.getInt("etat")==0){
           JOptionPane.showMessageDialog(null, "vous etes bloqué");
           txtnom.setText("");
           txtmdp.setText("");}
        else{
-                JOptionPane.showMessageDialog(null, "client and password matched");
+           if(BCrypt.checkpw(txtmdp.getText(),userpwd))
+           {  JOptionPane.showMessageDialog(null, "client and password matched");
 //                txtnom.setText("");
 //                     txtmdp.setText("");
                      
@@ -159,13 +166,21 @@ pste.setString(3,role);
 		ClientDController  ee = loader.getController();
                 
                 int i=us.selectid(txtnom.getText(),mdpn,"Client");
+                          System.out.println("iddd"+i);
                 ee.setIdc(i);
               
 		((Button) event.getSource()).getScene().setRoot(root);
 		}catch(Exception ex){
 			System.out.println(ex);
 		}
-//                        Stage stage = new Stage();
+           }
+           else
+           {
+               JOptionPane.showMessageDialog(null, "client and password donot matched");
+                    txtnom.setText("");
+                     txtmdp.setText("");
+           }
+//                    }    Stage stage = new Stage();
 //        Parent root = FXMLLoader.load(getClass().getResource("client.fxml"));
 //        Scene scene =new Scene(root);
 //        stage.setScene(scene);
@@ -179,13 +194,12 @@ pste.setString(3,role);
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Offreur"){
                String role =combo.getSelectionModel().getSelectedItem().toString();
-         String sql="select * from user where nom=? and password=? and role=?";
+         String sql="select * from user where email=? and role=?";
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdpn);
-pste.setString(3,role);
+pste.setString(2,role);
  ResultSet rs = pste.executeQuery();
-   if(rs.next()){
+   if(BCrypt.checkpw(txtmdp.getText(),userpwd)&&rs.next()){
                 JOptionPane.showMessageDialog(null, "Offreur and password matched"); 
      try{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierCompteOffreur.fxml"));
@@ -206,15 +220,13 @@ pste.setString(3,role);
                      txtmdp.setText("");
                     }
     }else if(combo.getSelectionModel().getSelectedItem().toString()=="Agent-Aerien"){ 
-            String role =combo.getSelectionModel().getSelectedItem().toString();
-         String sql="select * from user where nom=? and password=? and role=?";
+              String sql="select * from user where email=? and role=?";
+               String role =combo.getSelectionModel().getSelectedItem().toString();
 PreparedStatement pste=conn.prepareStatement(sql);
 pste.setString(1,nom);
-pste.setString(2,mdpn);
-pste.setString(3,role);
+pste.setString(2,role);
  ResultSet rs = pste.executeQuery();
- 
-   if(rs.next()){
+   if(BCrypt.checkpw(txtmdp.getText(),userpwd)&&rs.next()){
                 JOptionPane.showMessageDialog(null, "agent-aerien and password matched");
 //                 txtnom.setText("");
 //                     txtmdp.setText("");
