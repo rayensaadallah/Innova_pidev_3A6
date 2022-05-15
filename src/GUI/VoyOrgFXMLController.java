@@ -12,6 +12,7 @@ import Services.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -240,7 +241,11 @@ private Timeline locationUpdateTimeline;
 
         else{
        voyageOrganise v;
-            v = new voyageOrganise(txtvilleDep.getText(),txtvilleDest.getText(),txtdateDeb.getValue().toString(),txtdateFin.getValue().toString(),Integer.parseInt(txtnbrPlace.getText()),Integer.parseInt(txtCat.getText()),Float.parseFloat(txtprix.getText()),txtdesc.getText());
+
+        String dd=txtdateDeb.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+          String df=txtdateFin.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+   
+            v = new voyageOrganise(txtvilleDep.getText(),txtvilleDest.getText(),dd,df,Integer.parseInt(txtnbrPlace.getText()),Integer.parseInt(txtCat.getText()),Float.parseFloat(txtprix.getText()),txtdesc.getText());
          vos.ajouter(v);
 
       tableviewVO.getItems().clear();
@@ -262,8 +267,8 @@ tableviewVO.getItems().clear();
     @FXML
     void updatevo(ActionEvent event) throws Exception {
         voyageOrganise v =  tableviewVO.getSelectionModel().getSelectedItem();
-        String dateD = txtdateDeb.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        String dateF = txtdateFin.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String dateD = txtdateDeb.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String dateF = txtdateFin.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         v.setVilleDepart(txtvilleDep.getText());
         v.setVilleDest(txtvilleDest.getText());
@@ -279,14 +284,14 @@ tableviewVO.getItems().clear();
     }
 
     
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
          
   
     @FXML
     private void select(javafx.scene.input.MouseEvent event) {
         int index= -1;
          index = tableviewVO.getSelectionModel().getSelectedIndex();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
 
     String  date =DateDeb.getCellData(index).toString();
     String  date1 =DateFin.getCellData(index).toString();

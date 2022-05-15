@@ -62,7 +62,7 @@ public class MdpoubController implements Initializable {
         String email = txtemailmdpoub.getText();
         try {
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select securityQ from client where email = '" + email + "'");
+            ResultSet rs = st.executeQuery("select securityQ from user where email = '" + email + "'");
             if (rs.next()) {
                 txtquestion.setText(rs.getString("securityQ"));
 

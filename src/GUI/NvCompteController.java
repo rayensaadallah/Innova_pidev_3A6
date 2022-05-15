@@ -6,6 +6,7 @@
 package GUI;
 
 import Entities.Client;
+import Entities.User;
 import Entities.encryption;
 import static  Entities.encryption.ALGORITHM;
 import static  Entities.encryption.decrypt;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 import Services.ClientService;
+import Services.UserService;
 
 /**
  * FXML Controller class
@@ -54,7 +56,7 @@ public class NvCompteController implements Initializable {
     
     @FXML
     private TextField txtnumtel;
-ClientService cs = new ClientService();
+UserService cs = new UserService();
     @FXML
     void validerCompte(ActionEvent event) throws Exception {
         
@@ -87,9 +89,10 @@ ClientService cs = new ClientService();
                
                      
                    String mdpcry = encryption.encrypt(txtmdpNVC.getText(),new SecretKeySpec(keyValue, ALGORITHM));      
-//               Client c= new Client(combosecNVC.getSelectionModel().getSelectedItem().toString(), txtrepNVC.getText(),txtnumtel.getText() ,txtnomNVC.getText(), txtprenomNVC.getText(),mdpcry, txtemailNVC.getText());
+  User c= new   User(txtnomNVC.getText(), txtprenomNVC.getText(), mdpcry, combosecNVC.getSelectionModel().getSelectedItem().toString(),  txtrepNVC.getText(), txtnumtel.getText() , txtemailNVC.getText(),"Client");
+               
          decrypt(mdpcry,new SecretKeySpec(keyValue, ALGORITHM));
-//          cs.ajouter(c);
+       cs.ajouter1(c);
         JOptionPane.showMessageDialog(null, "votre compte est cree avec succes");
           }
 

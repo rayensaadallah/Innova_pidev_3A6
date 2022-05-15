@@ -223,7 +223,7 @@ public class ReserverActiviteController implements Initializable {
         java.sql.Date Dateav = new java.sql.Date(parseda.getTime());
          if(rs.verifierNbplaceAct(A.getRefAct(),Integer.parseInt(nbpA.getText())))
         {
-        Reservation r= new Reservation(datR,Integer.parseInt(nbpA.getText()), Datedv, Dateav,0,A.getRefAct(),0,0,"Approuve",idclient,"vol");
+        Reservation r= new Reservation(datR,Integer.parseInt(nbpA.getText()), Datedv, Dateav,0,A.getRefAct(),0,0,"Approuve",idclient,"Activite");
       
          rs.ajouterAct(r);
          float prixtotalt= Float.valueOf(prixtotal.getText());

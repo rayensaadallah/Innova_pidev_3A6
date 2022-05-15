@@ -41,17 +41,17 @@ public class UserService implements IService<User>  {
     private String email;
     private String nomAgence;
     private String role;
-//    @Override
-//    public void ajouter(User a) {
-//    String req = "INSERT INTO `user` (`nom`,`prenom`,`email`,`adresse`,`password`,`securityQ`,`answer`,`numtel`,`nomAgence`,`role`) VALUE ('" + a.getNom() + "','" + a.getPrenom() + "','"+a.getEmail()+ "','"+a.getAdresse()+ "','"+a.getPwd()+"','"+a.getSecurityQ()+"','"+a.getAnswer()+"','"+a.getNumtel()+"','"+a.getNomAgence()+"','"+a.getRole()+"')";
-//        try {
-//            ste = conn.createStatement();
-//            ste.executeUpdate(req);
-//            System.out.println("admin créée");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-//        }   
-//    }
+   
+    public void ajouter1(User a) {
+    String req = "INSERT INTO `user` (`nom`,`prenom`,`email`,`adresse`,`password`,`securityQ`,`answer`,`numtel`,`nomAgence`,`role`) VALUE ('" + a.getNom() + "','" + a.getPrenom() + "','"+a.getEmail()+ "','"+a.getAdresse()+ "','"+a.getPwd()+"','"+a.getSecurityQ()+"','"+a.getAnswer()+"','"+a.getNumtel()+"','"+a.getNomAgence()+"','"+a.getRole()+"')";
+        try {
+            ste = conn.createStatement();
+            ste.executeUpdate(req);
+            System.out.println("admin créée");
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
       @Override
      public void ajouter(User a) {
          

@@ -162,7 +162,7 @@ public class AfficherReservationController implements Initializable {
           loadTableP(idc);
           supprimerR.disableProperty().bind(Bindings.isEmpty(tableRe.getSelectionModel().getSelectedItems()));
        comboMontant.getItems().addAll("Cache" ,"Cheque","Carte bancaire");
-       Etat.getItems().addAll("Approuve" ,"Annule");
+       Etat.getItems().addAll("Approuve" ,"Annulee");
         
     } 
     
@@ -232,13 +232,16 @@ public class AfficherReservationController implements Initializable {
       Reservation r=  tableRe.getSelectionModel().getSelectedItem();
       Paiement p = new Paiement();
       p.setId_reservation(r.getId());
-        
-      if(r.getEtat().equals("Vol") || r.getEtat().equals("Voyage") || r.getEtat().equals("Activite") && r.getEtat().equals("Annule"))
+        System.out.println(r.getEtat().equals("Vol"));
+       System.out.println(r.getEtat().equals("Vol"));
+       System.out.println(r.getEtat().equals("Vol"));
+        System.out.println(r.getEtat().equals("Annulee"));
+      if(r.getType().equals("Hebergement") && r.getEtat().equals("Annulee") )
       {
        ps.supprimer(p);
       rs.supprimer(r);  
       }
-      else if (r.getType().equals("Hebergement") && r.getEtat().equals("Annule") )
+      else if (r.getEtat().equals("Annulee") )
       {
             ps.supprimer(p);
            rs.supprimer(r);  
@@ -291,7 +294,7 @@ public class AfficherReservationController implements Initializable {
          System.out.println(e);
          
      }
-     if(r.getType().equals("Vol") || r.getType().equals("Voyage") || r.getType().equals("Activite"))
+     if(r.getType().equals("Vol") || r.getType().equals("voyageOrganise") || r.getType().equals("Activite"))
      {
          DD.setDisable(true);
          DF.setDisable(true);
@@ -352,11 +355,11 @@ public class AfficherReservationController implements Initializable {
          Reservation r=  tableRe.getSelectionModel().getSelectedItem();
          
          System.out.println("test1 ");
-         if(r.getType().equals("Vol") || r.getType().equals("Voyage") || r.getType().equals("Voyage"))
+         if(r.getType().equals("Vol") || r.getType().equals("Activite") || r.getType().equals("voyageOrganise"))
          {   
                
              
-              if(r.getEtat().equals("Annule")&&Etat.getValue().equals("Approuve"))
+              if(r.getEtat().equals("Annulee")&&Etat.getValue().equals("Approuve"))
                  
              {
                   Notifications.create().title(" Affichage  ").text("  lmodification imposible  ").show();
@@ -365,7 +368,7 @@ public class AfficherReservationController implements Initializable {
              }
 
              
-             else if(Etat.getValue().equals("Annule") && !r .getEtat().equals("Annule"))
+             else if(Etat.getValue().equals("Annulee") && !r .getEtat().equals("Annulee"))
                  
              {
                  switch(r.getType())
@@ -383,7 +386,7 @@ public class AfficherReservationController implements Initializable {
                   loadTableP(idc);
                  loadTable(idc);  
             break;
-        case "Voyage":
+        case "voyageOrganise":
              r.setEtat(Etat.getValue());
               rs.modifier(r);
               rs.Annulernbplacevoyage(r.getId_voyage(), r.getNbr_place());
@@ -413,7 +416,7 @@ public class AfficherReservationController implements Initializable {
                   
              }
              
-             else if(Etat.getValue().equals("Annule"))
+             else if(Etat.getValue().equals("Annulee"))
                  
              {
                   Notifications.create().title(" Affichage  ").text("  la reseravation est deja annule  ").show();
@@ -469,7 +472,7 @@ public class AfficherReservationController implements Initializable {
                  
                  
              }
-             if(r.getType().equals("Hebergement")&&Etat.getValue().equals("Annule"))
+             if(r.getType().equals("Hebergement")&&Etat.getValue().equals("Annulee"))
                  
                  
              {

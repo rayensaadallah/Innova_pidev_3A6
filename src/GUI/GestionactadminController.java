@@ -253,7 +253,7 @@ public class GestionactadminController implements Initializable {
         int index = -1;
         index = tvactivite.getSelectionModel().getSelectedIndex();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDate localDate = LocalDate.parse(coldate.getCellData(index), formatter);
 
         txtduree.setText(colduree.getCellData(index));

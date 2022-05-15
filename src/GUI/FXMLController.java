@@ -52,8 +52,8 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-//import net.glxn.qrgen.QRCode;
-//import net.glxn.qrgen.image.ImageType;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  * FXML Controller class
@@ -560,20 +560,20 @@ else{
    
     @FXML
     private void h_share_qr (ActionEvent event){
-//        try {
-//            
-//            String details =h_recherche_referance.getText(); 
-//            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa"+details);/* toString(hs.getByReferanc(Integer.parseInt(h_recherche_referance.getText())))*/ 
-//            ByteArrayOutputStream out =QRCode.from(hs.taktak(Integer.parseInt(h_recherche_referance.getText()))).to(ImageType.PNG).stream();
-//            String f_name = h_recherche_referance.getText();
-//            String Path_name="D:\\3eme\\Innova_pidev_3A6\\src\\GUI\\images\\";//******************************************
-//            FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name +".PNG")));
-//                    fout.write(out.toByteArray());
-//                    fout.flush();
-//                    JOptionPane.showMessageDialog(null, "QRcode Crée");
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
+        try {
+            
+            String details =h_recherche_referance.getText(); 
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa"+details);/* toString(hs.getByReferanc(Integer.parseInt(h_recherche_referance.getText())))*/ 
+            ByteArrayOutputStream out =QRCode.from(hs.taktak(Integer.parseInt(h_recherche_referance.getText()))).to(ImageType.PNG).stream();
+            String f_name = h_recherche_referance.getText();
+            String Path_name="C:\\Users\\Asus\\OneDrive\\Bureau\\JavaDesktopIntegration\\Innova_pidev_3A6\\src\\GUI\\images\\";//******************************************
+            FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name +".PNG")));
+                    fout.write(out.toByteArray());
+                    fout.flush();
+                    JOptionPane.showMessageDialog(null, "QRcode Crée");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
  
